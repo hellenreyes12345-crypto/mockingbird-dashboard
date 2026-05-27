@@ -32,22 +32,19 @@ a:hover{text-decoration:underline}
 
 .content{padding:16px;max-width:740px;margin:0 auto}
 
-/* DATE SECTION — prominent header */
+/* DATE SECTION */
 .day-section{margin-bottom:20px}
-.day-section-header{background:#1B4332;color:#fff;padding:10px 18px;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center}
+.day-section-header{background:#1B4332;color:#fff;padding:10px 18px;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .day-section-title{font-size:16px;font-weight:700;letter-spacing:0.2px}
 .day-section-badges{display:flex;gap:6px;flex-wrap:wrap}
 .day-badge{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600;background:rgba(255,255,255,0.2);color:#fff}
-
 .day-section-body{background:#fff;border-radius:0 0 12px 12px;box-shadow:0 3px 10px rgba(0,0,0,0.1);overflow:hidden}
 
 /* ENTRIES */
 .entry{padding:13px 16px;border-bottom:1px solid #f0f0f0;position:relative}
 .entry:last-child{border-bottom:none}
-
 .entry-action{background:#FFEBEE;border-left:5px solid #C62828}
 .action-text{font-size:13px;font-weight:700;color:#C62828;line-height:1.5}
-
 .entry-booked{border-left:5px solid #2D6A4F;background:#F9FFF9}
 .entry-answered{border-left:5px solid #1565C0;background:#FAFCFF}
 .entry-missed{border-left:5px solid #C62828;background:#FFFAFA}
@@ -83,11 +80,16 @@ a:hover{text-decoration:underline}
 .buzon-label{font-weight:700;color:#E65100;font-size:11px;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
 .mensaje-box{font-size:13px;color:#555;line-height:1.6;margin-top:8px;padding:9px 12px;background:#f9f9f9;border-radius:8px}
 .servicio-pill{display:inline-block;background:#E8F5E9;color:#1B4332;font-size:12px;font-weight:600;padding:3px 10px;border-radius:10px;margin-top:5px}
-
 .entry-time{font-size:11px;color:#aaa;margin-top:8px}
 
-.sin-actividad{text-align:center;color:#bbb;padding:24px;font-size:13px}
+/* Idioma note */
+.nota-idioma{font-size:11px;color:#bbb;font-style:italic;margin-bottom:5px;display:flex;align-items:center;gap:4px}
 
+/* Seguimiento button */
+.btn-seguimiento{display:inline-block;background:#E8F5E9;color:#2E7D32;border:1.5px solid #A5D6A7;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;margin-top:8px}
+.btn-seguimiento:hover{background:#2E7D32;color:#fff;border-color:#2E7D32}
+
+.sin-actividad{text-align:center;color:#bbb;padding:24px;font-size:13px}
 .footer{text-align:center;padding:28px 20px 40px;color:#aaa;font-size:12px}
 
 @media(max-width:480px){
@@ -185,7 +187,7 @@ const STATS = {
   pending_actions: 2
 };
 
-// ── Traducciones ─────────────────────────────────────────────────────────────
+// ── Traducciones ──────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
   "schedule booked":"Cita agendada","booked":"Confirmado","new caller":"Nuevo cliente",
   "2nd call":"2da llamada","missed":"Llamada perdida","voicemail":"Buzón de voz",
@@ -196,13 +198,13 @@ const TRADUCCIONES_SERVICIO = {
   "trimming":"Poda","tree trimming":"Poda de árbol","emergency":"Emergencia",
   "land clearing":"Limpieza de terreno","tree service":"Servicio de árbol"
 };
+const MESES_ES = {
+  'enero':1,'febrero':2,'marzo':3,'abril':4,'mayo':5,'junio':6,
+  'julio':7,'agosto':8,'septiembre':9,'octubre':10,'noviembre':11,'diciembre':12
+};
 
-function traducirTag(t){
-  return TRADUCCIONES_TAG[t.toLowerCase()] || t;
-}
-function traducirServicio(s){
-  return TRADUCCIONES_SERVICIO[(s||'').toLowerCase()] || s;
-}
+function traducirTag(t){ return TRADUCCIONES_TAG[t.toLowerCase()]||t; }
+function traducirServicio(s){ return TRADUCCIONES_SERVICIO[(s||'').toLowerCase()]||s; }
 
 function esc(s){
   if(!s)return'';
@@ -216,7 +218,7 @@ function fmtDuracion(sec){
 function fmtFecha(iso){
   if(!iso)return'';
   try{
-    return new Date(iso).toLocaleString('es-GT',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    return new Date(iso).toLocaleString('es-GT',{timeZone:'America/Chicago',day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
   }catch(e){return iso;}
 }
 function telLink(p){
@@ -229,9 +231,47 @@ function emailLink(e){
   return`<a class="email-link" href="mailto:${esc(e)}">✉️ ${esc(e)}</a>`;
 }
 
-// ── Stats ────────────────────────────────────────────────────────────────────
+// ── Helpers de fecha ──────────────────────────────────────────────────────────
+// Extrae YYYY-MM-DD de distintos formatos de fecha
+function extraerFechaISO(str, fallback) {
+  if (!str) return fallback;
+  const s = String(str);
+  // Solo fecha ISO
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s.trim())) return s.trim();
+  // Fecha+hora ISO → convertir UTC a Nashville (America/Chicago)
+  if (/\d{4}-\d{2}-\d{2}T/.test(s)) {
+    try { return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/Chicago'}); }
+    catch(e){}
+  }
+  // "26 de mayo 2026" / "26 de mayo de 2026" (también dentro de texto)
+  const m1 = s.toLowerCase().match(/(\d{1,2})\s+de\s+([a-z]+?)(?:\s+de)?\s+(\d{4})/);
+  if (m1) {
+    const mes = MESES_ES[m1[2]];
+    if (mes) return `${m1[3]}-${String(mes).padStart(2,'0')}-${String(m1[1]).padStart(2,'0')}`;
+  }
+  // DD/MM/YYYY (convención española)
+  const m2 = s.match(/(\d{1,2})\/(\d{2})\/(\d{4})/);
+  if (m2) {
+    const d=parseInt(m2[1]),mo=parseInt(m2[2]),y=parseInt(m2[3]);
+    if (d>=1&&d<=31&&mo>=1&&mo<=12)
+      return `${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  }
+  return fallback;
+}
+
+// Formatea YYYY-MM-DD → "Martes 26 de mayo de 2026"
+function formatearFechaDisplay(isoDate) {
+  try {
+    const [y,m,d]=isoDate.split('-').map(Number);
+    const dt=new Date(y,m-1,d,12,0,0);
+    const str=dt.toLocaleDateString('es-GT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    return str.charAt(0).toUpperCase()+str.slice(1);
+  } catch(e){ return isoDate; }
+}
+
+// ── Estadísticas ──────────────────────────────────────────────────────────────
 function renderStats(){
-  const tarjetas=[
+  const t=[
     {i:'📞',n:STATS.total_calls_30d,l:'Llamadas / 30d',r:false},
     {i:'🌐',n:STATS.total_web_30d,l:'Leads Web / 30d',r:false},
     {i:'📍',n:STATS.total_lsa_30d,l:'Google LSA / 30d',r:false},
@@ -239,38 +279,86 @@ function renderStats(){
     {i:'❌',n:STATS.total_missed_30d,l:'Perdidas',r:false},
     {i:'🚨',n:STATS.pending_actions,l:'Pendientes hoy',r:STATS.pending_actions>0}
   ];
-  document.getElementById('stats-bar').innerHTML=tarjetas.map(c=>
+  document.getElementById('stats-bar').innerHTML=t.map(c=>
     `<div class="stat-card"><div class="stat-icon">${c.i}</div>
      <div class="stat-num${c.r?' red':''}">${c.n}</div>
      <div class="stat-label">${c.l}</div></div>`
   ).join('');
 }
 
-// ── Render entries ────────────────────────────────────────────────────────────
+// ── Seguimiento (persistencia en localStorage) ────────────────────────────────
+function genSegKey(text){
+  let h=0;
+  const s=String(text).substring(0,80);
+  for(let i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;}
+  return'seg_'+Math.abs(h).toString(36);
+}
+
+function marcarSeguimiento(key){
+  try{localStorage.setItem(key,'1');}catch(e){}
+  const el=document.getElementById('accion-'+key);
+  if(el){
+    el.style.transition='opacity 0.3s';
+    el.style.opacity='0';
+    setTimeout(()=>{
+      el.style.display='none';
+      actualizarPendientes();
+      // Ocultar sección del día si quedó vacía
+      const sec=el.closest('.day-section');
+      if(sec){
+        const hayVisible=Array.from(sec.querySelectorAll('.entry')).some(e=>e.style.display!=='none');
+        if(!hayVisible) sec.style.display='none';
+      }
+    },300);
+  }
+}
+
+function actualizarPendientes(){
+  let count=0;
+  document.querySelectorAll('.entry-action').forEach(el=>{
+    if(el.style.display!=='none') count++;
+  });
+  const nums=document.querySelectorAll('.stat-num');
+  if(nums.length>=6){
+    nums[5].textContent=count;
+    nums[5].className='stat-num'+(count>0?' red':'');
+  }
+}
+
+function inicializarSeguimiento(){
+  document.querySelectorAll('.entry-action[id]').forEach(el=>{
+    const key=el.id.replace('accion-','');
+    try{if(localStorage.getItem(key)==='1') el.style.display='none';}catch(e){}
+  });
+  actualizarPendientes();
+}
+
+// ── Render acción pendiente ───────────────────────────────────────────────────
 function renderAccion(a){
-  return`<div class="entry entry-action" data-type="action">
+  const key=genSegKey(a.text);
+  return`<div class="entry entry-action" data-type="action" id="accion-${key}">
     <div class="action-text">🚨 ${esc(a.text)}</div>
+    <button class="btn-seguimiento" onclick="marcarSeguimiento('${key}')">✅ Ya se le dio seguimiento</button>
   </div>`;
 }
 
+// ── Render llamada CallRail ───────────────────────────────────────────────────
 function renderLlamada(c){
   const tags=Array.isArray(c.tags)?c.tags:(c.tag?[c.tag]:[]);
-  const esConfirmado=tags.some(t=>/booked/i.test(t));
-  const esPerdida=c.status==='missed';
+  const esConf=tags.some(t=>/booked/i.test(t));
+  const esPerd=c.status==='missed';
   const esBuzon=c.status==='voicemail';
-  const clase=esConfirmado?'entry-booked':esPerdida?'entry-missed':esBuzon?'entry-voicemail':'entry-answered';
-  const tipo=esConfirmado?'call-booked':esPerdida?'call-missed':esBuzon?'call-voicemail':'call-answered';
-
-  let estadoBadge=esConfirmado
+  const clase=esConf?'entry-booked':esPerd?'entry-missed':esBuzon?'entry-voicemail':'entry-answered';
+  const tipo=esConf?'call-booked':esPerd?'call-missed':esBuzon?'call-voicemail':'call-answered';
+  const badge=esConf
     ?'<span class="badge b-confirmado">✅ CONFIRMADO</span>'
-    :esPerdida?'<span class="badge b-perdida">❌ PERDIDA</span>'
+    :esPerd?'<span class="badge b-perdida">❌ PERDIDA</span>'
     :esBuzon?'<span class="badge b-buzon">🎤 BUZÓN DE VOZ</span>'
     :'<span class="badge b-respondida">📞 RESPONDIDA</span>';
-
   return`<div class="entry ${clase}" data-type="${tipo}">
     <div class="badge-row">
       <span class="badge b-callrail">📞 CALLRAIL</span>
-      ${estadoBadge}
+      ${badge}
       ${tags.map(t=>`<span class="b-tag">${esc(traducirTag(t))}</span>`).join('')}
     </div>
     <div class="contact-row">
@@ -281,12 +369,13 @@ function renderLlamada(c){
     ${c.address||c.city?`<div class="detail-row"><span class="ico">📍</span><span class="detail-val">${esc([c.address,c.city].filter(Boolean).join(', '))}</span></div>`:''}
     ${c.service_requested?`<div class="detail-row"><span class="ico">🔧</span><span class="detail-label">Servicio:</span><span class="detail-val">${esc(traducirServicio(c.service_requested))}</span></div>`:''}
     ${c.call_summary?`<div class="resumen-box">${esc(c.call_summary)}</div>`:''}
-    ${c.voicemail_transcript?`<div class="buzon-box"><div class="buzon-label">🎤 Transcripción del buzón de voz</div>${esc(c.voicemail_transcript)}</div>`:''}
+    ${c.voicemail_transcript?`<div class="buzon-box"><div class="buzon-label">🎤 Transcripción del buzón de voz</div><div class="nota-idioma">📝 Transcripción original del cliente</div>${esc(c.voicemail_transcript)}</div>`:''}
     ${c.recording_url?`<div class="detail-row" style="margin-top:8px"><a href="${esc(c.recording_url)}" style="color:#1565C0;font-size:12px">🔊 Escuchar grabación</a></div>`:''}
     <div class="entry-time">📅 ${esc(c.call_date||'')}</div>
   </div>`;
 }
 
+// ── Render formulario Formspree ───────────────────────────────────────────────
 function renderFormulario(f){
   return`<div class="entry entry-formspree" data-type="formspree">
     <div class="badge-row"><span class="badge b-formspree">🌐 FORMULARIO WEB</span></div>
@@ -297,18 +386,18 @@ function renderFormulario(f){
     </div>
     ${f.address?`<div class="detail-row"><span class="ico">📍</span><span class="detail-val">${esc(f.address)}</span></div>`:''}
     ${f.service?`<span class="servicio-pill">🔧 ${esc(traducirServicio(f.service))}</span>`:''}
-    ${f.message?`<div class="mensaje-box">${esc(f.message)}</div>`:''}
+    ${f.message?`<div class="mensaje-box"><div class="nota-idioma">📝 Mensaje original del cliente</div>${esc(f.message)}</div>`:''}
     <div class="entry-time">📅 Enviado: ${fmtFecha(f.time)}</div>
   </div>`;
 }
 
+// ── Render Google LSA ─────────────────────────────────────────────────────────
 function renderLSA(l){
   const tipoBadge=l.type==='new_lead'
     ?'<span class="badge" style="background:#E8F5E9;color:#2E7D32">🆕 NUEVO LEAD</span>'
     :l.type==='missed_lead'
     ?'<span class="badge b-perdida">❌ LEAD PERDIDO</span>'
     :'<span class="badge b-lsa">ℹ️ NOTIFICACIÓN</span>';
-
   return`<div class="entry entry-lsa" data-type="lsa">
     <div class="badge-row">
       <span class="badge b-lsa">📍 GOOGLE LOCAL SERVICES</span>
@@ -321,36 +410,88 @@ function renderLSA(l){
   </div>`;
 }
 
-// ── Render all ────────────────────────────────────────────────────────────────
+// ── Render principal (agrupa por fecha real de cada actividad) ────────────────
 function renderTodo(){
   const ahora=new Date();
   document.getElementById('updated-time').innerHTML=
     `Actualizado: ${ahora.toLocaleDateString('es-GT',{day:'2-digit',month:'short',year:'numeric'})}<br>${ahora.toLocaleTimeString('es-GT',{hour:'2-digit',minute:'2-digit'})} hrs`;
 
-  let html='';
-  DATA.forEach(dia=>{
-    const nLlamadas=(dia.callrail||[]).length;
-    const nForms=(dia.formspree||[]).length;
-    const nLSA=(dia.lsa||[]).length;
-    const nAcciones=(dia.actions||[]).length;
+  // Aplanar todas las actividades en cubetas por fecha real del evento
+  const cubetas={};
+  function getCubeta(f){
+    if(!cubetas[f]) cubetas[f]={date:f,callrail:[],formspree:[],lsa:[],actions:[]};
+    return cubetas[f];
+  }
 
+  DATA.forEach(dia=>{
+    // CallRail → usar call_date
+    (dia.callrail||[]).forEach(c=>{
+      getCubeta(extraerFechaISO(c.call_date,dia.date)).callrail.push(c);
+    });
+
+    // Formspree → usar campo time (ISO UTC → Nashville CDT)
+    (dia.formspree||[]).forEach(f=>{
+      let fecha=dia.date;
+      if(f.time){
+        try{fecha=new Date(f.time).toLocaleDateString('en-CA',{timeZone:'America/Chicago'});}
+        catch(e){fecha=extraerFechaISO(f.time,dia.date);}
+      }
+      getCubeta(fecha).formspree.push(f);
+    });
+
+    // Google LSA → usar lead_time
+    (dia.lsa||[]).forEach(l=>{
+      getCubeta(extraerFechaISO(l.lead_time||l.time,dia.date)).lsa.push(l);
+    });
+
+    // Acciones pendientes → intentar extraer fecha del texto
+    (dia.actions||[]).forEach(a=>{
+      let fecha=dia.date;
+      // Buscar DD/MM/YYYY en el texto de la acción (formato español)
+      const mFecha=(a.text||'').match(/(\d{1,2})\/(\d{2})\/(\d{4})/);
+      if(mFecha){
+        const d=parseInt(mFecha[1]),mo=parseInt(mFecha[2]),y=parseInt(mFecha[3]);
+        if(d>=1&&d<=31&&mo>=1&&mo<=12)
+          fecha=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      } else if(a.type==='web_lead'){
+        // Para leads web: buscar el teléfono en el texto y cruzarlo con formspree
+        const mTel=(a.text||'').match(/(\d{3}[\s\-]?\d{3}[\s\-]?\d{4})/);
+        if(mTel){
+          const limpio=mTel[1].replace(/\D/g,'');
+          const match=(dia.formspree||[]).find(f=>f.phone&&f.phone.replace(/\D/g,'')==limpio);
+          if(match&&match.time){
+            try{fecha=new Date(match.time).toLocaleDateString('en-CA',{timeZone:'America/Chicago'});}
+            catch(e){}
+          }
+        }
+      }
+      getCubeta(fecha).actions.push(a);
+    });
+  });
+
+  // Ordenar fechas de más reciente a más antigua
+  const fechas=Object.keys(cubetas).sort((a,b)=>b.localeCompare(a));
+
+  let html='';
+  fechas.forEach(fecha=>{
+    const dia=cubetas[fecha];
+    const nL=dia.callrail.length,nF=dia.formspree.length,nS=dia.lsa.length,nA=dia.actions.length;
     let badges='';
-    if(nLlamadas) badges+=`<span class="day-badge">📞 ${nLlamadas} llamada${nLlamadas>1?'s':''}</span>`;
-    if(nForms)    badges+=`<span class="day-badge">🌐 ${nForms} formulario${nForms>1?'s':''}</span>`;
-    if(nLSA)      badges+=`<span class="day-badge">📍 ${nLSA} LSA</span>`;
-    if(nAcciones) badges+=`<span class="day-badge" style="background:rgba(198,40,40,0.3)">🚨 ${nAcciones} pendiente${nAcciones>1?'s':''}</span>`;
+    if(nL) badges+=`<span class="day-badge">📞 ${nL} llamada${nL>1?'s':''}</span>`;
+    if(nF) badges+=`<span class="day-badge">🌐 ${nF} formulario${nF>1?'s':''}</span>`;
+    if(nS) badges+=`<span class="day-badge">📍 ${nS} LSA</span>`;
+    if(nA) badges+=`<span class="day-badge" style="background:rgba(198,40,40,0.3)">🚨 ${nA} pendiente${nA>1?'s':''}</span>`;
 
     let entradas='';
-    (dia.actions||[]).forEach(a=>entradas+=renderAccion(a));
-    (dia.callrail||[]).forEach(c=>entradas+=renderLlamada(c));
-    (dia.formspree||[]).forEach(f=>entradas+=renderFormulario(f));
-    (dia.lsa||[]).forEach(l=>entradas+=renderLSA(l));
-
+    dia.actions.forEach(a=>entradas+=renderAccion(a));
+    dia.callrail.forEach(c=>entradas+=renderLlamada(c));
+    dia.formspree.forEach(f=>entradas+=renderFormulario(f));
+    dia.lsa.forEach(l=>entradas+=renderLSA(l));
     if(!entradas) entradas=`<div class="sin-actividad">Sin actividad registrada este día</div>`;
 
-    html+=`<div class="day-section" id="dia-${dia.date}">
+    html+=`<div class="day-section" id="dia-${fecha}">
       <div class="day-section-header">
-        <span class="day-section-title">📅 ${esc(dia.display)}</span>
+        <span class="day-section-title">📅 ${esc(formatearFechaDisplay(fecha))}</span>
         <div class="day-section-badges">${badges}</div>
       </div>
       <div class="day-section-body">${entradas}</div>
@@ -361,22 +502,24 @@ function renderTodo(){
     '<div style="text-align:center;padding:40px;color:#aaa">Sin datos aún</div>';
 }
 
-// ── Filtrar ────────────────────────────────────────────────────────────────────
-function filtrar(btn, tipo){
+// ── Filtrar ───────────────────────────────────────────────────────────────────
+function filtrar(btn,tipo){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-
   document.querySelectorAll('.entry').forEach(el=>{
+    // Respetar ítems de seguimiento ya completados (quedan ocultos siempre)
+    if(el.classList.contains('entry-action')&&el.id){
+      const key=el.id.replace('accion-','');
+      try{if(localStorage.getItem(key)==='1') return;}catch(e){}
+    }
     const dt=el.dataset.type||'';
-    let mostrar=false;
-    if(tipo==='all')           mostrar=true;
-    else if(tipo==='callrail') mostrar=dt.startsWith('call-');
-    else if(tipo==='formspree')mostrar=dt==='formspree';
-    else if(tipo==='lsa')      mostrar=dt==='lsa';
-    else if(tipo==='action')   mostrar=dt==='action';
+    const mostrar=tipo==='all'
+      ||(tipo==='callrail'&&dt.startsWith('call-'))
+      ||(tipo==='formspree'&&dt==='formspree')
+      ||(tipo==='lsa'&&dt==='lsa')
+      ||(tipo==='action'&&dt==='action');
     el.style.display=mostrar?'':'none';
   });
-
   document.querySelectorAll('.day-section').forEach(sec=>{
     const visible=Array.from(sec.querySelectorAll('.entry')).some(e=>e.style.display!=='none');
     sec.style.display=visible?'':'none';
@@ -385,6 +528,7 @@ function filtrar(btn, tipo){
 
 renderStats();
 renderTodo();
+inicializarSeguimiento();
 </script>
 </body>
 </html>
