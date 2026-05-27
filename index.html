@@ -3,155 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mockingbird Tree Service — Lead Dashboard</title>
+<title>🌳 Mockingbird Lead Dashboard</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: #f0f2f5; color: #333; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f0;color:#1a1a1a;min-height:100vh}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
 
-  /* HEADER */
-  .header {
-    position: sticky; top: 0; z-index: 100;
-    background: #1B4332; padding: 12px 20px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
-  .header-left { display: flex; align-items: center; gap: 10px; }
-  .header-title { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
-  .header-right { text-align: right; }
-  .header-subtitle { color: #95D5B2; font-size: 13px; font-weight: 600; }
-  .header-updated { color: #95D5B2; font-size: 11px; margin-top: 2px; }
+.header{background:#1B4332;padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.header h1{color:#fff;font-size:18px;font-weight:700;letter-spacing:0.3px}
+.header-sub{color:#95D5B2;font-size:11px;margin-top:2px}
+.header-right{text-align:right}
+.header-right .updated{color:#95D5B2;font-size:11px}
 
-  /* STATS BAR */
-  .stats-bar {
-    background: #fff; border-bottom: 1px solid #e8eaed;
-    padding: 12px 16px; display: flex; gap: 12px;
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-  }
-  .stat-card {
-    flex: 0 0 auto; background: #f8f9fa; border-radius: 10px;
-    padding: 10px 16px; text-align: center; min-width: 80px;
-    border: 1px solid #e8eaed;
-  }
-  .stat-icon { font-size: 20px; }
-  .stat-number { font-size: 22px; font-weight: 700; color: #1B4332; line-height: 1.1; }
-  .stat-number.red { color: #C62828; }
-  .stat-label { font-size: 10px; color: #666; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stats{display:flex;gap:0;overflow-x:auto;background:#fff;border-bottom:2px solid #e0e0e0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.stats::-webkit-scrollbar{display:none}
+.stat-card{flex:0 0 auto;min-width:95px;padding:12px 14px;text-align:center;border-right:1px solid #f0f0f0;cursor:default}
+.stat-card:last-child{border-right:none}
+.stat-icon{font-size:20px}
+.stat-num{font-size:26px;font-weight:800;color:#1B4332;line-height:1.1;margin-top:2px}
+.stat-num.red{color:#C62828}
+.stat-label{font-size:10px;color:#777;margin-top:2px;white-space:nowrap}
 
-  /* FILTER TABS */
-  .filter-bar {
-    position: sticky; top: 57px; z-index: 99;
-    background: #fff; border-bottom: 1px solid #e8eaed;
-    padding: 8px 16px; display: flex; gap: 8px; overflow-x: auto;
-  }
-  .filter-btn {
-    flex: 0 0 auto; padding: 6px 14px; border-radius: 20px;
-    border: 1px solid #ddd; background: #fff; color: #555;
-    cursor: pointer; font-size: 13px; font-weight: 500;
-    transition: all 0.2s; white-space: nowrap;
-  }
-  .filter-btn.active { background: #2D6A4F; color: #fff; border-color: #2D6A4F; }
-  .filter-btn:hover:not(.active) { background: #f0f2f5; }
+.filters{display:flex;gap:8px;padding:10px 16px;background:#fff;border-bottom:1px solid #e0e0e0;overflow-x:auto;position:sticky;top:57px;z-index:90;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter-btn{flex:0 0 auto;padding:6px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;color:#555;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.filter-btn.active,.filter-btn:hover{background:#2D6A4F;color:#fff;border-color:#2D6A4F}
 
-  /* MAIN CONTENT */
-  .main { padding: 16px; max-width: 800px; margin: 0 auto; }
+.content{padding:16px;max-width:740px;margin:0 auto}
 
-  /* DAY CARD */
-  .day-card {
-    background: #fff; border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 16px; overflow: hidden;
-  }
-  .day-header {
-    padding: 14px 18px; background: #f8f9fa; border-bottom: 1px solid #e8eaed;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-  }
-  .day-date { font-size: 16px; font-weight: 700; color: #1B4332; }
-  .day-badges { display: flex; gap: 6px; flex-wrap: wrap; }
-  .mini-badge {
-    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px;
-  }
-  .badge-call { background: #E3F2FD; color: #1565C0; }
-  .badge-form { background: #FFF3E0; color: #E65100; }
-  .badge-lsa  { background: #F3E5F5; color: #6A1B9A; }
+/* DATE SECTION — prominent header */
+.day-section{margin-bottom:20px}
+.day-section-header{background:#1B4332;color:#fff;padding:10px 18px;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center}
+.day-section-title{font-size:16px;font-weight:700;letter-spacing:0.2px}
+.day-section-badges{display:flex;gap:6px;flex-wrap:wrap}
+.day-badge{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600;background:rgba(255,255,255,0.2);color:#fff}
 
-  /* ENTRY CARDS */
-  .day-entries { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
-  .entry-card { border-radius: 8px; padding: 12px 14px; border-left: 4px solid #ccc; }
+.day-section-body{background:#fff;border-radius:0 0 12px 12px;box-shadow:0 3px 10px rgba(0,0,0,0.1);overflow:hidden}
 
-  /* ACTION */
-  .entry-card.action {
-    background: #FFEBEE; border-left-color: #C62828;
-    display: flex; align-items: flex-start; gap: 10px;
-  }
-  .action-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .action-text { font-size: 14px; font-weight: 700; color: #C62828; line-height: 1.4; }
+/* ENTRIES */
+.entry{padding:13px 16px;border-bottom:1px solid #f0f0f0;position:relative}
+.entry:last-child{border-bottom:none}
 
-  /* CALLRAIL */
-  .entry-card.call-booked   { background: #F0FFF4; border-left-color: #2D6A4F; }
-  .entry-card.call-answered { background: #E3F2FD; border-left-color: #1565C0; }
-  .entry-card.call-missed   { background: #FFEBEE; border-left-color: #C62828; }
-  .entry-card.call-voicemail{ background: #FFF3E0; border-left-color: #E65100; }
+.entry-action{background:#FFEBEE;border-left:5px solid #C62828}
+.action-text{font-size:13px;font-weight:700;color:#C62828;line-height:1.5}
 
-  /* FORMSPREE */
-  .entry-card.formspree { background: #FFF8F5; border-left-color: #E65100; }
+.entry-booked{border-left:5px solid #2D6A4F;background:#F9FFF9}
+.entry-answered{border-left:5px solid #1565C0;background:#FAFCFF}
+.entry-missed{border-left:5px solid #C62828;background:#FFFAFA}
+.entry-voicemail{border-left:5px solid #E65100;background:#FFFDF5}
+.entry-formspree{border-left:5px solid #E65100;background:#FFFAF5}
+.entry-lsa{border-left:5px solid #6A1B9A;background:#FDF8FF}
 
-  /* LSA */
-  .entry-card.lsa { background: #FAF5FF; border-left-color: #6A1B9A; }
+.badge-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;align-items:center}
+.badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap}
+.b-callrail{background:#E3F2FD;color:#1565C0}
+.b-formspree{background:#FFF3E0;color:#E65100}
+.b-lsa{background:#F3E5F5;color:#6A1B9A}
+.b-confirmado{background:#1B4332;color:#fff}
+.b-respondida{background:#E8F5E9;color:#2E7D32}
+.b-perdida{background:#FFEBEE;color:#C62828}
+.b-buzon{background:#FFF8E1;color:#E65100}
+.b-tag{background:#f5f5f5;color:#555;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:500}
 
-  /* ENTRY ROW */
-  .entry-row { margin-bottom: 6px; line-height: 1.5; }
-  .entry-row:last-child { margin-bottom: 0; }
-  .source-badge {
-    display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px;
-    border-radius: 10px; margin-right: 6px; letter-spacing: 0.4px; text-transform: uppercase;
-  }
-  .sb-call   { background: #1565C0; color: #fff; }
-  .sb-form   { background: #E65100; color: #fff; }
-  .sb-lsa    { background: #6A1B9A; color: #fff; }
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px;align-items:center}
+.entry-name{font-size:15px;font-weight:700;color:#1a1a1a}
+.tel-link{font-size:14px;color:#2D6A4F;font-weight:600}
+.tel-link:hover{text-decoration:underline}
+.email-link{font-size:13px;color:#1565C0}
+.duracion{font-size:12px;color:#666;background:#f5f5f5;padding:2px 8px;border-radius:10px}
 
-  .status-badge {
-    display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px;
-    border-radius: 10px; margin-right: 4px;
-  }
-  .st-booked   { background: #2D6A4F; color: #fff; }
-  .st-answered { background: #1565C0; color: #fff; }
-  .st-missed   { background: #C62828; color: #fff; }
-  .st-voicemail{ background: #E65100; color: #fff; }
+.detail-row{display:flex;align-items:flex-start;gap:6px;margin-top:5px;font-size:13px;color:#555}
+.detail-row .ico{flex-shrink:0;width:18px}
+.detail-val{color:#555;line-height:1.4}
+.detail-label{font-weight:600;color:#333;flex-shrink:0;margin-right:4px}
 
-  .tag-badge {
-    display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px;
-    background: #e8f5e9; color: #2D6A4F; margin-right: 4px; font-weight: 600;
-  }
+.resumen-box{font-size:13px;color:#555;font-style:italic;line-height:1.6;margin-top:8px;padding:9px 12px;background:#f9f9f9;border-radius:8px;border-left:3px solid #ddd}
+.buzon-box{font-size:13px;color:#555;line-height:1.6;margin-top:8px;padding:9px 12px;background:#FFFDE7;border-radius:8px;border-left:3px solid #F57F17}
+.buzon-label{font-weight:700;color:#E65100;font-size:11px;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+.mensaje-box{font-size:13px;color:#555;line-height:1.6;margin-top:8px;padding:9px 12px;background:#f9f9f9;border-radius:8px}
+.servicio-pill{display:inline-block;background:#E8F5E9;color:#1B4332;font-size:12px;font-weight:600;padding:3px 10px;border-radius:10px;margin-top:5px}
 
-  .caller-name  { font-size: 16px; font-weight: 700; color: #1a1a1a; }
-  .caller-phone { font-size: 14px; color: #1565C0; text-decoration: none; }
-  .caller-phone:hover { text-decoration: underline; }
-  .duration-txt { font-size: 13px; color: #666; }
-  .detail-line  { font-size: 13px; color: #444; }
-  .summary-text { font-size: 13px; color: #555; font-style: italic; line-height: 1.5; }
-  .voicemail-text{ font-size: 13px; color: #444; line-height: 1.5; }
-  .date-small   { font-size: 11px; color: #999; }
+.entry-time{font-size:11px;color:#aaa;margin-top:8px}
 
-  .service-pill {
-    display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px;
-    border-radius: 12px; background: #e8f5e9; color: #1B4332;
-  }
+.sin-actividad{text-align:center;color:#bbb;padding:24px;font-size:13px}
 
-  .message-text { font-size: 13px; color: #555; line-height: 1.5; }
-  .email-link   { color: #1565C0; text-decoration: none; }
-  .email-link:hover { text-decoration: underline; }
+.footer{text-align:center;padding:28px 20px 40px;color:#aaa;font-size:12px}
 
-  .sep { margin: 0 6px; color: #ccc; }
-
-  /* FOOTER */
-  .footer { text-align: center; padding: 24px; font-size: 12px; color: #999; }
-
-  .hidden { display: none !important; }
+@media(max-width:480px){
+  .header{padding:10px 14px}
+  .header h1{font-size:15px}
+  .stat-card{min-width:82px;padding:10px 10px}
+  .stat-num{font-size:22px}
+  .content{padding:10px}
+  .day-section-title{font-size:14px}
+}
 </style>
 </head>
 <body>
 
+<div class="header">
+  <div>
+    <h1>🌳 THE MOCKINGBIRD TREE SERVICE</h1>
+    <div class="header-sub">Panel de Leads — Nashville, TN</div>
+  </div>
+  <div class="header-right">
+    <div class="updated" id="updated-time"></div>
+  </div>
+</div>
+
+<div class="stats" id="stats-bar"></div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filtrar(this,'all')">📋 Todos</button>
+  <button class="filter-btn" onclick="filtrar(this,'callrail')">📞 CallRail</button>
+  <button class="filter-btn" onclick="filtrar(this,'formspree')">🌐 Formspree</button>
+  <button class="filter-btn" onclick="filtrar(this,'lsa')">📍 Google LSA</button>
+  <button class="filter-btn" onclick="filtrar(this,'action')">🚨 Pendientes</button>
+</div>
+
+<div class="content" id="contenido"></div>
+<div class="footer">The Mockingbird Tree Service — Panel automático de leads</div>
+
 <script>
-const DATA = [{"date":"2026-05-27","display":"Miércoles 27 de Mayo 2026","callrail":[{"caller_name":"Whitley E.","caller_phone":"615-373-4924","duration_seconds":231,"status":"answered","tags":["Schedule booked","2nd call"],"call_summary":"Rick Whitley called to confirm a tree removal job at 314 Hayeswood Drive for $2800 that was previously estimated. He had concerns about whether the company uses a bucket truck (confirming they do) and whether electrical wires near the front tree would be a problem (agent confirmed they can safely handle it). The agent agreed to schedule the work for Monday, weather permitting, and committed to calling before arrival.","voicemail_transcript":null,"service_requested":"Tree Removal","address":"314 Hayeswood Drive","city":"Nashville, TN","call_date":"May 26 at 2:37 PM CDT","tracking_number":"629-205-4887","recording_url":"https://app.callrail.com/calls/CAL019e65ca6f66767ab1c1b85dd6e3ad55/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiYzZmMjBlYjU1YWFiNmNkZTc1OWYiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.x6Xd4CimPON6EboHIW7kMd4YkC3BGzG1uSOBCFSRyTM"}],"formspree":[{"name":"Tim Preston","email":null,"phone":"6158120123","service":"Tree Removal","message":"Hello, I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground. Thanks","address":null,"preferred_contact":null,"time":"09:01 PM - 26 May 2026","form_id":"MTM3NjgzNDYy"}],"lsa":[{"type":"new_lead","customer_name":null,"customer_phone":null,"service_requested":null,"lead_time":"4:39 PM on 05/26/2026","lead_id":null,"notes":"A potential customer called you on 05/26/2026 at 4:39 PM.","email_subject":"New call from a potential customer"}],"actions":[{"priority":"urgent","text":"Lead web: Tim Preston (sin email) quiere Tree Removal — llamar al 615-812-0123","type":"web_lead"},{"priority":"urgent","text":"Nuevo lead LSA de cliente desconocido — llamada el 05/26/2026 a las 4:39 PM","type":"lsa_lead"}]}];
+const DATA = [
+  {
+    "date": "2026-05-27",
+    "display": "Miércoles 27 de Mayo 2026",
+    "callrail": [
+      {
+        "caller_name": "Whitley E. (Rick Whitley)",
+        "caller_phone": "615-373-4924",
+        "duration_seconds": 231,
+        "status": "answered",
+        "tags": ["Schedule booked", "2nd call"],
+        "call_summary": "Rick Whitley llamó para confirmar un trabajo de remoción de árbol en 314 Hayeswood Drive por $2,800 que fue estimado previamente. Tenía preguntas sobre si la compañía usa bucket truck (confirmado que sí) y si los cables eléctricos cerca del árbol frontal serían un problema (confirmado que pueden manejarlo de forma segura). El agente acordó programar el trabajo para el lunes, condiciones climáticas favorables, y se comprometió a llamar antes de llegar.",
+        "service_requested": "Remoción de árbol",
+        "address": "314 Hayeswood Drive",
+        "city": "Nashville, TN",
+        "call_date": "26 de mayo 2026 — 2:37 PM CDT"
+      }
+    ],
+    "formspree": [
+      {
+        "name": "Tim Preston",
+        "phone": "6158120123",
+        "email": "",
+        "service": "Remoción de árbol",
+        "message": "Hello, I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground. Thanks",
+        "time": "2026-05-26T21:01:21Z"
+      }
+    ],
+    "lsa": [
+      {
+        "type": "new_lead",
+        "lead_time": "4:39 PM — 26 de mayo 2026",
+        "email_subject": "New call from a potential customer"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Lead web: Tim Preston quiere Remoción de árbol — llamar al 615-812-0123",
+        "type": "web_lead"
+      },
+      {
+        "priority": "urgent",
+        "text": "Nuevo lead de Google LSA — llamada recibida el 26/05/2026 a las 4:39 PM",
+        "type": "lsa_lead"
+      }
+    ]
+  }
+];
 
 const STATS = {
   total_calls_30d: 1,
@@ -161,229 +184,207 @@ const STATS = {
   total_missed_30d: 0,
   pending_actions: 2
 };
-</script>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-left">
-    <span style="font-size:24px;">🌳</span>
-    <span class="header-title">THE MOCKINGBIRD TREE SERVICE</span>
-  </div>
-  <div class="header-right">
-    <div class="header-subtitle">Lead Dashboard</div>
-    <div class="header-updated">Updated: May 27, 2026</div>
-  </div>
-</div>
+// ── Traducciones ─────────────────────────────────────────────────────────────
+const TRADUCCIONES_TAG = {
+  "schedule booked":"Cita agendada","booked":"Confirmado","new caller":"Nuevo cliente",
+  "2nd call":"2da llamada","missed":"Llamada perdida","voicemail":"Buzón de voz",
+  "answered":"Respondida","returning caller":"Cliente recurrente"
+};
+const TRADUCCIONES_SERVICIO = {
+  "tree removal":"Remoción de árbol","stump grinding":"Trituración de tocón",
+  "trimming":"Poda","tree trimming":"Poda de árbol","emergency":"Emergencia",
+  "land clearing":"Limpieza de terreno","tree service":"Servicio de árbol"
+};
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-card">
-    <div class="stat-icon">📞</div>
-    <div class="stat-number" id="stat-calls">1</div>
-    <div class="stat-label">Llamadas</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">🌐</div>
-    <div class="stat-number" id="stat-web">1</div>
-    <div class="stat-label">Leads Web</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">📍</div>
-    <div class="stat-number" id="stat-lsa">1</div>
-    <div class="stat-label">Google LSA</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">✅</div>
-    <div class="stat-number" id="stat-booked">1</div>
-    <div class="stat-label">Confirmados</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">❌</div>
-    <div class="stat-number" id="stat-missed">0</div>
-    <div class="stat-label">Perdidas</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">🚨</div>
-    <div class="stat-number red" id="stat-pending">2</div>
-    <div class="stat-label">Hoy</div>
-  </div>
-</div>
-
-<!-- FILTER TABS -->
-<div class="filter-bar">
-  <button class="filter-btn active" onclick="filterEntries('all')">Todos</button>
-  <button class="filter-btn" onclick="filterEntries('call')">📞 CallRail</button>
-  <button class="filter-btn" onclick="filterEntries('formspree')">🌐 Formspree</button>
-  <button class="filter-btn" onclick="filterEntries('lsa')">📍 Google LSA</button>
-  <button class="filter-btn" onclick="filterEntries('action')">🚨 Pendientes</button>
-</div>
-
-<!-- MAIN CONTENT -->
-<div class="main" id="main-content"></div>
-
-<div class="footer">The Mockingbird Tree Service — Dashboard automático</div>
-
-<script>
-function fmtDuration(secs) {
-  if (!secs) return '0s';
-  const m = Math.floor(secs / 60);
-  const s = secs % 60;
-  return m > 0 ? `${m}m ${s}s` : `${s}s`;
+function traducirTag(t){
+  return TRADUCCIONES_TAG[t.toLowerCase()] || t;
+}
+function traducirServicio(s){
+  return TRADUCCIONES_SERVICIO[(s||'').toLowerCase()] || s;
 }
 
-function fmtPhone(p) {
-  if (!p) return '';
-  const digits = String(p).replace(/\D/g, '');
-  if (digits.length === 10) return `${digits.slice(0,3)}-${digits.slice(3,6)}-${digits.slice(6)}`;
-  return p;
+function esc(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtDuracion(sec){
+  if(!sec||sec<1)return'0 seg';
+  const m=Math.floor(sec/60),s=sec%60;
+  return m>0?`${m} min ${s} seg`:`${s} seg`;
+}
+function fmtFecha(iso){
+  if(!iso)return'';
+  try{
+    return new Date(iso).toLocaleString('es-GT',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  }catch(e){return iso;}
+}
+function telLink(p){
+  if(!p)return'';
+  const clean=String(p).replace(/\D/g,'');
+  return`<a class="tel-link" href="tel:+1${clean}">📞 ${esc(p)}</a>`;
+}
+function emailLink(e){
+  if(!e)return'';
+  return`<a class="email-link" href="mailto:${esc(e)}">✉️ ${esc(e)}</a>`;
 }
 
-function getCallType(call) {
-  const tags = (call.tags || []).map(t => t.toLowerCase());
-  if (tags.some(t => t.includes('booked'))) return 'call-booked';
-  if (call.status === 'answered') return 'call-answered';
-  if (call.status === 'missed')   return 'call-missed';
-  if (call.status === 'voicemail') return 'call-voicemail';
-  return 'call-answered';
+// ── Stats ────────────────────────────────────────────────────────────────────
+function renderStats(){
+  const tarjetas=[
+    {i:'📞',n:STATS.total_calls_30d,l:'Llamadas / 30d',r:false},
+    {i:'🌐',n:STATS.total_web_30d,l:'Leads Web / 30d',r:false},
+    {i:'📍',n:STATS.total_lsa_30d,l:'Google LSA / 30d',r:false},
+    {i:'✅',n:STATS.total_booked_30d,l:'Confirmados',r:false},
+    {i:'❌',n:STATS.total_missed_30d,l:'Perdidas',r:false},
+    {i:'🚨',n:STATS.pending_actions,l:'Pendientes hoy',r:STATS.pending_actions>0}
+  ];
+  document.getElementById('stats-bar').innerHTML=tarjetas.map(c=>
+    `<div class="stat-card"><div class="stat-icon">${c.i}</div>
+     <div class="stat-num${c.r?' red':''}">${c.n}</div>
+     <div class="stat-label">${c.l}</div></div>`
+  ).join('');
 }
 
-function getStatusBadge(call) {
-  const type = getCallType(call);
-  const labels = {
-    'call-booked':    ['st-booked',   '✅ Confirmado'],
-    'call-answered':  ['st-answered', '✔ Contestada'],
-    'call-missed':    ['st-missed',   '✗ Perdida'],
-    'call-voicemail': ['st-voicemail','🎤 Buzón'],
-  };
-  const [cls, text] = labels[type] || ['st-answered','Contestada'];
-  return `<span class="status-badge ${cls}">${text}</span>`;
-}
-
-function renderAction(action) {
-  return `<div class="entry-card action" data-type="action">
-    <div class="action-icon">🚨</div>
-    <div class="action-text">${action.text}</div>
+// ── Render entries ────────────────────────────────────────────────────────────
+function renderAccion(a){
+  return`<div class="entry entry-action" data-type="action">
+    <div class="action-text">🚨 ${esc(a.text)}</div>
   </div>`;
 }
 
-function renderCall(call) {
-  const type = getCallType(call);
-  const phone = call.caller_phone || '';
-  const fmtPhone2 = fmtPhone(phone);
-  const tags = (call.tags || []).filter(t => !t.toLowerCase().includes('booked'));
-  const tagHtml = tags.map(t => `<span class="tag-badge">${t}</span>`).join('');
-  const bookedTag = (call.tags||[]).some(t=>t.toLowerCase().includes('booked'))
-    ? `<span class="tag-badge" style="background:#c8e6c9;color:#1B4332;">Schedule Booked</span>` : '';
+function renderLlamada(c){
+  const tags=Array.isArray(c.tags)?c.tags:(c.tag?[c.tag]:[]);
+  const esConfirmado=tags.some(t=>/booked/i.test(t));
+  const esPerdida=c.status==='missed';
+  const esBuzon=c.status==='voicemail';
+  const clase=esConfirmado?'entry-booked':esPerdida?'entry-missed':esBuzon?'entry-voicemail':'entry-answered';
+  const tipo=esConfirmado?'call-booked':esPerdida?'call-missed':esBuzon?'call-voicemail':'call-answered';
 
-  return `<div class="entry-card ${type}" data-type="${type}">
-    <div class="entry-row">
-      <span class="source-badge sb-call">📞 CallRail</span>
-      ${getStatusBadge(call)}
-      ${bookedTag}${tagHtml}
+  let estadoBadge=esConfirmado
+    ?'<span class="badge b-confirmado">✅ CONFIRMADO</span>'
+    :esPerdida?'<span class="badge b-perdida">❌ PERDIDA</span>'
+    :esBuzon?'<span class="badge b-buzon">🎤 BUZÓN DE VOZ</span>'
+    :'<span class="badge b-respondida">📞 RESPONDIDA</span>';
+
+  return`<div class="entry ${clase}" data-type="${tipo}">
+    <div class="badge-row">
+      <span class="badge b-callrail">📞 CALLRAIL</span>
+      ${estadoBadge}
+      ${tags.map(t=>`<span class="b-tag">${esc(traducirTag(t))}</span>`).join('')}
     </div>
-    <div class="entry-row">
-      <span class="caller-name">${call.caller_name || 'Desconocido'}</span>
-      <span class="sep">·</span>
-      <a class="caller-phone" href="tel:${phone}">${fmtPhone2 || phone}</a>
-      <span class="sep">·</span>
-      <span class="duration-txt">⏱ ${fmtDuration(call.duration_seconds)}</span>
+    <div class="contact-row">
+      <span class="entry-name">${esc(c.caller_name||'Desconocido')}</span>
+      ${telLink(c.caller_phone)}
+      ${c.duration_seconds?`<span class="duracion">⏱ ${fmtDuracion(c.duration_seconds)}</span>`:''}
     </div>
-    ${call.address ? `<div class="entry-row detail-line">📍 ${call.address}${call.city ? ', ' + call.city : ''}</div>` : ''}
-    ${call.service_requested ? `<div class="entry-row"><span class="service-pill">🔧 ${call.service_requested}</span></div>` : ''}
-    ${call.call_summary ? `<div class="entry-row summary-text">"${call.call_summary}"</div>` : ''}
-    ${call.voicemail_transcript ? `<div class="entry-row voicemail-text">🎤 <strong>Buzón de voz:</strong> ${call.voicemail_transcript}</div>` : ''}
-    <div class="entry-row date-small">${call.call_date || ''}</div>
+    ${c.address||c.city?`<div class="detail-row"><span class="ico">📍</span><span class="detail-val">${esc([c.address,c.city].filter(Boolean).join(', '))}</span></div>`:''}
+    ${c.service_requested?`<div class="detail-row"><span class="ico">🔧</span><span class="detail-label">Servicio:</span><span class="detail-val">${esc(traducirServicio(c.service_requested))}</span></div>`:''}
+    ${c.call_summary?`<div class="resumen-box">${esc(c.call_summary)}</div>`:''}
+    ${c.voicemail_transcript?`<div class="buzon-box"><div class="buzon-label">🎤 Transcripción del buzón de voz</div>${esc(c.voicemail_transcript)}</div>`:''}
+    ${c.recording_url?`<div class="detail-row" style="margin-top:8px"><a href="${esc(c.recording_url)}" style="color:#1565C0;font-size:12px">🔊 Escuchar grabación</a></div>`:''}
+    <div class="entry-time">📅 ${esc(c.call_date||'')}</div>
   </div>`;
 }
 
-function renderFormspree(form) {
-  const phone = fmtPhone(form.phone);
-  return `<div class="entry-card formspree" data-type="formspree">
-    <div class="entry-row">
-      <span class="source-badge sb-form">🌐 Formspree</span>
+function renderFormulario(f){
+  return`<div class="entry entry-formspree" data-type="formspree">
+    <div class="badge-row"><span class="badge b-formspree">🌐 FORMULARIO WEB</span></div>
+    <div class="contact-row">
+      <span class="entry-name">${esc(f.name||'Desconocido')}</span>
+      ${telLink(f.phone)}
+      ${emailLink(f.email)}
     </div>
-    <div class="entry-row">
-      <span class="caller-name">${form.name || 'Sin nombre'}</span>
-      ${form.email ? `<span class="sep">·</span><a class="email-link" href="mailto:${form.email}">${form.email}</a>` : ''}
-      ${form.phone ? `<span class="sep">·</span><a class="caller-phone" href="tel:${form.phone}">${phone}</a>` : ''}
-    </div>
-    ${form.address ? `<div class="entry-row detail-line">📍 ${form.address}</div>` : ''}
-    ${form.service ? `<div class="entry-row"><span class="service-pill">🔧 ${form.service}</span></div>` : ''}
-    ${form.message ? `<div class="entry-row message-text">${form.message}</div>` : ''}
-    <div class="entry-row date-small">${form.time || ''}</div>
+    ${f.address?`<div class="detail-row"><span class="ico">📍</span><span class="detail-val">${esc(f.address)}</span></div>`:''}
+    ${f.service?`<span class="servicio-pill">🔧 ${esc(traducirServicio(f.service))}</span>`:''}
+    ${f.message?`<div class="mensaje-box">${esc(f.message)}</div>`:''}
+    <div class="entry-time">📅 Enviado: ${fmtFecha(f.time)}</div>
   </div>`;
 }
 
-function renderLSA(lsa) {
-  return `<div class="entry-card lsa" data-type="lsa">
-    <div class="entry-row">
-      <span class="source-badge sb-lsa">📍 Google Local Services</span>
+function renderLSA(l){
+  const tipoBadge=l.type==='new_lead'
+    ?'<span class="badge" style="background:#E8F5E9;color:#2E7D32">🆕 NUEVO LEAD</span>'
+    :l.type==='missed_lead'
+    ?'<span class="badge b-perdida">❌ LEAD PERDIDO</span>'
+    :'<span class="badge b-lsa">ℹ️ NOTIFICACIÓN</span>';
+
+  return`<div class="entry entry-lsa" data-type="lsa">
+    <div class="badge-row">
+      <span class="badge b-lsa">📍 GOOGLE LOCAL SERVICES</span>
+      ${tipoBadge}
     </div>
-    ${(lsa.customer_name || lsa.customer_phone) ? `<div class="entry-row">
-      ${lsa.customer_name ? `<span class="caller-name">${lsa.customer_name}</span>` : ''}
-      ${lsa.customer_phone ? `<span class="sep">·</span><a class="caller-phone" href="tel:${lsa.customer_phone}">${fmtPhone(lsa.customer_phone)}</a>` : ''}
-    </div>` : ''}
-    ${lsa.service_requested ? `<div class="entry-row"><span class="service-pill">🔧 ${lsa.service_requested}</span></div>` : ''}
-    ${lsa.notes ? `<div class="entry-row detail-line">${lsa.notes}</div>` : ''}
-    <div class="entry-row date-small">${lsa.lead_time || ''}${lsa.lead_id ? ' · ID: ' + lsa.lead_id : ''}</div>
+    ${l.customer_name?`<div class="contact-row"><span class="entry-name">${esc(l.customer_name)}</span>${telLink(l.customer_phone)}</div>`:''}
+    ${l.service_requested?`<span class="servicio-pill">🔧 ${esc(traducirServicio(l.service_requested))}</span>`:''}
+    ${l.notes?`<div class="mensaje-box">${esc(l.notes)}</div>`:''}
+    <div class="entry-time">📅 ${esc(l.lead_time||l.time||'')}${l.lead_id?` · ID: ${esc(l.lead_id)}`:''}</div>
   </div>`;
 }
 
-function buildDashboard() {
-  const container = document.getElementById('main-content');
-  let html = '';
+// ── Render all ────────────────────────────────────────────────────────────────
+function renderTodo(){
+  const ahora=new Date();
+  document.getElementById('updated-time').innerHTML=
+    `Actualizado: ${ahora.toLocaleDateString('es-GT',{day:'2-digit',month:'short',year:'numeric'})}<br>${ahora.toLocaleTimeString('es-GT',{hour:'2-digit',minute:'2-digit'})} hrs`;
 
-  DATA.forEach(day => {
-    const callCount = (day.callrail || []).length;
-    const formCount = (day.formspree || []).length;
-    const lsaCount  = (day.lsa || []).length;
+  let html='';
+  DATA.forEach(dia=>{
+    const nLlamadas=(dia.callrail||[]).length;
+    const nForms=(dia.formspree||[]).length;
+    const nLSA=(dia.lsa||[]).length;
+    const nAcciones=(dia.actions||[]).length;
 
-    let entriesHtml = '';
+    let badges='';
+    if(nLlamadas) badges+=`<span class="day-badge">📞 ${nLlamadas} llamada${nLlamadas>1?'s':''}</span>`;
+    if(nForms)    badges+=`<span class="day-badge">🌐 ${nForms} formulario${nForms>1?'s':''}</span>`;
+    if(nLSA)      badges+=`<span class="day-badge">📍 ${nLSA} LSA</span>`;
+    if(nAcciones) badges+=`<span class="day-badge" style="background:rgba(198,40,40,0.3)">🚨 ${nAcciones} pendiente${nAcciones>1?'s':''}</span>`;
 
-    (day.actions || []).forEach(a => { entriesHtml += renderAction(a); });
-    (day.callrail || []).forEach(c => { entriesHtml += renderCall(c); });
-    (day.formspree || []).forEach(f => { entriesHtml += renderFormspree(f); });
-    (day.lsa || []).forEach(l => { entriesHtml += renderLSA(l); });
+    let entradas='';
+    (dia.actions||[]).forEach(a=>entradas+=renderAccion(a));
+    (dia.callrail||[]).forEach(c=>entradas+=renderLlamada(c));
+    (dia.formspree||[]).forEach(f=>entradas+=renderFormulario(f));
+    (dia.lsa||[]).forEach(l=>entradas+=renderLSA(l));
 
-    html += `<div class="day-card" data-date="${day.date}">
-      <div class="day-header">
-        <div class="day-date">${day.display}</div>
-        <div class="day-badges">
-          ${callCount > 0 ? `<span class="mini-badge badge-call">📞 ${callCount}</span>` : ''}
-          ${formCount > 0 ? `<span class="mini-badge badge-form">🌐 ${formCount}</span>` : ''}
-          ${lsaCount  > 0 ? `<span class="mini-badge badge-lsa">📍 ${lsaCount}</span>` : ''}
-        </div>
+    if(!entradas) entradas=`<div class="sin-actividad">Sin actividad registrada este día</div>`;
+
+    html+=`<div class="day-section" id="dia-${dia.date}">
+      <div class="day-section-header">
+        <span class="day-section-title">📅 ${esc(dia.display)}</span>
+        <div class="day-section-badges">${badges}</div>
       </div>
-      <div class="day-entries">${entriesHtml}</div>
+      <div class="day-section-body">${entradas}</div>
     </div>`;
   });
 
-  container.innerHTML = html;
+  document.getElementById('contenido').innerHTML=html||
+    '<div style="text-align:center;padding:40px;color:#aaa">Sin datos aún</div>';
 }
 
-function filterEntries(type) {
-  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+// ── Filtrar ────────────────────────────────────────────────────────────────────
+function filtrar(btn, tipo){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
 
-  document.querySelectorAll('.day-card').forEach(card => {
-    let visibleCount = 0;
-    card.querySelectorAll('[data-type]').forEach(entry => {
-      let show = false;
-      if (type === 'all') {
-        show = true;
-      } else if (type === 'call') {
-        show = entry.dataset.type.startsWith('call-');
-      } else {
-        show = entry.dataset.type === type;
-      }
-      entry.classList.toggle('hidden', !show);
-      if (show) visibleCount++;
-    });
-    card.classList.toggle('hidden', visibleCount === 0);
+  document.querySelectorAll('.entry').forEach(el=>{
+    const dt=el.dataset.type||'';
+    let mostrar=false;
+    if(tipo==='all')           mostrar=true;
+    else if(tipo==='callrail') mostrar=dt.startsWith('call-');
+    else if(tipo==='formspree')mostrar=dt==='formspree';
+    else if(tipo==='lsa')      mostrar=dt==='lsa';
+    else if(tipo==='action')   mostrar=dt==='action';
+    el.style.display=mostrar?'':'none';
+  });
+
+  document.querySelectorAll('.day-section').forEach(sec=>{
+    const visible=Array.from(sec.querySelectorAll('.entry')).some(e=>e.style.display!=='none');
+    sec.style.display=visible?'':'none';
   });
 }
 
-buildDashboard();
+renderStats();
+renderTodo();
 </script>
 </body>
 </html>
