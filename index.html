@@ -5,292 +5,385 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mockingbird Tree Service — Lead Dashboard</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #333; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: #f0f2f5; color: #333; }
 
-.header { position: sticky; top: 0; z-index: 100; background: #1B4332; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
-.header-left { display: flex; align-items: center; gap: 10px; }
-.header-title { color: white; font-size: 20px; font-weight: bold; letter-spacing: 0.5px; }
-.header-right { text-align: right; }
-.header-subtitle { color: #95D5B2; font-size: 13px; display: block; }
-.header-updated { color: #95D5B2; font-size: 11px; display: block; margin-top: 2px; }
+  /* HEADER */
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: #1B4332; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .header-title { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+  .header-right { text-align: right; }
+  .header-subtitle { color: #95D5B2; font-size: 13px; font-weight: 600; }
+  .header-updated { color: #95D5B2; font-size: 11px; margin-top: 2px; }
 
-.stats-bar { background: white; border-bottom: 1px solid #e8eaed; padding: 10px 16px; display: flex; gap: 8px; overflow-x: auto; position: sticky; top: 57px; z-index: 99; -webkit-overflow-scrolling: touch; }
-.stats-bar::-webkit-scrollbar { height: 4px; }
-.stats-bar::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-.stat-card { flex: 0 0 auto; min-width: 88px; text-align: center; padding: 10px 12px; border-radius: 10px; background: #f8f9fa; border: 1px solid #e8eaed; }
-.stat-number { font-size: 22px; font-weight: bold; color: #1B4332; display: block; }
-.stat-number.red { color: #C62828; }
-.stat-label { font-size: 11px; color: #777; display: block; margin-top: 2px; }
+  /* STATS BAR */
+  .stats-bar {
+    background: #fff; border-bottom: 1px solid #e8eaed;
+    padding: 12px 16px; display: flex; gap: 12px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .stat-card {
+    flex: 0 0 auto; background: #f8f9fa; border-radius: 10px;
+    padding: 10px 16px; text-align: center; min-width: 80px;
+    border: 1px solid #e8eaed;
+  }
+  .stat-icon { font-size: 20px; }
+  .stat-number { font-size: 22px; font-weight: 700; color: #1B4332; line-height: 1.1; }
+  .stat-number.red { color: #C62828; }
+  .stat-label { font-size: 10px; color: #666; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-.filter-tabs { position: sticky; top: 115px; z-index: 98; background: white; border-bottom: 1px solid #e8eaed; padding: 8px 16px; display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
-.filter-tabs::-webkit-scrollbar { height: 3px; }
-.filter-btn { border: 1px solid #ddd; border-radius: 20px; padding: 7px 14px; font-size: 13px; cursor: pointer; white-space: nowrap; transition: all 0.2s; background: white; color: #555; }
-.filter-btn.active { background: #2D6A4F; color: white; border-color: #2D6A4F; }
-.filter-btn:hover:not(.active) { background: #f0f2f5; }
+  /* FILTER TABS */
+  .filter-bar {
+    position: sticky; top: 57px; z-index: 99;
+    background: #fff; border-bottom: 1px solid #e8eaed;
+    padding: 8px 16px; display: flex; gap: 8px; overflow-x: auto;
+  }
+  .filter-btn {
+    flex: 0 0 auto; padding: 6px 14px; border-radius: 20px;
+    border: 1px solid #ddd; background: #fff; color: #555;
+    cursor: pointer; font-size: 13px; font-weight: 500;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .filter-btn.active { background: #2D6A4F; color: #fff; border-color: #2D6A4F; }
+  .filter-btn:hover:not(.active) { background: #f0f2f5; }
 
-.content { padding: 16px; max-width: 860px; margin: 0 auto; }
+  /* MAIN CONTENT */
+  .main { padding: 16px; max-width: 800px; margin: 0 auto; }
 
-.day-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 16px; overflow: hidden; }
-.day-card-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #f0f0f0; background: #fafafa; flex-wrap: wrap; gap: 8px; }
-.day-date { font-weight: bold; font-size: 16px; color: #1B4332; }
-.day-badges { display: flex; gap: 6px; flex-wrap: wrap; }
-.day-badge { padding: 3px 9px; border-radius: 12px; font-size: 11px; font-weight: 600; }
-.badge-call { background: #E3F2FD; color: #1565C0; }
-.badge-form { background: #FFF3E0; color: #E65100; }
-.badge-lsa { background: #F3E5F5; color: #6A1B9A; }
-.badge-action { background: #FFEBEE; color: #C62828; }
+  /* DAY CARD */
+  .day-card {
+    background: #fff; border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 16px; overflow: hidden;
+  }
+  .day-header {
+    padding: 14px 18px; background: #f8f9fa; border-bottom: 1px solid #e8eaed;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .day-date { font-size: 16px; font-weight: 700; color: #1B4332; }
+  .day-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .mini-badge {
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px;
+  }
+  .badge-call { background: #E3F2FD; color: #1565C0; }
+  .badge-form { background: #FFF3E0; color: #E65100; }
+  .badge-lsa  { background: #F3E5F5; color: #6A1B9A; }
 
-.entry { margin: 10px 12px; border-radius: 8px; padding: 12px 14px; border-left-width: 4px; border-left-style: solid; }
-.entry-action { background: #FFEBEE; border-left-color: #C62828; }
-.action-text { font-size: 14px; font-weight: 600; color: #C62828; line-height: 1.4; }
-.entry-call-booked { background: #F0FBF5; border-left-color: #2D6A4F; }
-.entry-call-answered { background: #E3F2FD; border-left-color: #1565C0; }
-.entry-call-missed { background: #FFEBEE; border-left-color: #C62828; }
-.entry-call-voicemail { background: #FFF3E0; border-left-color: #E65100; }
-.entry-formspree { background: #FFF8F5; border-left-color: #E65100; }
-.entry-lsa { background: #FAF5FF; border-left-color: #6A1B9A; }
+  /* ENTRY CARDS */
+  .day-entries { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .entry-card { border-radius: 8px; padding: 12px 14px; border-left: 4px solid #ccc; }
 
-.source-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
-.source-callrail { background: #E3F2FD; color: #1565C0; }
-.source-formspree { background: #FFF3E0; color: #E65100; }
-.source-lsa { background: #F3E5F5; color: #6A1B9A; }
-.status-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-right: 4px; }
-.status-booked { background: #D4EDDA; color: #044227; }
-.status-answered { background: #E3F2FD; color: #1565C0; }
-.status-missed { background: #FFEBEE; color: #C62828; }
-.status-voicemail { background: #FFF3E0; color: #E65100; }
-.tag-badge { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 10px; background: #D4EDDA; color: #044227; margin-right: 3px; margin-bottom: 2px; }
+  /* ACTION */
+  .entry-card.action {
+    background: #FFEBEE; border-left-color: #C62828;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .action-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .action-text { font-size: 14px; font-weight: 700; color: #C62828; line-height: 1.4; }
 
-.entry-row { margin-top: 7px; font-size: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.entry-name { font-weight: bold; font-size: 15px; color: #1a1a1a; }
-.entry-phone a { color: #1565C0; text-decoration: none; font-weight: 500; }
-.entry-phone a:hover { text-decoration: underline; }
-.entry-email a { color: #E65100; text-decoration: none; }
-.entry-email a:hover { text-decoration: underline; }
-.duration-label { color: #888; font-size: 13px; }
-.location-row { margin-top: 6px; color: #555; font-size: 13px; }
-.service-row { margin-top: 6px; }
-.service-pill { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 12px; background: #E8F5E9; color: #2D6A4F; font-weight: 600; border: 1px solid #c8e6c9; }
-.entry-summary { font-style: italic; color: #555; font-size: 13px; line-height: 1.6; margin-top: 8px; padding: 8px 10px; background: rgba(0,0,0,0.03); border-radius: 6px; }
-.entry-voicemail { font-size: 13px; color: #555; margin-top: 7px; line-height: 1.5; }
-.entry-message { font-size: 13px; color: #555; line-height: 1.6; margin-top: 7px; padding: 8px 10px; background: rgba(0,0,0,0.03); border-radius: 6px; }
-.entry-meta { font-size: 11px; color: #aaa; margin-top: 9px; }
+  /* CALLRAIL */
+  .entry-card.call-booked   { background: #F0FFF4; border-left-color: #2D6A4F; }
+  .entry-card.call-answered { background: #E3F2FD; border-left-color: #1565C0; }
+  .entry-card.call-missed   { background: #FFEBEE; border-left-color: #C62828; }
+  .entry-card.call-voicemail{ background: #FFF3E0; border-left-color: #E65100; }
 
-.footer { text-align: center; padding: 28px 16px; color: #bbb; font-size: 12px; }
-.no-entries { text-align: center; padding: 48px; color: #aaa; font-size: 14px; }
+  /* FORMSPREE */
+  .entry-card.formspree { background: #FFF8F5; border-left-color: #E65100; }
 
-@media (max-width: 600px) {
-  .header-title { font-size: 16px; }
-  .filter-tabs { top: 110px; }
-  .content { padding: 10px; }
-  .entry { margin: 8px 8px; padding: 10px 12px; }
-}
+  /* LSA */
+  .entry-card.lsa { background: #FAF5FF; border-left-color: #6A1B9A; }
+
+  /* ENTRY ROW */
+  .entry-row { margin-bottom: 6px; line-height: 1.5; }
+  .entry-row:last-child { margin-bottom: 0; }
+  .source-badge {
+    display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 10px; margin-right: 6px; letter-spacing: 0.4px; text-transform: uppercase;
+  }
+  .sb-call   { background: #1565C0; color: #fff; }
+  .sb-form   { background: #E65100; color: #fff; }
+  .sb-lsa    { background: #6A1B9A; color: #fff; }
+
+  .status-badge {
+    display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 10px; margin-right: 4px;
+  }
+  .st-booked   { background: #2D6A4F; color: #fff; }
+  .st-answered { background: #1565C0; color: #fff; }
+  .st-missed   { background: #C62828; color: #fff; }
+  .st-voicemail{ background: #E65100; color: #fff; }
+
+  .tag-badge {
+    display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px;
+    background: #e8f5e9; color: #2D6A4F; margin-right: 4px; font-weight: 600;
+  }
+
+  .caller-name  { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+  .caller-phone { font-size: 14px; color: #1565C0; text-decoration: none; }
+  .caller-phone:hover { text-decoration: underline; }
+  .duration-txt { font-size: 13px; color: #666; }
+  .detail-line  { font-size: 13px; color: #444; }
+  .summary-text { font-size: 13px; color: #555; font-style: italic; line-height: 1.5; }
+  .voicemail-text{ font-size: 13px; color: #444; line-height: 1.5; }
+  .date-small   { font-size: 11px; color: #999; }
+
+  .service-pill {
+    display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px;
+    border-radius: 12px; background: #e8f5e9; color: #1B4332;
+  }
+
+  .message-text { font-size: 13px; color: #555; line-height: 1.5; }
+  .email-link   { color: #1565C0; text-decoration: none; }
+  .email-link:hover { text-decoration: underline; }
+
+  .sep { margin: 0 6px; color: #ccc; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 24px; font-size: 12px; color: #999; }
+
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
 
+<script>
+const DATA = [{"date":"2026-05-27","display":"Miércoles 27 de Mayo 2026","callrail":[{"caller_name":"Whitley E.","caller_phone":"615-373-4924","duration_seconds":231,"status":"answered","tags":["Schedule booked","2nd call"],"call_summary":"Rick Whitley called to confirm a tree removal job at 314 Hayeswood Drive for $2800 that was previously estimated. He had concerns about whether the company uses a bucket truck (confirming they do) and whether electrical wires near the front tree would be a problem (agent confirmed they can safely handle it). The agent agreed to schedule the work for Monday, weather permitting, and committed to calling before arrival.","voicemail_transcript":null,"service_requested":"Tree Removal","address":"314 Hayeswood Drive","city":"Nashville, TN","call_date":"May 26 at 2:37 PM CDT","tracking_number":"629-205-4887","recording_url":"https://app.callrail.com/calls/CAL019e65ca6f66767ab1c1b85dd6e3ad55/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiYzZmMjBlYjU1YWFiNmNkZTc1OWYiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.x6Xd4CimPON6EboHIW7kMd4YkC3BGzG1uSOBCFSRyTM"}],"formspree":[{"name":"Tim Preston","email":null,"phone":"6158120123","service":"Tree Removal","message":"Hello, I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground. Thanks","address":null,"preferred_contact":null,"time":"09:01 PM - 26 May 2026","form_id":"MTM3NjgzNDYy"}],"lsa":[{"type":"new_lead","customer_name":null,"customer_phone":null,"service_requested":null,"lead_time":"4:39 PM on 05/26/2026","lead_id":null,"notes":"A potential customer called you on 05/26/2026 at 4:39 PM.","email_subject":"New call from a potential customer"}],"actions":[{"priority":"urgent","text":"Lead web: Tim Preston (sin email) quiere Tree Removal — llamar al 615-812-0123","type":"web_lead"},{"priority":"urgent","text":"Nuevo lead LSA de cliente desconocido — llamada el 05/26/2026 a las 4:39 PM","type":"lsa_lead"}]}];
+
+const STATS = {
+  total_calls_30d: 1,
+  total_web_30d: 1,
+  total_lsa_30d: 1,
+  total_booked_30d: 1,
+  total_missed_30d: 0,
+  pending_actions: 2
+};
+</script>
+
+<!-- HEADER -->
 <div class="header">
   <div class="header-left">
-    <span style="font-size:26px;">🌳</span>
+    <span style="font-size:24px;">🌳</span>
     <span class="header-title">THE MOCKINGBIRD TREE SERVICE</span>
   </div>
   <div class="header-right">
-    <span class="header-subtitle">Lead Dashboard</span>
-    <span class="header-updated" id="updated-date"></span>
+    <div class="header-subtitle">Lead Dashboard</div>
+    <div class="header-updated">Updated: May 27, 2026</div>
   </div>
 </div>
 
-<div class="stats-bar" id="stats-bar"></div>
-
-<div class="filter-tabs">
-  <button class="filter-btn active" onclick="filterEntries('all', this)">Todos</button>
-  <button class="filter-btn" onclick="filterEntries('callrail', this)">📞 CallRail</button>
-  <button class="filter-btn" onclick="filterEntries('formspree', this)">🌐 Formspree</button>
-  <button class="filter-btn" onclick="filterEntries('lsa', this)">📍 Google LSA</button>
-  <button class="filter-btn" onclick="filterEntries('action', this)">🚨 Pendientes</button>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-icon">📞</div>
+    <div class="stat-number" id="stat-calls">1</div>
+    <div class="stat-label">Llamadas</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">🌐</div>
+    <div class="stat-number" id="stat-web">1</div>
+    <div class="stat-label">Leads Web</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">📍</div>
+    <div class="stat-number" id="stat-lsa">1</div>
+    <div class="stat-label">Google LSA</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">✅</div>
+    <div class="stat-number" id="stat-booked">1</div>
+    <div class="stat-label">Confirmados</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">❌</div>
+    <div class="stat-number" id="stat-missed">0</div>
+    <div class="stat-label">Perdidas</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">🚨</div>
+    <div class="stat-number red" id="stat-pending">2</div>
+    <div class="stat-label">Hoy</div>
+  </div>
 </div>
 
-<div class="content" id="main-content"></div>
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterEntries('all')">Todos</button>
+  <button class="filter-btn" onclick="filterEntries('call')">📞 CallRail</button>
+  <button class="filter-btn" onclick="filterEntries('formspree')">🌐 Formspree</button>
+  <button class="filter-btn" onclick="filterEntries('lsa')">📍 Google LSA</button>
+  <button class="filter-btn" onclick="filterEntries('action')">🚨 Pendientes</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="main-content"></div>
 
 <div class="footer">The Mockingbird Tree Service — Dashboard automático</div>
 
 <script>
-const DATA = [{"date":"2026-05-27","display":"Miércoles 27 de Mayo 2026","callrail":[{"caller_name":"Whitley E.","caller_phone":"615-373-4924","duration_seconds":231,"status":"answered","tags":["Schedule booked","2nd call"],"call_summary":"Rick Whitley called to confirm a tree removal job at 314 Hayeswood Drive for $2800 that was previously estimated. He had concerns about whether the company uses a bucket truck (confirming they do) and whether electrical wires near the front tree would be a problem (agent confirmed they can safely handle it). The agent agreed to schedule the work for Monday, weather permitting, and committed to calling before arrival.","voicemail_transcript":null,"service_requested":"Tree Removal","address":"314 Hayeswood Drive","city":"Nashville, TN","call_date":"May 26 at 2:37 PM CDT","tracking_number":"629-205-4887","recording_url":"https://app.callrail.com/calls/CAL019e65ca6f66767ab1c1b85dd6e3ad55/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiYzZmMjBlYjU1YWFiNmNkZTc1OWYiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.x6Xd4CimPON6EboHIW7kMd4YkC3BGzG1uSOBCFSRyTM"}],"formspree":[{"name":"Tim Preston","email":null,"phone":"6158120123","service":"Tree Removal","message":"Hello, I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground. Thanks","address":null,"preferred_contact":null,"time":"09:01 PM - 26 May 2026","form_id":"MTM3NjgzNDYy"}],"lsa":[{"type":"new_lead","customer_name":null,"customer_phone":null,"service_requested":null,"lead_time":"4:39 PM on 05/26/2026","lead_id":null,"notes":"A potential customer called you on 05/26/2026 at 4:39 PM.","email_subject":"New call from a potential customer"}],"actions":[{"priority":"urgent","text":"Lead web: Tim Preston (sin email) quiere Tree Removal — llamar al 615-812-0123","type":"web_lead"},{"priority":"urgent","text":"Nuevo lead LSA de cliente desconocido — llamada el 05/26/2026 a las 4:39 PM","type":"lsa_lead"}]}];
-
-const STATS = {"total_calls_30d":1,"total_web_30d":1,"total_lsa_30d":1,"total_booked_30d":1,"total_missed_30d":0,"pending_actions":2};
-
-function formatDuration(sec) {
-  if (!sec || sec === 0) return '0s';
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return m > 0 ? m + 'm ' + s + 's' : s + 's';
+function fmtDuration(secs) {
+  if (!secs) return '0s';
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  return m > 0 ? `${m}m ${s}s` : `${s}s`;
 }
 
-function formatPhone(p) {
+function fmtPhone(p) {
   if (!p) return '';
-  const d = String(p).replace(/\D/g, '');
-  if (d.length === 10) return d.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-  return String(p);
+  const digits = String(p).replace(/\D/g, '');
+  if (digits.length === 10) return `${digits.slice(0,3)}-${digits.slice(3,6)}-${digits.slice(6)}`;
+  return p;
 }
 
 function getCallType(call) {
   const tags = (call.tags || []).map(t => t.toLowerCase());
-  if (tags.some(t => t.includes('booked') || t.includes('schedule'))) return 'call-booked';
-  if (call.status === 'missed') return 'call-missed';
+  if (tags.some(t => t.includes('booked'))) return 'call-booked';
+  if (call.status === 'answered') return 'call-answered';
+  if (call.status === 'missed')   return 'call-missed';
   if (call.status === 'voicemail') return 'call-voicemail';
   return 'call-answered';
 }
 
-function esc(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function getStatusBadge(call) {
+  const type = getCallType(call);
+  const labels = {
+    'call-booked':    ['st-booked',   '✅ Confirmado'],
+    'call-answered':  ['st-answered', '✔ Contestada'],
+    'call-missed':    ['st-missed',   '✗ Perdida'],
+    'call-voicemail': ['st-voicemail','🎤 Buzón'],
+  };
+  const [cls, text] = labels[type] || ['st-answered','Contestada'];
+  return `<span class="status-badge ${cls}">${text}</span>`;
 }
 
-function renderStats() {
-  const bar = document.getElementById('stats-bar');
-  const cards = [
-    { icon: '📞', val: STATS.total_calls_30d, label: 'Llamadas' },
-    { icon: '🌐', val: STATS.total_web_30d, label: 'Leads Web' },
-    { icon: '📍', val: STATS.total_lsa_30d, label: 'Google LSA' },
-    { icon: '✅', val: STATS.total_booked_30d, label: 'Confirmados' },
-    { icon: '❌', val: STATS.total_missed_30d, label: 'Perdidas' },
-    { icon: '🚨', val: STATS.pending_actions, label: 'Hoy', red: STATS.pending_actions > 0 },
-  ];
-  bar.innerHTML = cards.map(c =>
-    '<div class="stat-card"><span class="stat-number' + (c.red ? ' red' : '') + '">' + c.icon + ' ' + c.val + '</span><span class="stat-label">' + c.label + '</span></div>'
-  ).join('');
+function renderAction(action) {
+  return `<div class="entry-card action" data-type="action">
+    <div class="action-icon">🚨</div>
+    <div class="action-text">${action.text}</div>
+  </div>`;
 }
 
-function renderActionEntry(action) {
-  return '<div class="entry entry-action" data-type="action"><div class="action-text">🚨 ' + esc(action.text) + '</div></div>';
+function renderCall(call) {
+  const type = getCallType(call);
+  const phone = call.caller_phone || '';
+  const fmtPhone2 = fmtPhone(phone);
+  const tags = (call.tags || []).filter(t => !t.toLowerCase().includes('booked'));
+  const tagHtml = tags.map(t => `<span class="tag-badge">${t}</span>`).join('');
+  const bookedTag = (call.tags||[]).some(t=>t.toLowerCase().includes('booked'))
+    ? `<span class="tag-badge" style="background:#c8e6c9;color:#1B4332;">Schedule Booked</span>` : '';
+
+  return `<div class="entry-card ${type}" data-type="${type}">
+    <div class="entry-row">
+      <span class="source-badge sb-call">📞 CallRail</span>
+      ${getStatusBadge(call)}
+      ${bookedTag}${tagHtml}
+    </div>
+    <div class="entry-row">
+      <span class="caller-name">${call.caller_name || 'Desconocido'}</span>
+      <span class="sep">·</span>
+      <a class="caller-phone" href="tel:${phone}">${fmtPhone2 || phone}</a>
+      <span class="sep">·</span>
+      <span class="duration-txt">⏱ ${fmtDuration(call.duration_seconds)}</span>
+    </div>
+    ${call.address ? `<div class="entry-row detail-line">📍 ${call.address}${call.city ? ', ' + call.city : ''}</div>` : ''}
+    ${call.service_requested ? `<div class="entry-row"><span class="service-pill">🔧 ${call.service_requested}</span></div>` : ''}
+    ${call.call_summary ? `<div class="entry-row summary-text">"${call.call_summary}"</div>` : ''}
+    ${call.voicemail_transcript ? `<div class="entry-row voicemail-text">🎤 <strong>Buzón de voz:</strong> ${call.voicemail_transcript}</div>` : ''}
+    <div class="entry-row date-small">${call.call_date || ''}</div>
+  </div>`;
 }
 
-function renderCallEntry(call) {
-  const ctype = getCallType(call);
-  const phone = formatPhone(call.caller_phone);
-  const dur = formatDuration(call.duration_seconds);
-  const tags = (call.tags || []).map(t => '<span class="tag-badge">' + esc(t) + '</span>').join('');
-
-  let statusLabel, statusClass;
-  if (ctype === 'call-booked') { statusLabel = '✅ Booked'; statusClass = 'status-booked'; }
-  else if (call.status === 'missed') { statusLabel = '❌ Missed'; statusClass = 'status-missed'; }
-  else if (call.status === 'voicemail') { statusLabel = '🎙️ Voicemail'; statusClass = 'status-voicemail'; }
-  else { statusLabel = '✔️ Answered'; statusClass = 'status-answered'; }
-
-  let html = '<div class="entry entry-' + ctype + '" data-type="' + ctype + '">';
-  html += '<div><span class="source-badge source-callrail">📞 CALLRAIL</span><span class="status-badge ' + statusClass + '">' + statusLabel + '</span>' + tags + '</div>';
-  html += '<div class="entry-row"><span class="entry-name">' + esc(call.caller_name || 'Desconocido') + '</span>';
-  if (phone) html += '<span class="entry-phone"><a href="tel:' + esc(phone) + '">' + esc(phone) + '</a></span>';
-  html += '<span class="duration-label">⏱ ' + esc(dur) + '</span></div>';
-  if (call.address || call.city) {
-    html += '<div class="location-row">📍 ' + esc((call.address ? call.address + (call.city ? ', ' + call.city : '') : call.city)) + '</div>';
-  }
-  if (call.service_requested) html += '<div class="service-row">🔧 <span class="service-pill">' + esc(call.service_requested) + '</span></div>';
-  if (call.call_summary) html += '<div class="entry-summary">' + esc(call.call_summary) + '</div>';
-  if (call.voicemail_transcript) html += '<div class="entry-voicemail">🎤 <strong>Buzón de voz:</strong> ' + esc(call.voicemail_transcript) + '</div>';
-  if (call.call_date) html += '<div class="entry-meta">' + esc(call.call_date) + (call.tracking_number ? ' · Tracking: ' + esc(call.tracking_number) : '') + '</div>';
-  html += '</div>';
-  return html;
+function renderFormspree(form) {
+  const phone = fmtPhone(form.phone);
+  return `<div class="entry-card formspree" data-type="formspree">
+    <div class="entry-row">
+      <span class="source-badge sb-form">🌐 Formspree</span>
+    </div>
+    <div class="entry-row">
+      <span class="caller-name">${form.name || 'Sin nombre'}</span>
+      ${form.email ? `<span class="sep">·</span><a class="email-link" href="mailto:${form.email}">${form.email}</a>` : ''}
+      ${form.phone ? `<span class="sep">·</span><a class="caller-phone" href="tel:${form.phone}">${phone}</a>` : ''}
+    </div>
+    ${form.address ? `<div class="entry-row detail-line">📍 ${form.address}</div>` : ''}
+    ${form.service ? `<div class="entry-row"><span class="service-pill">🔧 ${form.service}</span></div>` : ''}
+    ${form.message ? `<div class="entry-row message-text">${form.message}</div>` : ''}
+    <div class="entry-row date-small">${form.time || ''}</div>
+  </div>`;
 }
 
-function renderFormEntry(form) {
-  const phone = formatPhone(form.phone);
-  let html = '<div class="entry entry-formspree" data-type="formspree">';
-  html += '<div><span class="source-badge source-formspree">🌐 FORMSPREE</span></div>';
-  html += '<div class="entry-row"><span class="entry-name">' + esc(form.name || 'Desconocido') + '</span>';
-  if (form.email) html += '<span class="entry-email"><a href="mailto:' + esc(form.email) + '">' + esc(form.email) + '</a></span>';
-  if (phone) html += '<span class="entry-phone"><a href="tel:' + esc(phone) + '">' + esc(phone) + '</a></span>';
-  html += '</div>';
-  if (form.address) html += '<div class="location-row">📍 ' + esc(form.address) + '</div>';
-  if (form.service) html += '<div class="service-row">🔧 <span class="service-pill">' + esc(form.service) + '</span></div>';
-  if (form.message) html += '<div class="entry-message">' + esc(form.message) + '</div>';
-  if (form.time) html += '<div class="entry-meta">' + esc(form.time) + '</div>';
-  html += '</div>';
-  return html;
+function renderLSA(lsa) {
+  return `<div class="entry-card lsa" data-type="lsa">
+    <div class="entry-row">
+      <span class="source-badge sb-lsa">📍 Google Local Services</span>
+    </div>
+    ${(lsa.customer_name || lsa.customer_phone) ? `<div class="entry-row">
+      ${lsa.customer_name ? `<span class="caller-name">${lsa.customer_name}</span>` : ''}
+      ${lsa.customer_phone ? `<span class="sep">·</span><a class="caller-phone" href="tel:${lsa.customer_phone}">${fmtPhone(lsa.customer_phone)}</a>` : ''}
+    </div>` : ''}
+    ${lsa.service_requested ? `<div class="entry-row"><span class="service-pill">🔧 ${lsa.service_requested}</span></div>` : ''}
+    ${lsa.notes ? `<div class="entry-row detail-line">${lsa.notes}</div>` : ''}
+    <div class="entry-row date-small">${lsa.lead_time || ''}${lsa.lead_id ? ' · ID: ' + lsa.lead_id : ''}</div>
+  </div>`;
 }
 
-function renderLSAEntry(lsa) {
-  const phone = lsa.customer_phone ? formatPhone(lsa.customer_phone) : null;
-  let html = '<div class="entry entry-lsa" data-type="lsa">';
-  html += '<div><span class="source-badge source-lsa">📍 GOOGLE LOCAL SERVICES</span></div>';
-  if (lsa.customer_name || phone) {
-    html += '<div class="entry-row">';
-    if (lsa.customer_name) html += '<span class="entry-name">' + esc(lsa.customer_name) + '</span>';
-    if (phone) html += '<span class="entry-phone"><a href="tel:' + esc(phone) + '">' + esc(phone) + '</a></span>';
-    html += '</div>';
-  }
-  if (lsa.service_requested) html += '<div class="service-row">🔧 <span class="service-pill">' + esc(lsa.service_requested) + '</span></div>';
-  if (lsa.notes) html += '<div class="entry-message">' + esc(lsa.notes) + '</div>';
-  let meta = '';
-  if (lsa.lead_time) meta += esc(lsa.lead_time);
-  if (lsa.lead_id) meta += ' · ID: ' + esc(lsa.lead_id);
-  if (meta) html += '<div class="entry-meta">' + meta + '</div>';
-  html += '</div>';
-  return html;
+function buildDashboard() {
+  const container = document.getElementById('main-content');
+  let html = '';
+
+  DATA.forEach(day => {
+    const callCount = (day.callrail || []).length;
+    const formCount = (day.formspree || []).length;
+    const lsaCount  = (day.lsa || []).length;
+
+    let entriesHtml = '';
+
+    (day.actions || []).forEach(a => { entriesHtml += renderAction(a); });
+    (day.callrail || []).forEach(c => { entriesHtml += renderCall(c); });
+    (day.formspree || []).forEach(f => { entriesHtml += renderFormspree(f); });
+    (day.lsa || []).forEach(l => { entriesHtml += renderLSA(l); });
+
+    html += `<div class="day-card" data-date="${day.date}">
+      <div class="day-header">
+        <div class="day-date">${day.display}</div>
+        <div class="day-badges">
+          ${callCount > 0 ? `<span class="mini-badge badge-call">📞 ${callCount}</span>` : ''}
+          ${formCount > 0 ? `<span class="mini-badge badge-form">🌐 ${formCount}</span>` : ''}
+          ${lsaCount  > 0 ? `<span class="mini-badge badge-lsa">📍 ${lsaCount}</span>` : ''}
+        </div>
+      </div>
+      <div class="day-entries">${entriesHtml}</div>
+    </div>`;
+  });
+
+  container.innerHTML = html;
 }
 
-function renderDayCard(dayObj) {
-  const callCount = (dayObj.callrail || []).length;
-  const formCount = (dayObj.formspree || []).length;
-  const lsaCount = (dayObj.lsa || []).length;
-  const actionCount = (dayObj.actions || []).length;
-
-  let badges = '';
-  if (actionCount > 0) badges += '<span class="day-badge badge-action">🚨 ' + actionCount + ' acción' + (actionCount > 1 ? 'es' : '') + '</span>';
-  if (callCount > 0) badges += '<span class="day-badge badge-call">📞 ' + callCount + '</span>';
-  if (formCount > 0) badges += '<span class="day-badge badge-form">🌐 ' + formCount + '</span>';
-  if (lsaCount > 0) badges += '<span class="day-badge badge-lsa">📍 ' + lsaCount + '</span>';
-
-  const entries = [
-    ...(dayObj.actions || []).map(renderActionEntry),
-    ...(dayObj.callrail || []).map(renderCallEntry),
-    ...(dayObj.formspree || []).map(renderFormEntry),
-    ...(dayObj.lsa || []).map(renderLSAEntry),
-  ].join('');
-
-  return '<div class="day-card" data-date="' + esc(dayObj.date) + '">' +
-    '<div class="day-card-header"><span class="day-date">' + esc(dayObj.display) + '</span>' +
-    '<div class="day-badges">' + badges + '</div></div>' +
-    entries +
-    '<div style="height:12px;"></div></div>';
-}
-
-function filterEntries(type, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+function filterEntries(type) {
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
 
   document.querySelectorAll('.day-card').forEach(card => {
     let visibleCount = 0;
     card.querySelectorAll('[data-type]').forEach(entry => {
       let show = false;
-      if (type === 'all') show = true;
-      else if (type === 'callrail') show = entry.dataset.type.startsWith('call-');
-      else if (type === 'formspree') show = entry.dataset.type === 'formspree';
-      else if (type === 'lsa') show = entry.dataset.type === 'lsa';
-      else if (type === 'action') show = entry.dataset.type === 'action';
-      entry.style.display = show ? '' : 'none';
+      if (type === 'all') {
+        show = true;
+      } else if (type === 'call') {
+        show = entry.dataset.type.startsWith('call-');
+      } else {
+        show = entry.dataset.type === type;
+      }
+      entry.classList.toggle('hidden', !show);
       if (show) visibleCount++;
     });
-    card.style.display = visibleCount > 0 ? '' : 'none';
+    card.classList.toggle('hidden', visibleCount === 0);
   });
 }
 
-function renderAll() {
-  const now = new Date();
-  document.getElementById('updated-date').textContent = 'Actualizado: ' + now.toLocaleDateString('es-MX', {
-    year: 'numeric', month: 'long', day: 'numeric'
-  }) + ' ' + now.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
-  renderStats();
-  const content = document.getElementById('main-content');
-  if (!DATA || DATA.length === 0) {
-    content.innerHTML = '<div class="no-entries">No hay datos disponibles.</div>';
-    return;
-  }
-  content.innerHTML = DATA.map(renderDayCard).join('');
-}
-
-renderAll();
+buildDashboard();
 </script>
 </body>
 </html>
