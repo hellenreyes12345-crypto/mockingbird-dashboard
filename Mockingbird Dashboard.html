@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌳 Mockingbird Lead Dashboard</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;color:#1a1a1a;min-height:100vh}
+  .header{background:#1B4332;padding:20px 16px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3)}
+  .header-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .header h1{color:#fff;font-size:20px;font-weight:700;letter-spacing:0.3px}
+  .header p{color:#95d5b2;font-size:13px;margin-top:2px}
+  .updated{color:#74c69d;font-size:11px;text-align:right;margin-top:4px}
+  .stats{display:flex;gap:10px;padding:14px 16px;overflow-x:auto;background:#fff;border-bottom:1px solid #e8eaed;scrollbar-width:none}
+  .stats::-webkit-scrollbar{display:none}
+  .stat-card{flex:0 0 auto;background:#f8fffe;border:1px solid #d8f3dc;border-radius:12px;padding:12px 16px;min-width:130px;text-align:center}
+  .stat-card .icon{font-size:20px;margin-bottom:4px}
+  .stat-card .number{font-size:28px;font-weight:800;color:#1B4332;line-height:1}
+  .stat-card .label{font-size:11px;color:#6b7280;margin-top:4px;line-height:1.3}
+  .stat-card.alert .number{color:#dc2626}
+  .filters{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;background:#fff;border-bottom:1px solid #e8eaed;scrollbar-width:none;position:sticky;top:88px;z-index:90}
+  .filters::-webkit-scrollbar{display:none}
+  .filter-btn{flex:0 0 auto;padding:7px 14px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;color:#4b5563;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+  .filter-btn.active{background:#2D6A4F;border-color:#2D6A4F;color:#fff}
+  .content{padding:14px 16px;max-width:700px;margin:0 auto}
+  .day-card{background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:14px;overflow:hidden}
+  .day-header{padding:14px 16px 10px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center}
+  .day-title{font-size:16px;font-weight:700;color:#1B4332}
+  .day-badge{background:#f3f4f6;color:#6b7280;font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px}
+  .entry{padding:12px 16px;border-bottom:1px solid #f9fafb;display:flex;gap:10px;align-items:flex-start}
+  .entry:last-child{border-bottom:none}
+  .entry-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+  .entry-body{flex:1;min-width:0}
+  .entry-name{font-size:14px;font-weight:600;color:#111827}
+  .entry-phone{font-size:14px;color:#2D6A4F;font-weight:500;text-decoration:none}
+  .entry-phone:hover{text-decoration:underline}
+  .entry-meta{font-size:12px;color:#9ca3af;margin-top:2px}
+  .entry-summary{font-size:12px;color:#6b7280;font-style:italic;margin-top:4px;line-height:1.5}
+  .badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:middle}
+  .badge-green{background:#dcfce7;color:#166534}
+  .badge-blue{background:#dbeafe;color:#1e40af}
+  .badge-red{background:#fee2e2;color:#991b1b}
+  .badge-orange{background:#ffedd5;color:#9a3412}
+  .badge-purple{background:#f3e8ff;color:#6b21a8}
+  .entry-left-green{border-left:4px solid #2D6A4F}
+  .entry-left-blue{border-left:4px solid #1565C0}
+  .entry-left-red{border-left:4px solid #C62828}
+  .entry-left-orange{border-left:4px solid #E65100}
+  .entry-left-purple{border-left:4px solid #6A1B9A}
+  .action-entry{background:#fff5f5;border-left:4px solid #C62828;padding:12px 16px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #fee2e2}
+  .action-entry:last-child{border-bottom:none}
+  .action-text{font-size:13px;font-weight:600;color:#991b1b;flex:1}
+  .empty-day{padding:20px 16px;text-align:center;color:#9ca3af;font-size:13px}
+  .footer{text-align:center;color:#9ca3af;font-size:12px;padding:20px 16px 32px}
+  @media(max-width:480px){
+    .header h1{font-size:17px}
+    .stat-card{min-width:110px;padding:10px 12px}
+    .stat-card .number{font-size:24px}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>🌳 THE MOCKINGBIRD TREE SERVICE</h1>
+      <p>Lead Dashboard</p>
+    </div>
+    <div class="updated">Actualizado<br>27 May 2026</div>
+  </div>
+</div>
+
+<div class="stats" id="stats">
+  <div class="stat-card">
+    <div class="icon">📞</div>
+    <div class="number" id="stat-calls">1</div>
+    <div class="label">Llamadas<br>30 días</div>
+  </div>
+  <div class="stat-card">
+    <div class="icon">🌐</div>
+    <div class="number" id="stat-web">1</div>
+    <div class="label">Leads Web<br>30 días</div>
+  </div>
+  <div class="stat-card">
+    <div class="icon">✅</div>
+    <div class="number" id="stat-booked">1</div>
+    <div class="label">Trabajos<br>Confirmados</div>
+  </div>
+  <div class="stat-card alert">
+    <div class="icon">🚨</div>
+    <div class="number" id="stat-actions">1</div>
+    <div class="label">Acciones<br>Hoy</div>
+  </div>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filter('all',this)">📋 Todos</button>
+  <button class="filter-btn" onclick="filter('call',this)">📞 Llamadas</button>
+  <button class="filter-btn" onclick="filter('web',this)">🌐 Web Forms</button>
+  <button class="filter-btn" onclick="filter('lsa',this)">📍 LSA</button>
+  <button class="filter-btn" onclick="filter('action',this)">🚨 Pendientes</button>
+</div>
+
+<div class="content" id="content">
+
+  <!-- DAY: Miércoles 27 de Mayo 2026 -->
+  <div class="day-card" id="day-2026-05-27">
+    <div class="day-header">
+      <span class="day-title">Miércoles 27 de Mayo 2026</span>
+      <span class="day-badge">3 eventos</span>
+    </div>
+
+    <!-- ACTION ITEMS -->
+    <div class="action-entry" data-type="action">
+      <span style="font-size:18px">🚨</span>
+      <span class="action-text">Lead web: Tim Preston quiere Tree Removal — llamar al <a href="tel:6158120123" style="color:#991b1b">615-812-0123</a></span>
+    </div>
+
+    <!-- CALLRAIL: Whitley E. - BOOKED -->
+    <div class="entry entry-left-green" data-type="call-booked">
+      <span class="entry-icon">✅</span>
+      <div class="entry-body">
+        <div class="entry-name">Whitley E. <span class="badge badge-green">Schedule booked</span><span class="badge badge-blue">2nd call</span></div>
+        <a href="tel:6153734924" class="entry-phone">615-373-4924</a>
+        <div class="entry-meta">Nashville, TN &nbsp;·&nbsp; 3 min 51 seg &nbsp;·&nbsp; Llamada respondida</div>
+        <div class="entry-summary">Rick Whitley confirmó trabajo de tree removal en 314 Hayeswood Drive por $2,800. Confirmó uso de bucket truck y que pueden manejar cables eléctricos. Agendado para el lunes.</div>
+      </div>
+    </div>
+
+    <!-- FORMSPREE: Tim Preston -->
+    <div class="entry entry-left-orange" data-type="formspree">
+      <span class="entry-icon">🌐</span>
+      <div class="entry-body">
+        <div class="entry-name">Tim Preston <span class="badge badge-orange">Tree Removal</span></div>
+        <a href="tel:6158120123" class="entry-phone">615-812-0123</a>
+        <div class="entry-meta">Formulario web · 9:01 PM · themockingbirdtreeservice.com</div>
+        <div class="entry-summary">"I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground."</div>
+      </div>
+    </div>
+
+    <!-- LSA -->
+    <div class="entry entry-left-purple" data-type="lsa">
+      <span class="entry-icon">📍</span>
+      <div class="entry-body">
+        <div class="entry-name">Google Local Services <span class="badge badge-purple">Nuevo Lead</span></div>
+        <div class="entry-meta">4:39 PM · Cliente potencial llamó via LSA</div>
+      </div>
+    </div>
+
+  </div><!-- end day card -->
+
+</div><!-- end content -->
+
+<div class="footer">
+  🌳 The Mockingbird Tree Service — Dashboard automático<br>
+  <span style="font-size:11px">Se actualiza todos los días a las 8am</span>
+</div>
+
+<script>
+const DATA = [{"date":"2026-05-27","display":"Miércoles 27 de Mayo 2026","callrail":[{"caller_name":"Whitley E.","caller_phone":"615-373-4924","duration_seconds":231,"status":"answered","tag":"Schedule booked · 2nd call","summary":"Rick Whitley confirmó trabajo de tree removal en 314 Hayeswood Drive por $2,800. Confirmó bucket truck y cables eléctricos. Agendado lunes.","city":"Nashville, TN"}],"formspree":[{"name":"Tim Preston","phone":"6158120123","service":"Tree Removal","message":"I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground.","time":"2026-05-26T21:01:21Z"}],"lsa":[{"type":"new_lead","time":"4:39 PM on 05/26/2026"}],"actions":[{"priority":"urgent","text":"Lead web: Tim Preston quiere Tree Removal — llamar al 6158120123"}]}];
+
+function filter(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const entries = document.querySelectorAll('[data-type]');
+  entries.forEach(e => {
+    if (type === 'all') {
+      e.style.display = '';
+    } else if (type === 'call') {
+      e.style.display = (e.dataset.type === 'call-booked' || e.dataset.type === 'call-answered' || e.dataset.type === 'call-missed') ? '' : 'none';
+    } else if (type === 'web') {
+      e.style.display = e.dataset.type === 'formspree' ? '' : 'none';
+    } else if (type === 'lsa') {
+      e.style.display = e.dataset.type === 'lsa' ? '' : 'none';
+    } else if (type === 'action') {
+      e.style.display = e.dataset.type === 'action' ? '' : 'none';
+    }
+  });
+  // hide day cards with no visible entries
+  document.querySelectorAll('.day-card').forEach(card => {
+    const visible = card.querySelectorAll('[data-type]:not([style*="none"])');
+    card.style.display = visible.length > 0 ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
