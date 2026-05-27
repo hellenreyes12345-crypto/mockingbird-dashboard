@@ -156,8 +156,8 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:
   </div>
   <div class="filters">
     <button class="filter-btn active" onclick="filtrar(this,'all')">📋 Todos</button>
-    <button class="filter-btn" onclick="filtrar(this,'callrail')">📞 Llamadas</button>
-    <button class="filter-btn" onclick="filtrar(this,'formspree')">🌐 Formularios</button>
+    <button class="filter-btn" onclick="filtrar(this,'callrail')">📞 CallRail</button>
+    <button class="filter-btn" onclick="filtrar(this,'formspree')">🌐 Formspree</button>
     <button class="filter-btn" onclick="filtrar(this,'lsa')">📍 Google LSA</button>
     <button class="filter-btn" onclick="filtrar(this,'action')">🚨 Pendientes</button>
     <button class="filter-btn" onclick="filtrar(this,'clientes')">👥 Clientes</button>
@@ -350,7 +350,8 @@ function renderStats(){
 }
 
 // ── Seguimiento ──────────────────────────────────────────────────────────────
-function genSegKey(text){
+function genSegKey(text,stableId){
+  if(stableId)return'seg_'+String(stableId).replace(/[^a-z0-9_]/gi,'_');
   let h=0;
   const s=String(text).substring(0,80);
   for(let i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;}
@@ -397,7 +398,7 @@ function inicializarSeguimiento(){
 
 // ── Renders de entradas ──────────────────────────────────────────────────────
 function renderAccion(a){
-  const key=genSegKey(a.text);
+  const key=genSegKey(a.text,a.id);
   return`<div class="entry entry-action" data-type="action" id="accion-${key}">
     <div class="action-text">🚨 ${esc(a.text)}</div>
     <button class="btn-seguimiento" onclick="marcarSeguimiento('${key}')">✅ Ya se le dio seguimiento</button>
@@ -627,8 +628,8 @@ function construirClientes(){
   });
 
   return Object.values(mapa).sort((a,b)=>{
-    const fa=a.fechas.length?a.fechas.sort().pop():'';
-    const fb=b.fechas.length?b.fechas.sort().pop():'';
+    const fa=a.fechas.length?[...a.fechas].sort().pop():'';
+    const fb=b.fechas.length?[...b.fechas].sort().pop():'';
     return fb.localeCompare(fa);
   });
 }
@@ -651,7 +652,7 @@ function renderClientes(){
   </div>`;
 
   clientes.forEach(cl=>{
-    const ultimaFecha=cl.fechas.length?cl.fechas.sort().pop():'';
+    const ultimaFecha=cl.fechas.length?[...cl.fechas].sort().pop():'';
     const allAddresses=[...cl.addresses,...cl.locations].filter((v,i,a)=>v&&a.indexOf(v)===i);
     html+=`<div class="cliente-card">
       <div class="cliente-body">
@@ -683,8 +684,8 @@ function aplicarFiltros(){
   const esClientes=filtroActivo==='clientes';
 
   // Mostrar/ocultar vistas
-  document.getElementById('contenido').style.display=esClientes?'none':'';
-  document.getElementById('vista-clientes').style.display=esClientes?'':'none';
+  document.getElementById('contenido').style.display=esClientes?'none':'block';
+  document.getElementById('vista-clientes').style.display=esClientes?'block':'none';
 
   if(esClientes){
     renderClientes();
