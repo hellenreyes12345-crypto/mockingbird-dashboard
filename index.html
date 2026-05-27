@@ -184,7 +184,7 @@ const DATA = [
         "tags": [
           "Schedule booked"
         ],
-        "call_summary": "Rick Whitley llamó para confirmar un trabajo de remoción de árbol en 314 Hayeswood Drive por $2,800 que había sido estimado previamente. Tenía preguntas sobre si la empresa usa un camión con cangilón (confirmaron que sí) y si los cables eléctricos cerca del árbol frontal serían un problema (el agente confirmó que pueden manejarlo de forma segura). El agente acordó programar el trabajo para el lunes, sujeto al clima, y se comprometió a llamar antes de llegar.",
+        "call_summary": "Rick Whitley llamó para confirmar un trabajo de remoción de árbol en 314 Hayeswood Drive por ,800 que había sido estimado previamente. Tenía preguntas sobre si la empresa usa un camión con cangilón (confirmaron que sí) y si los cables eléctricos cerca del árbol frontal serían un problema (el agente confirmó que pueden manejarlo de forma segura). El agente acordó programar el trabajo para el lunes, sujeto al clima, y se comprometió a llamar antes de llegar.",
         "voicemail_transcript": null,
         "service_requested": "Remoción de árbol",
         "address": "314 Hayeswood Drive",
@@ -193,13 +193,13 @@ const DATA = [
         "recording_url": "https://app.callrail.com/calls/CAL019e65ca6f66767ab1c1b85dd6e3ad55/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiZjkyZTZhMDdkMWIyZjkzMDM0OGIiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.x6Xd4CimPON6EboHIW7kMd4YkC3BGzG1uSOBCFSRyTM"
       },
       {
-        "caller_name": "Townsel Mary",
+        "caller_name": "Mary Townsell",
         "caller_phone": "615-406-5323",
         "duration_seconds": 85,
         "status": "voicemail",
         "tags": [],
-        "call_summary": "Mary Townsell llamó para hacer seguimiento con Cesar Reyes sobre un presupuesto para la propiedad en 809 Quail Valley Drive en Brentwood que debía haber sido enviado hace aproximadamente un mes. No ha recibido el presupuesto y no sabe si fue enviado por correo electrónico. Solicitó que le devuelvan la llamada al 615-406-5323 para tomar su decisión. La llamada llegó al contestador automático, por lo que no se logró ninguna resolución directa.",
-        "voicemail_transcript": "Hello. This message is for Cesar Reyes. My name is Mary Townsell. About a month or more ago, you came and you gave. You know, you looked at my property. It's 809 Quail Valley Drive in Brentwood. And you were supposed to send me an estimate. And I'm wondering, did you send it? I don't have it. If it was. If it came through the email. And so, you know, I'm ready to make that decision. So could you please return my call at 615-406-5323? Thank you very much. Bye.",
+        "call_summary": "Mary Townsell llamó para hacer seguimiento con Cesar Reyes sobre un presupuesto para la propiedad en 809 Quail Valley Drive en Brentwood que debía haber sido enviado hace aproximadamente un mes. No ha recibido el presupuesto y no sabe si fue enviado por correo electrónico. Solicitó que le devuelvan la llamada al 615-406-5323 para tomar su decisión.",
+        "voicemail_transcript": "Hello. This message is for Cesar Reyes. My name is Mary Townsell. About a month or more ago, you came and you gave. You know, you looked at my property. Its 809 Quail Valley Drive in Brentwood. And you were supposed to send me an estimate. And I am wondering, did you send it? I do not have it. If it was. If it came through the email. And so, you know, I am ready to make that decision. So could you please return my call at 615-406-5323? Thank you very much. Bye.",
         "service_requested": "Estimado para trabajo de árbol",
         "address": "809 Quail Valley Drive",
         "city": "Brentwood, TN",
@@ -222,35 +222,60 @@ const DATA = [
       {
         "type": "new_lead",
         "customer_name": null,
-        "customer_phone": null,
+        "customer_phone": "(615) 438-1201",
         "service_requested": null,
+        "location": "Hendersonville",
+        "lead_type": "Phone",
+        "charge_status": "in_review",
         "lead_time": "4:39 PM — 26 de mayo 2026",
-        "lead_id": null,
+        "lead_id": "315352077",
         "notes": "A potential customer called you on 05/26/2026 at 4:39 PM.",
         "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": null,
+        "customer_phone": "(812) 484-7572",
+        "service_requested": "Remoción de árbol",
+        "location": "Nashville",
+        "lead_type": "Message",
+        "charge_status": "in_review",
+        "lead_time": "1:00 PM — 26 de mayo 2026",
+        "lead_id": "315283332",
+        "notes": "Hola, necesito que retiren un árbol muerto y ponden dos árboles que están cerca de mi casa. Me gustaría recibir un presupuesto para este trabajo. Gracias.",
+        "email_subject": "Nueva solicitud del cliente potencial"
       }
     ],
     "actions": [
       {
         "priority": "urgent",
-        "text": "Llamada perdida de Townsel Mary (615-406-5323) — llamar de vuelta",
-        "type": "missed_call"
+        "text": "Buzón de voz: Mary Townsell (615-406-5323) · Quiere seguimiento de presupuesto · 809 Quail Valley Drive, Brentwood · 27/05/2026 1:43 PM",
+        "type": "missed_call",
+        "id": "cr_6154065323_20260527"
       },
       {
         "priority": "urgent",
-        "text": "Lead web: Tim Preston quiere Remoción de árbol — llamar al 6158120123",
-        "type": "web_lead"
+        "text": "Lead web: Tim Preston quiere Remoción de árbol — llamar al 615-812-0123",
+        "type": "web_lead",
+        "id": "fs_6158120123_20260526"
       },
       {
         "priority": "urgent",
-        "text": "Nuevo lead de Google LSA — llamada recibida el 26/05/2026 a las 4:39 PM",
-        "type": "lsa_lead"
+        "text": "Llamada perdida Google LSA — (615) 438-1201 · Hendersonville · 26/05/2026 4:39 PM · ID 315352077",
+        "type": "lsa_lead",
+        "id": "lsa_315352077"
+      },
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — (812) 484-7572 · Remoción de árbol · Nashville · 26/05/2026 1:00 PM · Responder en panel LSA · ID 315283332",
+        "type": "lsa_message",
+        "id": "lsa_315283332"
       }
     ]
   }
 ];
 
-const STATS = {"total_calls_30d": 2, "total_web_30d": 1, "total_lsa_30d": 1, "total_booked_30d": 1, "total_missed_30d": 1, "pending_actions": 3};
+const STATS = {"total_calls_30d":2,"total_web_30d":1,"total_lsa_30d":2,"total_booked_30d":1,"total_missed_30d":1,"pending_actions":4};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
