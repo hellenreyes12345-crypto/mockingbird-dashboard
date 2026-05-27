@@ -3,89 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Mockingbird Tree Service — Dashboard</title>
+<title>🌳 Mockingbird Lead Dashboard</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f4f0; color: #333; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f0;color:#1a1a1a;min-height:100vh}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
 
-.header { background: #1B4332; color: white; padding: 20px; text-align: center; }
-.header h1 { font-size: 1.6rem; font-weight: bold; letter-spacing: 0.5px; }
-.header .subtitle { font-size: 1rem; opacity: 0.85; margin-top: 4px; }
-.header .updated { font-size: 0.75rem; opacity: 0.65; margin-top: 4px; }
+/* HEADER */
+.header{background:#1B4332;padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;justify-content:space-between;align-items:center}
+.header-left h1{color:#fff;font-size:18px;font-weight:700;letter-spacing:0.3px}
+.header-left p{color:#95D5B2;font-size:12px;margin-top:2px}
+.header-right{text-align:right}
+.header-right .updated{color:#95D5B2;font-size:11px}
 
-.stats-row { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 12px; padding: 16px; background: #fff; border-bottom: 1px solid #ddd; -webkit-overflow-scrolling: touch; }
-.stat-card { flex: 0 0 auto; min-width: 140px; background: #f9f9f9; border-radius: 10px; padding: 14px 16px; text-align: center; border: 1px solid #e0e0e0; }
-.stat-icon { font-size: 1.4rem; }
-.stat-value { font-size: 2rem; font-weight: bold; color: #1B4332; line-height: 1.2; margin-top: 4px; }
-.stat-value.urgent { color: #C62828; }
-.stat-label { font-size: 0.68rem; color: #777; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+/* STATS */
+.stats{display:flex;gap:0;overflow-x:auto;background:#fff;border-bottom:1px solid #e0e0e0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.stats::-webkit-scrollbar{display:none}
+.stat-card{flex:0 0 auto;min-width:100px;padding:12px 16px;text-align:center;border-right:1px solid #f0f0f0}
+.stat-card:last-child{border-right:none}
+.stat-icon{font-size:20px}
+.stat-num{font-size:26px;font-weight:800;color:#1B4332;line-height:1.1;margin-top:2px}
+.stat-num.red{color:#C62828}
+.stat-label{font-size:10px;color:#777;margin-top:2px;white-space:nowrap}
 
-.filter-bar { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #ddd; padding: 10px 16px; display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.filter-btn { flex: 0 0 auto; border: none; border-radius: 20px; padding: 7px 14px; font-size: 0.82rem; cursor: pointer; background: #f0f0f0; color: #333; transition: background 0.2s, color 0.2s; white-space: nowrap; }
-.filter-btn.active { background: #2D6A4F; color: white; }
-.filter-btn:hover:not(.active) { background: #ddd; }
+/* FILTERS */
+.filters{display:flex;gap:8px;padding:10px 16px;background:#fff;border-bottom:1px solid #e0e0e0;overflow-x:auto;position:sticky;top:57px;z-index:90;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter-btn{flex:0 0 auto;padding:6px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;color:#555;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.filter-btn.active,.filter-btn:hover{background:#2D6A4F;color:#fff;border-color:#2D6A4F}
 
-.content { padding: 16px; max-width: 800px; margin: 0 auto; }
+/* CONTENT */
+.content{padding:16px;max-width:720px;margin:0 auto}
 
-.day-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; overflow: hidden; }
-.day-card-header { background: #f5f5f5; padding: 12px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #e0e0e0; }
-.day-card-date { font-weight: bold; color: #1B4332; font-size: 1rem; flex: 1; }
-.day-badge { background: #2D6A4F; color: white; border-radius: 12px; padding: 2px 10px; font-size: 0.72rem; white-space: nowrap; }
-.day-card-body { padding: 6px 0 6px 0; }
+/* DAY CARD */
+.day-card{background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,0.08);margin-bottom:16px;overflow:hidden}
+.day-header{padding:14px 16px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0f0}
+.day-title{font-size:15px;font-weight:700;color:#1B4332}
+.day-badges{display:flex;gap:6px;flex-wrap:wrap}
+.mini-badge{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600}
+.mini-call{background:#E3F2FD;color:#1565C0}
+.mini-form{background:#FFF3E0;color:#E65100}
+.mini-lsa{background:#F3E5F5;color:#6A1B9A}
 
-.entry { padding: 11px 14px; border-left: 4px solid #ccc; margin: 8px 10px; border-radius: 6px; line-height: 1.5; }
-.entry.action { background: #FFEBEE; border-left-color: #C62828; }
-.entry.call-booked { border-left-color: #2D6A4F; background: #f6fbf8; }
-.entry.call-answered { border-left-color: #1565C0; background: #f4f8ff; }
-.entry.call-missed { border-left-color: #C62828; background: #fff8f8; }
-.entry.formspree { border-left-color: #E65100; background: #fff9f6; }
-.entry.lsa { border-left-color: #6A1B9A; background: #fdf4ff; }
+/* ENTRIES */
+.entry{padding:12px 16px;border-bottom:1px solid #f5f5f5;position:relative}
+.entry:last-child{border-bottom:none}
 
-.entry-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.entry-icon { font-size: 1.1rem; }
-.entry-name { font-weight: bold; font-size: 0.95rem; }
-.entry-phone a { color: #2D6A4F; text-decoration: none; font-size: 0.9rem; }
-.entry-phone a:hover { text-decoration: underline; }
-.entry-meta { font-size: 0.8rem; color: #666; margin-top: 5px; }
-.entry-summary { font-style: italic; font-size: 0.8rem; color: #666; margin-top: 5px; }
-.entry-message { font-size: 0.82rem; color: #555; margin-top: 5px; }
-.action-text { font-weight: bold; font-size: 0.9rem; color: #B71C1C; }
+/* ACTION */
+.entry-action{background:#FFEBEE;border-left:4px solid #C62828}
+.action-text{font-size:13px;font-weight:600;color:#C62828}
 
-.badge { display: inline-block; border-radius: 12px; padding: 1px 8px; font-size: 0.7rem; font-weight: bold; vertical-align: middle; }
-.badge-green { background: #E8F5E9; color: #2D6A4F; }
-.badge-blue { background: #E3F2FD; color: #1565C0; }
-.badge-red { background: #FFEBEE; color: #C62828; }
-.badge-orange { background: #FBE9E7; color: #E65100; }
-.badge-purple { background: #F3E5F5; color: #6A1B9A; }
+/* SOURCE BADGE */
+.source-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;align-items:center}
+.source-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap}
+.badge-callrail{background:#E3F2FD;color:#1565C0}
+.badge-formspree{background:#FFF3E0;color:#E65100}
+.badge-lsa{background:#F3E5F5;color:#6A1B9A}
+.badge-answered{background:#E8F5E9;color:#2E7D32}
+.badge-booked{background:#1B4332;color:#fff}
+.badge-missed{background:#FFEBEE;color:#C62828}
+.badge-voicemail{background:#FFF8E1;color:#F57F17}
+.badge-tag{background:#f5f5f5;color:#555;font-size:11px;padding:2px 8px;border-radius:10px}
 
-.footer { text-align: center; color: #aaa; font-size: 0.75rem; padding: 24px 16px; }
+/* CALLRAIL BORDERS */
+.entry-booked{border-left:4px solid #2D6A4F;background:#F9FFF9}
+.entry-answered{border-left:4px solid #1565C0;background:#FAFCFF}
+.entry-missed{border-left:4px solid #C62828;background:#FFFAFA}
+.entry-voicemail{border-left:4px solid #F57F17;background:#FFFDF5}
 
-@media (max-width: 480px) {
-  .header h1 { font-size: 1.2rem; }
-  .stat-value { font-size: 1.6rem; }
-  .entry { margin: 8px 6px; }
+/* FORMSPREE */
+.entry-formspree{border-left:4px solid #E65100;background:#FFFAF5}
+
+/* LSA */
+.entry-lsa{border-left:4px solid #6A1B9A;background:#FDF8FF}
+
+/* CONTACT ROW */
+.contact-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:6px;align-items:center}
+.caller-name{font-size:15px;font-weight:700;color:#1a1a1a}
+.phone-link{font-size:14px;color:#2D6A4F;font-weight:600;text-decoration:none}
+.phone-link:hover{text-decoration:underline}
+.email-link{font-size:13px;color:#1565C0}
+.duration{font-size:13px;color:#666;background:#f5f5f5;padding:2px 8px;border-radius:10px}
+
+/* DETAIL ROWS */
+.detail-row{display:flex;align-items:flex-start;gap:6px;margin-top:6px;font-size:13px;color:#555}
+.detail-row .icon{flex-shrink:0;width:18px}
+.detail-label{font-weight:600;color:#333;flex-shrink:0}
+.detail-val{color:#555}
+
+/* SUMMARY / MESSAGE */
+.summary-text{font-size:13px;color:#555;font-style:italic;line-height:1.6;margin-top:8px;padding:8px 10px;background:#f9f9f9;border-radius:8px}
+.voicemail-box{font-size:13px;color:#555;line-height:1.6;margin-top:8px;padding:8px 10px;background:#FFFDE7;border-radius:8px;border-left:3px solid #F57F17}
+.voicemail-label{font-weight:700;color:#F57F17;margin-bottom:4px;font-size:12px}
+.message-text{font-size:13px;color:#555;line-height:1.6;margin-top:8px;padding:8px 10px;background:#f9f9f9;border-radius:8px}
+
+/* TIMESTAMP */
+.entry-time{font-size:11px;color:#aaa;margin-top:8px}
+
+/* EMPTY */
+.empty-day{text-align:center;color:#bbb;padding:20px;font-size:13px}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px 20px;color:#aaa;font-size:12px}
+
+@media(max-width:480px){
+  .header{padding:10px 14px}
+  .header-left h1{font-size:15px}
+  .stat-card{min-width:88px;padding:10px 12px}
+  .stat-num{font-size:22px}
+  .content{padding:12px}
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>🌳 THE MOCKINGBIRD TREE SERVICE</h1>
-  <div class="subtitle">Lead Dashboard</div>
-  <div class="updated">Updated: 2026-05-27</div>
+  <div class="header-left">
+    <h1>🌳 THE MOCKINGBIRD TREE SERVICE</h1>
+    <p>Lead Dashboard — Nashville, TN</p>
+  </div>
+  <div class="header-right">
+    <div class="updated" id="updated-time"></div>
+  </div>
 </div>
 
-<div class="stats-row" id="stats-row"></div>
+<div class="stats" id="stats-bar"></div>
 
-<div class="filter-bar">
-  <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">📋 Todos</button>
-  <button class="filter-btn" data-filter="call" onclick="setFilter('call')">📞 Llamadas</button>
-  <button class="filter-btn" data-filter="formspree" onclick="setFilter('formspree')">🌐 Web Forms</button>
-  <button class="filter-btn" data-filter="lsa" onclick="setFilter('lsa')">📍 LSA</button>
-  <button class="filter-btn" data-filter="action" onclick="setFilter('action')">🚨 Pendientes</button>
+<div class="filters">
+  <button class="filter-btn active" onclick="filterEntries('all')">📋 Todos</button>
+  <button class="filter-btn" onclick="filterEntries('callrail')">📞 CallRail</button>
+  <button class="filter-btn" onclick="filterEntries('formspree')">🌐 Formspree</button>
+  <button class="filter-btn" onclick="filterEntries('lsa')">📍 Google LSA</button>
+  <button class="filter-btn" onclick="filterEntries('action')">🚨 Pendientes</button>
 </div>
 
-<div class="content" id="content"></div>
+<div class="content" id="main-content"></div>
 
 <div class="footer">The Mockingbird Tree Service — Dashboard automático</div>
 
@@ -96,19 +149,23 @@ const DATA = [
     "display": "Miércoles 27 de Mayo 2026",
     "callrail": [
       {
-        "caller_name": "Whitley E.",
+        "caller_name": "Whitley E. (Rick Whitley)",
         "caller_phone": "615-373-4924",
         "duration_seconds": 231,
         "status": "answered",
-        "tag": "Schedule booked",
-        "summary": "Rick Whitley called to confirm a tree removal job at 314 Hayeswood Drive for $2800 that was previously estimated. He had concerns about whether the company uses a bucket truck (confirming they do) and whether electrical wires near the front tree would be a problem (agent confirmed they can safely handle it). The agent agreed to schedule the work for Monday, weather permitting, and committed to calling before arrival.",
-        "city": "Nashville, TN"
+        "tags": ["Schedule booked", "2nd call"],
+        "call_summary": "Rick Whitley llamó para confirmar un trabajo de tree removal en 314 Hayeswood Drive por $2,800 que fue estimado previamente. Tenía preguntas sobre si la compañía usa bucket truck (confirmado que sí) y si los cables eléctricos cerca del árbol frontal serían un problema (confirmado que pueden manejarlo de forma segura). El agente acordó programar el trabajo para el lunes, condiciones climáticas favorables, y se comprometió a llamar antes de llegar.",
+        "service_requested": "Tree Removal",
+        "address": "314 Hayeswood Drive",
+        "city": "Nashville, TN",
+        "call_date": "2026-05-27"
       }
     ],
     "formspree": [
       {
         "name": "Tim Preston",
         "phone": "6158120123",
+        "email": "",
         "service": "Tree Removal",
         "message": "Hello, I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground. Thanks",
         "time": "2026-05-26T21:01:21Z"
@@ -117,13 +174,15 @@ const DATA = [
     "lsa": [
       {
         "type": "new_lead",
-        "time": "4:39 PM on 05/26/2026"
+        "lead_time": "4:39 PM on 05/26/2026",
+        "email_subject": "New call from a potential customer — Google Local Services"
       }
     ],
     "actions": [
       {
         "priority": "urgent",
-        "text": "Lead web: Tim Preston quiere Tree Removal — llamar al 6158120123"
+        "text": "🌐 Lead web: Tim Preston quiere Tree Removal — llamar al 615-812-0123",
+        "type": "web_lead"
       }
     ]
   }
@@ -132,156 +191,201 @@ const DATA = [
 const STATS = {
   total_calls_30d: 1,
   total_web_30d: 1,
+  total_lsa_30d: 1,
   total_booked_30d: 1,
+  total_missed_30d: 0,
   pending_actions: 1
 };
 
-// Render stats
-document.getElementById('stats-row').innerHTML = `
-  <div class="stat-card">
-    <div class="stat-icon">📞</div>
-    <div class="stat-value">${STATS.total_calls_30d}</div>
-    <div class="stat-label">Llamadas / 30 d&iacute;as</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">🌐</div>
-    <div class="stat-value">${STATS.total_web_30d}</div>
-    <div class="stat-label">Leads Web / 30 d&iacute;as</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">✅</div>
-    <div class="stat-value">${STATS.total_booked_30d}</div>
-    <div class="stat-label">Trabajos Confirmados</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-icon">🚨</div>
-    <div class="stat-value ${STATS.pending_actions > 0 ? 'urgent' : ''}">${STATS.pending_actions}</div>
-    <div class="stat-label">Acciones Hoy</div>
-  </div>
-`;
-
-function esc(str) {
-  return String(str || '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
+// ── helpers ──────────────────────────────────────────────────────────────────
+function fmtDuration(sec) {
+  if (!sec || sec < 1) return '0s';
+  const m = Math.floor(sec / 60), s = sec % 60;
+  return m > 0 ? `${m}m ${s}s` : `${s}s`;
+}
+function fmtTime(iso) {
+  if (!iso) return '';
+  try {
+    return new Date(iso).toLocaleString('es-GT', {dateStyle:'medium', timeStyle:'short'});
+  } catch(e){ return iso; }
+}
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function phoneLink(p) {
+  if (!p) return '';
+  const clean = String(p).replace(/\D/g,'');
+  return `<a class="phone-link" href="tel:+1${clean}">📞 ${esc(p)}</a>`;
+}
+function emailLink(e) {
+  if (!e) return '';
+  return `<a class="email-link" href="mailto:${esc(e)}">✉️ ${esc(e)}</a>`;
+}
+function detailRow(icon, label, val) {
+  if (!val) return '';
+  return `<div class="detail-row"><span class="icon">${icon}</span><span class="detail-label">${label}</span><span class="detail-val">${esc(val)}</span></div>`;
 }
 
-function fmtDuration(s) {
-  const m = Math.floor(s / 60), r = s % 60;
-  return m > 0 ? `${m}m ${r}s` : `${r}s`;
+// ── render stats ─────────────────────────────────────────────────────────────
+function renderStats() {
+  const cards = [
+    {icon:'📞', num:STATS.total_calls_30d, label:'Llamadas', red:false},
+    {icon:'🌐', num:STATS.total_web_30d,   label:'Leads Web', red:false},
+    {icon:'📍', num:STATS.total_lsa_30d,   label:'Google LSA', red:false},
+    {icon:'✅', num:STATS.total_booked_30d,label:'Confirmados', red:false},
+    {icon:'❌', num:STATS.total_missed_30d, label:'Perdidas', red:false},
+    {icon:'🚨', num:STATS.pending_actions,  label:'Hoy', red:STATS.pending_actions>0}
+  ];
+  document.getElementById('stats-bar').innerHTML = cards.map(c =>
+    `<div class="stat-card">
+      <div class="stat-icon">${c.icon}</div>
+      <div class="stat-num${c.red?' red':''}">${c.num}</div>
+      <div class="stat-label">${c.label}</div>
+    </div>`
+  ).join('');
 }
 
-function fmtPhone(p) {
-  const d = String(p || '').replace(/\D/g,'');
-  if (d.length === 10) return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
-  return p;
-}
+// ── render entries ────────────────────────────────────────────────────────────
+function renderCallRail(call) {
+  const isBooked = (call.tags||[call.tag||'']).some(t => /booked/i.test(t));
+  const isMissed = call.status === 'missed';
+  const isVoicemail = call.status === 'voicemail';
+  let entryClass = isBooked ? 'entry-booked' : isMissed ? 'entry-missed' : isVoicemail ? 'entry-voicemail' : 'entry-answered';
+  let dataType = isBooked ? 'call-booked' : isMissed ? 'call-missed' : isVoicemail ? 'call-voicemail' : 'call-answered';
+  let statusBadge = isBooked
+    ? '<span class="source-badge badge-booked">✅ CONFIRMADO</span>'
+    : isMissed ? '<span class="source-badge badge-missed">❌ PERDIDA</span>'
+    : isVoicemail ? '<span class="source-badge badge-voicemail">🎤 BUZÓN</span>'
+    : '<span class="source-badge badge-answered">📞 RESPONDIDA</span>';
 
-function getCallType(call) {
-  const tag = (call.tag || '').toLowerCase();
-  if (tag.includes('booked') && call.status === 'answered') return 'call-booked';
-  if (call.status === 'answered') return 'call-answered';
-  return 'call-missed';
-}
+  const tags = (call.tags || (call.tag ? [call.tag] : [])).filter(Boolean);
 
-function renderCall(call) {
-  const ct = getCallType(call);
-  const icon = ct === 'call-booked' ? '✅' : ct === 'call-answered' ? '📞' : '❌';
-  const bc = ct === 'call-booked' ? 'badge-green' : ct === 'call-answered' ? 'badge-blue' : 'badge-red';
-  const sl = ct === 'call-booked' ? 'Confirmado' : ct === 'call-answered' ? 'Contestado' : 'Perdido';
-  const phone = esc(call.caller_phone || '');
-  const phoneClean = (call.caller_phone || '').replace(/\D/g,'');
-  const summary = (call.summary || '').substring(0, 150) + ((call.summary || '').length > 150 ? '…' : '');
-  return `<div class="entry ${ct}" data-type="${ct}">
-    <div class="entry-row">
-      <span class="entry-icon">${icon}</span>
-      <span class="entry-name">${esc(call.caller_name)}</span>
-      <span class="entry-phone"><a href="tel:${phoneClean}">${phone}</a></span>
-      <span class="badge ${bc}">${sl}</span>
-      ${call.tag ? `<span class="badge ${bc}">${esc(call.tag)}</span>` : ''}
+  return `<div class="entry ${entryClass}" data-type="${dataType}">
+    <div class="source-row">
+      <span class="source-badge badge-callrail">📞 CALLRAIL</span>
+      ${statusBadge}
+      ${tags.map(t => `<span class="badge-tag">${esc(t)}</span>`).join('')}
     </div>
-    <div class="entry-meta">${esc(call.city || '')} &nbsp;·&nbsp; ${fmtDuration(call.duration_seconds || 0)}</div>
-    ${summary ? `<div class="entry-summary">${esc(summary)}</div>` : ''}
+    <div class="contact-row">
+      <span class="caller-name">${esc(call.caller_name || 'Desconocido')}</span>
+      ${phoneLink(call.caller_phone)}
+      ${call.duration_seconds ? `<span class="duration">⏱ ${fmtDuration(call.duration_seconds)}</span>` : ''}
+    </div>
+    ${call.address || call.city ? `<div class="detail-row"><span class="icon">📍</span><span class="detail-val">${esc([call.address, call.city].filter(Boolean).join(', '))}</span></div>` : ''}
+    ${detailRow('🔧', 'Servicio:', call.service_requested)}
+    ${detailRow('📅', 'Fecha:', call.call_date)}
+    ${call.call_summary ? `<div class="summary-text">${esc(call.call_summary)}</div>` : ''}
+    ${call.voicemail_transcript ? `<div class="voicemail-box"><div class="voicemail-label">🎤 TRANSCRIPCIÓN DE BUZÓN DE VOZ</div>${esc(call.voicemail_transcript)}</div>` : ''}
+    ${call.recording_url ? `<div class="detail-row" style="margin-top:8px"><a href="${esc(call.recording_url)}" style="color:#1565C0;font-size:12px">🔊 Escuchar grabación</a></div>` : ''}
   </div>`;
 }
 
-function renderFormspree(f) {
-  const phoneClean = (f.phone || '').replace(/\D/g,'');
-  return `<div class="entry formspree" data-type="formspree">
-    <div class="entry-row">
-      <span class="entry-icon">🌐</span>
-      <span class="entry-name">${esc(f.name)}</span>
-      <span class="entry-phone"><a href="tel:${phoneClean}">${esc(fmtPhone(f.phone))}</a></span>
-      <span class="badge badge-orange">${esc(f.service || '')}</span>
+function renderFormspree(form) {
+  return `<div class="entry entry-formspree" data-type="formspree">
+    <div class="source-row">
+      <span class="source-badge badge-formspree">🌐 FORMULARIO WEB (FORMSPREE)</span>
     </div>
-    <div class="entry-message">${esc(f.message || '')}</div>
+    <div class="contact-row">
+      <span class="caller-name">${esc(form.name || 'Desconocido')}</span>
+      ${phoneLink(form.phone)}
+      ${emailLink(form.email)}
+    </div>
+    ${form.address ? `<div class="detail-row"><span class="icon">📍</span><span class="detail-val">${esc(form.address)}</span></div>` : ''}
+    ${form.service ? `<div class="detail-row"><span class="icon">🔧</span><span class="detail-label">Servicio:</span><span class="detail-val" style="background:#FFF3E0;color:#E65100;padding:2px 10px;border-radius:10px;font-weight:600">${esc(form.service)}</span></div>` : ''}
+    ${form.message ? `<div class="message-text">${esc(form.message)}</div>` : ''}
+    ${form.preferred_contact ? detailRow('💬', 'Contacto preferido:', form.preferred_contact) : ''}
+    <div class="entry-time">Enviado: ${fmtTime(form.time)}</div>
   </div>`;
 }
 
-function renderLSA(l) {
-  const label = l.type === 'new_lead' ? 'New Lead' : 'Notification';
-  return `<div class="entry lsa" data-type="lsa">
-    <div class="entry-row">
-      <span class="entry-icon">📍</span>
-      <span class="badge badge-purple">${label}</span>
-      <span style="font-size:0.82rem;color:#666;">${esc(l.time || '')}</span>
+function renderLSA(lsa) {
+  const typeBadge = lsa.type === 'new_lead'
+    ? '<span class="source-badge" style="background:#E8F5E9;color:#2E7D32">🆕 NUEVO LEAD</span>'
+    : lsa.type === 'missed_lead'
+    ? '<span class="source-badge badge-missed">❌ LEAD PERDIDO</span>'
+    : '<span class="source-badge badge-lsa">ℹ️ NOTIFICACIÓN</span>';
+
+  return `<div class="entry entry-lsa" data-type="lsa">
+    <div class="source-row">
+      <span class="source-badge badge-lsa">📍 GOOGLE LOCAL SERVICES</span>
+      ${typeBadge}
     </div>
+    ${lsa.customer_name ? `<div class="contact-row"><span class="caller-name">${esc(lsa.customer_name)}</span>${phoneLink(lsa.customer_phone)}</div>` : ''}
+    ${detailRow('🔧', 'Servicio:', lsa.service_requested)}
+    ${lsa.notes ? `<div class="message-text">${esc(lsa.notes)}</div>` : ''}
+    ${lsa.email_subject ? detailRow('📧', 'Asunto:', lsa.email_subject) : ''}
+    <div class="entry-time">${lsa.lead_time || lsa.time || ''} ${lsa.lead_id ? `· ID: ${esc(lsa.lead_id)}` : ''}</div>
   </div>`;
 }
 
-function renderAction(a) {
-  return `<div class="entry action" data-type="action">
-    <div class="entry-row">
-      <span class="entry-icon">🚨</span>
-      <span class="action-text">${esc(a.text)}</span>
-    </div>
+function renderAction(action) {
+  return `<div class="entry entry-action" data-type="action">
+    <div class="action-text">🚨 ${esc(action.text)}</div>
   </div>`;
 }
 
-// Build day cards
-let html = '';
-for (const day of DATA) {
-  const total = (day.actions||[]).length + (day.callrail||[]).length + (day.formspree||[]).length + (day.lsa||[]).length;
-  let body = '';
-  for (const a of (day.actions||[])) body += renderAction(a);
-  for (const c of (day.callrail||[])) body += renderCall(c);
-  for (const f of (day.formspree||[])) body += renderFormspree(f);
-  for (const l of (day.lsa||[])) body += renderLSA(l);
+// ── render all ────────────────────────────────────────────────────────────────
+function renderAll() {
+  document.getElementById('updated-time').textContent = 'Actualizado: ' + new Date().toLocaleDateString('es-GT', {day:'2-digit',month:'short',year:'numeric'});
 
-  html += `<div class="day-card" id="day-${esc(day.date)}">
-    <div class="day-card-header">
-      <span class="day-card-date">${esc(day.display)}</span>
-      <span class="day-badge" id="badge-${esc(day.date)}">${total} entradas</span>
-    </div>
-    <div class="day-card-body">${body}</div>
-  </div>`;
+  let html = '';
+  DATA.forEach(day => {
+    const callCount   = (day.callrail  || []).length;
+    const formCount   = (day.formspree || []).length;
+    const lsaCount    = (day.lsa       || []).length;
+    const actionCount = (day.actions   || []).length;
+    const total = callCount + formCount + lsaCount;
+
+    let badgesHtml = '';
+    if (callCount)   badgesHtml += `<span class="mini-badge mini-call">📞 ${callCount} llamada${callCount>1?'s':''}</span>`;
+    if (formCount)   badgesHtml += `<span class="mini-badge mini-form">🌐 ${formCount} formulario${formCount>1?'s':''}</span>`;
+    if (lsaCount)    badgesHtml += `<span class="mini-badge mini-lsa">📍 ${lsaCount} LSA</span>`;
+
+    let entriesHtml = '';
+    (day.actions   || []).forEach(a  => entriesHtml += renderAction(a));
+    (day.callrail  || []).forEach(c  => entriesHtml += renderCallRail(c));
+    (day.formspree || []).forEach(f  => entriesHtml += renderFormspree(f));
+    (day.lsa       || []).forEach(l  => entriesHtml += renderLSA(l));
+
+    if (!entriesHtml) entriesHtml = `<div class="empty-day">Sin actividad registrada</div>`;
+
+    html += `<div class="day-card" id="day-${day.date}">
+      <div class="day-header">
+        <span class="day-title">📅 ${esc(day.display)}</span>
+        <div class="day-badges">${badgesHtml}</div>
+      </div>
+      ${entriesHtml}
+    </div>`;
+  });
+
+  document.getElementById('main-content').innerHTML = html || '<div style="text-align:center;padding:40px;color:#aaa">No hay datos aún</div>';
 }
-document.getElementById('content').innerHTML = html;
 
-// Filter
-function setFilter(filter) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+// ── filter ────────────────────────────────────────────────────────────────────
+function filterEntries(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  document.querySelectorAll('.entry').forEach(el => {
+    const dt = el.dataset.type || '';
+    let show = false;
+    if (type === 'all')       show = true;
+    else if (type === 'callrail')  show = dt.startsWith('call-');
+    else if (type === 'formspree') show = dt === 'formspree';
+    else if (type === 'lsa')       show = dt === 'lsa';
+    else if (type === 'action')    show = dt === 'action';
+    el.style.display = show ? '' : 'none';
+  });
+
   document.querySelectorAll('.day-card').forEach(card => {
-    const entries = card.querySelectorAll('.entry');
-    let vis = 0;
-    entries.forEach(e => {
-      const t = e.dataset.type;
-      let show = false;
-      if (filter === 'all') show = true;
-      else if (filter === 'call') show = ['call-booked','call-answered','call-missed'].includes(t);
-      else if (filter === 'formspree') show = t === 'formspree';
-      else if (filter === 'lsa') show = t === 'lsa';
-      else if (filter === 'action') show = t === 'action';
-      e.style.display = show ? '' : 'none';
-      if (show) vis++;
-    });
-    card.style.display = vis === 0 ? 'none' : '';
-    const badge = card.querySelector('.day-badge');
-    if (badge) badge.textContent = vis + ' entradas';
+    const visible = Array.from(card.querySelectorAll('.entry')).some(e => e.style.display !== 'none');
+    card.style.display = visible ? '' : 'none';
   });
 }
+
+renderStats();
+renderAll();
 </script>
 </body>
 </html>
