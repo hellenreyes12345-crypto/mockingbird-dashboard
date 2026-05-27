@@ -159,8 +159,23 @@ const DATA = [
     "lsa": [
       {
         "type": "new_lead",
+        "customer_phone": "(615) 438-1201",
+        "location": "Hendersonville",
+        "lead_type": "Phone",
+        "charge_status": "in_review",
         "lead_time": "4:39 PM — 26 de mayo 2026",
+        "lead_id": "315352077",
         "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "message_lead",
+        "customer_phone": "(812) 484-7572",
+        "service_requested": "Remoción de árbol",
+        "location": "Nashville",
+        "lead_type": "Message",
+        "charge_status": "in_review",
+        "lead_time": "1:00 PM — 26 de mayo 2026",
+        "lead_id": "315283332"
       }
     ],
     "actions": [
@@ -171,8 +186,13 @@ const DATA = [
       },
       {
         "priority": "urgent",
-        "text": "Nuevo lead de Google LSA — llamada recibida el 26/05/2026 a las 4:39 PM",
+        "text": "Llamada perdida Google LSA — (615) 438-1201 · Hendersonville · 26/05/2026 4:39 PM · ID 315352077",
         "type": "lsa_lead"
+      },
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — (812) 484-7572 · Remoción de árbol · Nashville · 26/05/2026 1:00 PM · Responder en panel LSA · ID 315283332",
+        "type": "lsa_message"
       }
     ]
   }
@@ -181,10 +201,10 @@ const DATA = [
 const STATS = {
   total_calls_30d: 1,
   total_web_30d: 1,
-  total_lsa_30d: 1,
+  total_lsa_30d: 2,
   total_booked_30d: 1,
   total_missed_30d: 0,
-  pending_actions: 2
+  pending_actions: 3
 };
 
 // ── Traducciones ──────────────────────────────────────────────────────────────
@@ -394,16 +414,24 @@ function renderFormulario(f){
 // ── Render Google LSA ─────────────────────────────────────────────────────────
 function renderLSA(l){
   const tipoBadge=l.type==='new_lead'
-    ?'<span class="badge" style="background:#E8F5E9;color:#2E7D32">🆕 NUEVO LEAD</span>'
+    ?'<span class="badge" style="background:#E8F5E9;color:#2E7D32">📞 LLAMADA NUEVA</span>'
+    :l.type==='message_lead'
+    ?'<span class="badge" style="background:#E3F2FD;color:#1565C0">💬 MENSAJE NUEVO</span>'
     :l.type==='missed_lead'
     ?'<span class="badge b-perdida">❌ LEAD PERDIDO</span>'
     :'<span class="badge b-lsa">ℹ️ NOTIFICACIÓN</span>';
+  const tieneContacto=l.customer_name||l.customer_phone;
   return`<div class="entry entry-lsa" data-type="lsa">
     <div class="badge-row">
       <span class="badge b-lsa">📍 GOOGLE LOCAL SERVICES</span>
       ${tipoBadge}
+      ${l.charge_status==='in_review'?'<span class="b-tag">⏳ En revisión de cobro</span>':''}
     </div>
-    ${l.customer_name?`<div class="contact-row"><span class="entry-name">${esc(l.customer_name)}</span>${telLink(l.customer_phone)}</div>`:''}
+    ${tieneContacto?`<div class="contact-row">
+      ${l.customer_name?`<span class="entry-name">${esc(l.customer_name)}</span>`:''}
+      ${l.customer_phone?telLink(l.customer_phone):''}
+    </div>`:''}
+    ${l.location?`<div class="detail-row"><span class="ico">📍</span><span class="detail-val">${esc(l.location)}</span></div>`:''}
     ${l.service_requested?`<span class="servicio-pill">🔧 ${esc(traducirServicio(l.service_requested))}</span>`:''}
     ${l.notes?`<div class="mensaje-box">${esc(l.notes)}</div>`:''}
     <div class="entry-time">📅 ${esc(l.lead_time||l.time||'')}${l.lead_id?` · ID: ${esc(l.lead_id)}`:''}</div>
