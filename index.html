@@ -5,55 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🌳 Mockingbird Lead Dashboard</title>
 <style>
+/* ── RESET ──────────────────────────────────────────────────── */
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f0;color:#1a1a1a;min-height:100vh}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f0;color:#1a1a1a;min-height:100vh;font-size:15px;-webkit-text-size-adjust:100%}
 a{color:inherit;text-decoration:none}
-a:hover{text-decoration:underline}
+button{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
-.header{background:#1B4332;padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.header h1{color:#fff;font-size:18px;font-weight:700;letter-spacing:0.3px}
+/* ── HEADER ─────────────────────────────────────────────────── */
+.header{background:#1B4332;padding:12px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.35)}
+.header-inner{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.header h1{color:#fff;font-size:16px;font-weight:800;letter-spacing:0.3px;line-height:1.2}
 .header-sub{color:#95D5B2;font-size:11px;margin-top:2px}
-.header-right{text-align:right}
-.header-right .updated{color:#95D5B2;font-size:11px}
+.updated{color:#95D5B2;font-size:11px;text-align:right;line-height:1.5;white-space:nowrap}
 
-.stats{display:flex;gap:0;overflow-x:auto;background:#fff;border-bottom:2px solid #e0e0e0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+/* ── STATS BAR ──────────────────────────────────────────────── */
+.stats{display:flex;overflow-x:auto;background:#fff;border-bottom:2px solid #e8e8e8;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .stats::-webkit-scrollbar{display:none}
-.stat-card{flex:0 0 auto;min-width:95px;padding:12px 14px;text-align:center;border-right:1px solid #f0f0f0;cursor:default}
+.stat-card{flex:0 0 auto;min-width:88px;padding:11px 10px;text-align:center;border-right:1px solid #f0f0f0;cursor:default}
 .stat-card:last-child{border-right:none}
-.stat-icon{font-size:20px}
-.stat-num{font-size:26px;font-weight:800;color:#1B4332;line-height:1.1;margin-top:2px}
+.stat-icon{font-size:18px}
+.stat-num{font-size:24px;font-weight:800;color:#1B4332;line-height:1.1;margin-top:2px}
 .stat-num.red{color:#C62828}
-.stat-label{font-size:10px;color:#777;margin-top:2px;white-space:nowrap}
+.stat-label{font-size:10px;color:#888;margin-top:2px;white-space:nowrap}
 
-.filters{display:flex;gap:8px;padding:10px 16px;background:#fff;border-bottom:1px solid #e0e0e0;overflow-x:auto;position:sticky;top:57px;z-index:90;scrollbar-width:none}
+/* ── TOOLBAR ────────────────────────────────────────────────── */
+.toolbar{background:#fff;border-bottom:1px solid #e8e8e8;position:sticky;top:55px;z-index:90;padding:8px 12px 6px;display:flex;flex-direction:column;gap:7px}
+
+.date-row{display:flex;align-items:center;gap:8px}
+.date-ico{font-size:14px;flex-shrink:0;color:#666}
+.date-select{flex:1;padding:8px 32px 8px 10px;border:1.5px solid #ddd;border-radius:10px;font-size:14px;font-weight:600;color:#333;background:#fafafa;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer;min-height:40px}
+.date-select:focus{outline:none;border-color:#2D6A4F;background:#fff}
+
+.filters{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .filters::-webkit-scrollbar{display:none}
-.filter-btn{flex:0 0 auto;padding:6px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;color:#555;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.15s;white-space:nowrap}
-.filter-btn.active,.filter-btn:hover{background:#2D6A4F;color:#fff;border-color:#2D6A4F}
+.filter-btn{flex:0 0 auto;padding:8px 15px;border-radius:20px;border:1.5px solid #ddd;background:#fff;color:#555;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.15s,color 0.15s,border-color 0.15s;white-space:nowrap;min-height:38px}
+.filter-btn.active,.filter-btn:active{background:#2D6A4F;color:#fff;border-color:#2D6A4F}
 
-.content{padding:16px;max-width:740px;margin:0 auto}
+/* ── CONTENT ────────────────────────────────────────────────── */
+.content{padding:12px;max-width:640px;margin:0 auto}
 
-/* DATE SECTION */
-.day-section{margin-bottom:20px}
-.day-section-header{background:#1B4332;color:#fff;padding:10px 18px;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.day-section-title{font-size:16px;font-weight:700;letter-spacing:0.2px}
-.day-section-badges{display:flex;gap:6px;flex-wrap:wrap}
-.day-badge{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600;background:rgba(255,255,255,0.2);color:#fff}
-.day-section-body{background:#fff;border-radius:0 0 12px 12px;box-shadow:0 3px 10px rgba(0,0,0,0.1);overflow:hidden}
+/* ── DAY SECTION ────────────────────────────────────────────── */
+.day-section{margin-bottom:14px}
+.day-section-header{background:#1B4332;color:#fff;padding:10px 16px;border-radius:12px 12px 0 0}
+.day-section-title{font-size:15px;font-weight:700;letter-spacing:0.1px}
+.day-section-body{background:#fff;border-radius:0 0 12px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow:hidden}
 
-/* ENTRIES */
-.entry{padding:13px 16px;border-bottom:1px solid #f0f0f0;position:relative}
+/* ── ENTRIES ────────────────────────────────────────────────── */
+.entry{padding:14px 16px;border-bottom:1px solid #f2f2f2;position:relative}
 .entry:last-child{border-bottom:none}
-.entry-action{background:#FFEBEE;border-left:5px solid #C62828}
-.action-text{font-size:13px;font-weight:700;color:#C62828;line-height:1.5}
-.entry-booked{border-left:5px solid #2D6A4F;background:#F9FFF9}
-.entry-answered{border-left:5px solid #1565C0;background:#FAFCFF}
-.entry-missed{border-left:5px solid #C62828;background:#FFFAFA}
-.entry-voicemail{border-left:5px solid #E65100;background:#FFFDF5}
-.entry-formspree{border-left:5px solid #E65100;background:#FFFAF5}
-.entry-lsa{border-left:5px solid #6A1B9A;background:#FDF8FF}
+.entry-action{background:#FFEBEE;border-left:4px solid #C62828}
+.action-text{font-size:13px;font-weight:700;color:#C62828;line-height:1.55}
+.entry-booked{border-left:4px solid #2D6A4F;background:#F9FFF9}
+.entry-answered{border-left:4px solid #1565C0;background:#FAFCFF}
+.entry-missed{border-left:4px solid #C62828;background:#FFFAFA}
+.entry-voicemail{border-left:4px solid #E65100;background:#FFFDF5}
+.entry-formspree{border-left:4px solid #E65100;background:#FFFAF5}
+.entry-lsa{border-left:4px solid #6A1B9A;background:#FDF8FF}
 
 .badge-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;align-items:center}
-.badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap}
+.badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:10px;white-space:nowrap}
 .b-callrail{background:#E3F2FD;color:#1565C0}
 .b-formspree{background:#FFF3E0;color:#E65100}
 .b-lsa{background:#F3E5F5;color:#6A1B9A}
@@ -63,69 +73,102 @@ a:hover{text-decoration:underline}
 .b-buzon{background:#FFF8E1;color:#E65100}
 .b-tag{background:#f5f5f5;color:#555;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:500}
 
-.contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px;align-items:center}
-.entry-name{font-size:15px;font-weight:700;color:#1a1a1a}
-.tel-link{font-size:14px;color:#2D6A4F;font-weight:600}
-.tel-link:hover{text-decoration:underline}
+.contact-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;align-items:center}
+.entry-name{font-size:16px;font-weight:700;color:#1a1a1a}
+.tel-link{font-size:15px;color:#2D6A4F;font-weight:600}
 .email-link{font-size:13px;color:#1565C0}
-.duracion{font-size:12px;color:#666;background:#f5f5f5;padding:2px 8px;border-radius:10px}
+.duracion{font-size:12px;color:#666;background:#f5f5f5;padding:3px 9px;border-radius:10px}
 
 .detail-row{display:flex;align-items:flex-start;gap:6px;margin-top:5px;font-size:13px;color:#555}
 .detail-row .ico{flex-shrink:0;width:18px}
 .detail-val{color:#555;line-height:1.4}
 .detail-label{font-weight:600;color:#333;flex-shrink:0;margin-right:4px}
 
-.resumen-box{font-size:13px;color:#555;font-style:italic;line-height:1.6;margin-top:8px;padding:9px 12px;background:#f9f9f9;border-radius:8px;border-left:3px solid #ddd}
-.buzon-box{font-size:13px;color:#555;line-height:1.6;margin-top:8px;padding:9px 12px;background:#FFFDE7;border-radius:8px;border-left:3px solid #F57F17}
+.resumen-box{font-size:13px;color:#555;font-style:italic;line-height:1.65;margin-top:8px;padding:10px 12px;background:#f9f9f9;border-radius:8px;border-left:3px solid #ddd}
+.buzon-box{font-size:13px;color:#555;line-height:1.65;margin-top:8px;padding:10px 12px;background:#FFFDE7;border-radius:8px;border-left:3px solid #F57F17}
 .buzon-label{font-weight:700;color:#E65100;font-size:11px;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
-.mensaje-box{font-size:13px;color:#555;line-height:1.6;margin-top:8px;padding:9px 12px;background:#f9f9f9;border-radius:8px}
+.mensaje-box{font-size:13px;color:#555;line-height:1.65;margin-top:8px;padding:10px 12px;background:#f9f9f9;border-radius:8px}
 .servicio-pill{display:inline-block;background:#E8F5E9;color:#1B4332;font-size:12px;font-weight:600;padding:3px 10px;border-radius:10px;margin-top:5px}
 .entry-time{font-size:11px;color:#aaa;margin-top:8px}
-
-/* Idioma note */
 .nota-idioma{font-size:11px;color:#bbb;font-style:italic;margin-bottom:5px;display:flex;align-items:center;gap:4px}
 
-/* Seguimiento button */
-.btn-seguimiento{display:inline-block;background:#E8F5E9;color:#2E7D32;border:1.5px solid #A5D6A7;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;margin-top:8px}
-.btn-seguimiento:hover{background:#2E7D32;color:#fff;border-color:#2E7D32}
+.btn-seguimiento{display:block;width:100%;background:#E8F5E9;color:#2E7D32;border:1.5px solid #A5D6A7;padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s,color 0.15s;margin-top:10px;text-align:center}
+.btn-seguimiento:active{background:#2E7D32;color:#fff;border-color:#2E7D32}
 
 .sin-actividad{text-align:center;color:#bbb;padding:24px;font-size:13px}
-.footer{text-align:center;padding:28px 20px 40px;color:#aaa;font-size:12px}
 
-@media(max-width:480px){
-  .header{padding:10px 14px}
-  .header h1{font-size:15px}
-  .stat-card{min-width:82px;padding:10px 10px}
-  .stat-num{font-size:22px}
-  .content{padding:10px}
-  .day-section-title{font-size:14px}
+/* ── CLIENTES VIEW ──────────────────────────────────────────── */
+#vista-clientes{display:none}
+.clientes-top{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,0.07);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.clientes-title{font-size:16px;font-weight:800;color:#1B4332}
+.clientes-count{font-size:13px;color:#888;font-weight:600}
+
+.cliente-card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-bottom:12px;overflow:hidden;border-left:4px solid #2D6A4F}
+.cliente-body{padding:14px 16px}
+.cliente-name{font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:8px}
+.cliente-row{display:flex;align-items:flex-start;gap:7px;margin-bottom:5px;font-size:13px;color:#555}
+.cliente-ico{font-size:14px;flex-shrink:0;width:18px;margin-top:1px}
+.cliente-pills{margin-top:6px;display:flex;flex-wrap:wrap;gap:5px}
+.cliente-pill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;background:#E8F5E9;color:#1B4332}
+.cliente-pill.source-cr{background:#E3F2FD;color:#1565C0}
+.cliente-pill.source-fs{background:#FFF3E0;color:#E65100}
+.cliente-pill.source-lsa{background:#F3E5F5;color:#6A1B9A}
+.cliente-footer{font-size:10px;color:#bbb;margin-top:8px}
+
+.clientes-empty{text-align:center;padding:40px 20px;color:#bbb;font-size:13px}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+.footer{text-align:center;padding:24px 16px 52px;color:#ccc;font-size:11px}
+
+/* ── DESKTOP ADJUSTMENTS ────────────────────────────────────── */
+@media(min-width:580px){
+  .header{padding:14px 24px}
+  .header h1{font-size:18px}
+  .toolbar{padding:10px 20px 8px}
+  .date-row{max-width:360px}
+  .content{padding:16px 20px}
+  .stat-card{min-width:100px;padding:14px 14px}
+  .stat-num{font-size:28px}
+  .filter-btn{padding:8px 18px}
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div>
-    <h1>🌳 THE MOCKINGBIRD TREE SERVICE</h1>
-    <div class="header-sub">Panel de Leads — Nashville, TN</div>
-  </div>
-  <div class="header-right">
+  <div class="header-inner">
+    <div>
+      <h1>🌳 MOCKINGBIRD TREE SERVICE</h1>
+      <div class="header-sub">Panel de Leads — Nashville, TN</div>
+    </div>
     <div class="updated" id="updated-time"></div>
   </div>
 </div>
 
 <div class="stats" id="stats-bar"></div>
 
-<div class="filters">
-  <button class="filter-btn active" onclick="filtrar(this,'all')">📋 Todos</button>
-  <button class="filter-btn" onclick="filtrar(this,'callrail')">📞 CallRail</button>
-  <button class="filter-btn" onclick="filtrar(this,'formspree')">🌐 Formspree</button>
-  <button class="filter-btn" onclick="filtrar(this,'lsa')">📍 Google LSA</button>
-  <button class="filter-btn" onclick="filtrar(this,'action')">🚨 Pendientes</button>
+<div class="toolbar">
+  <div class="date-row">
+    <span class="date-ico">📅</span>
+    <select class="date-select" id="date-filter" onchange="aplicarFiltros()">
+      <option value="">Todas las fechas</option>
+    </select>
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filtrar(this,'all')">📋 Todos</button>
+    <button class="filter-btn" onclick="filtrar(this,'callrail')">📞 Llamadas</button>
+    <button class="filter-btn" onclick="filtrar(this,'formspree')">🌐 Formularios</button>
+    <button class="filter-btn" onclick="filtrar(this,'lsa')">📍 Google LSA</button>
+    <button class="filter-btn" onclick="filtrar(this,'action')">🚨 Pendientes</button>
+    <button class="filter-btn" onclick="filtrar(this,'clientes')">👥 Clientes</button>
+  </div>
 </div>
 
-<div class="content" id="contenido"></div>
-<div class="footer">The Mockingbird Tree Service — Panel automático de leads</div>
+<div class="content">
+  <div id="contenido"></div>
+  <div id="vista-clientes"></div>
+</div>
+<div class="footer">The Mockingbird Tree Service · Panel automático de leads</div>
 
 <script>
 const DATA = [
@@ -207,7 +250,7 @@ const STATS = {
   pending_actions: 3
 };
 
-// ── Traducciones ──────────────────────────────────────────────────────────────
+// ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
   "schedule booked":"Cita agendada","booked":"Confirmado","new caller":"Nuevo cliente",
   "2nd call":"2da llamada","missed":"Llamada perdida","voicemail":"Buzón de voz",
@@ -227,7 +270,7 @@ function traducirTag(t){ return TRADUCCIONES_TAG[t.toLowerCase()]||t; }
 function traducirServicio(s){ return TRADUCCIONES_SERVICIO[(s||'').toLowerCase()]||s; }
 
 function esc(s){
-  if(!s)return'';
+  if(s==null)return'';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 function fmtDuracion(sec){
@@ -251,50 +294,48 @@ function emailLink(e){
   return`<a class="email-link" href="mailto:${esc(e)}">✉️ ${esc(e)}</a>`;
 }
 
-// ── Helpers de fecha ──────────────────────────────────────────────────────────
-// Extrae YYYY-MM-DD de distintos formatos de fecha
-function extraerFechaISO(str, fallback) {
-  if (!str) return fallback;
-  const s = String(str);
-  // Solo fecha ISO
-  if (/^\d{4}-\d{2}-\d{2}$/.test(s.trim())) return s.trim();
-  // Fecha+hora ISO → convertir UTC a Nashville (America/Chicago)
-  if (/\d{4}-\d{2}-\d{2}T/.test(s)) {
-    try { return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/Chicago'}); }
+// ── Helpers de fecha ─────────────────────────────────────────────────────────
+function extraerFechaISO(str, fallback){
+  if(!str)return fallback;
+  const s=String(str);
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s.trim()))return s.trim();
+  if(/\d{4}-\d{2}-\d{2}T/.test(s)){
+    try{return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/Chicago'});}
     catch(e){}
   }
-  // "26 de mayo 2026" / "26 de mayo de 2026" (también dentro de texto)
-  const m1 = s.toLowerCase().match(/(\d{1,2})\s+de\s+([a-z]+?)(?:\s+de)?\s+(\d{4})/);
-  if (m1) {
-    const mes = MESES_ES[m1[2]];
-    if (mes) return `${m1[3]}-${String(mes).padStart(2,'0')}-${String(m1[1]).padStart(2,'0')}`;
+  const m1=s.toLowerCase().match(/(\d{1,2})\s+de\s+([a-z]+?)(?:\s+de)?\s+(\d{4})/);
+  if(m1){
+    const mes=MESES_ES[m1[2]];
+    if(mes)return`${m1[3]}-${String(mes).padStart(2,'0')}-${String(m1[1]).padStart(2,'0')}`;
   }
-  // DD/MM/YYYY (convención española)
-  const m2 = s.match(/(\d{1,2})\/(\d{2})\/(\d{4})/);
-  if (m2) {
+  const m2=s.match(/(\d{1,2})\/(\d{2})\/(\d{4})/);
+  if(m2){
     const d=parseInt(m2[1]),mo=parseInt(m2[2]),y=parseInt(m2[3]);
-    if (d>=1&&d<=31&&mo>=1&&mo<=12)
-      return `${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    if(d>=1&&d<=31&&mo>=1&&mo<=12)
+      return`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
   }
   return fallback;
 }
 
-// Formatea YYYY-MM-DD → "Martes 26 de mayo de 2026"
-function formatearFechaDisplay(isoDate) {
-  try {
-    const [y,m,d]=isoDate.split('-').map(Number);
+function formatearFechaDisplay(isoDate){
+  try{
+    const[y,m,d]=isoDate.split('-').map(Number);
     const dt=new Date(y,m-1,d,12,0,0);
     const str=dt.toLocaleDateString('es-GT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
     return str.charAt(0).toUpperCase()+str.slice(1);
-  } catch(e){ return isoDate; }
+  }catch(e){return isoDate;}
 }
 
-// ── Estadísticas ──────────────────────────────────────────────────────────────
+// ── Estado global de filtros ─────────────────────────────────────────────────
+let filtroActivo='all';
+let fechaActiva='';
+
+// ── Estadísticas ─────────────────────────────────────────────────────────────
 function renderStats(){
   const t=[
-    {i:'📞',n:STATS.total_calls_30d,l:'Llamadas / 30d',r:false},
-    {i:'🌐',n:STATS.total_web_30d,l:'Leads Web / 30d',r:false},
-    {i:'📍',n:STATS.total_lsa_30d,l:'Google LSA / 30d',r:false},
+    {i:'📞',n:STATS.total_calls_30d,l:'Llamadas/30d',r:false},
+    {i:'🌐',n:STATS.total_web_30d,l:'Leads Web/30d',r:false},
+    {i:'📍',n:STATS.total_lsa_30d,l:'Google LSA/30d',r:false},
     {i:'✅',n:STATS.total_booked_30d,l:'Confirmados',r:false},
     {i:'❌',n:STATS.total_missed_30d,l:'Perdidas',r:false},
     {i:'🚨',n:STATS.pending_actions,l:'Pendientes hoy',r:STATS.pending_actions>0}
@@ -306,7 +347,7 @@ function renderStats(){
   ).join('');
 }
 
-// ── Seguimiento (persistencia en localStorage) ────────────────────────────────
+// ── Seguimiento ──────────────────────────────────────────────────────────────
 function genSegKey(text){
   let h=0;
   const s=String(text).substring(0,80);
@@ -323,11 +364,10 @@ function marcarSeguimiento(key){
     setTimeout(()=>{
       el.style.display='none';
       actualizarPendientes();
-      // Ocultar sección del día si quedó vacía
       const sec=el.closest('.day-section');
       if(sec){
         const hayVisible=Array.from(sec.querySelectorAll('.entry')).some(e=>e.style.display!=='none');
-        if(!hayVisible) sec.style.display='none';
+        if(!hayVisible)sec.style.display='none';
       }
     },300);
   }
@@ -336,7 +376,7 @@ function marcarSeguimiento(key){
 function actualizarPendientes(){
   let count=0;
   document.querySelectorAll('.entry-action').forEach(el=>{
-    if(el.style.display!=='none') count++;
+    if(el.style.display!=='none')count++;
   });
   const nums=document.querySelectorAll('.stat-num');
   if(nums.length>=6){
@@ -348,12 +388,12 @@ function actualizarPendientes(){
 function inicializarSeguimiento(){
   document.querySelectorAll('.entry-action[id]').forEach(el=>{
     const key=el.id.replace('accion-','');
-    try{if(localStorage.getItem(key)==='1') el.style.display='none';}catch(e){}
+    try{if(localStorage.getItem(key)==='1')el.style.display='none';}catch(e){}
   });
   actualizarPendientes();
 }
 
-// ── Render acción pendiente ───────────────────────────────────────────────────
+// ── Renders de entradas ──────────────────────────────────────────────────────
 function renderAccion(a){
   const key=genSegKey(a.text);
   return`<div class="entry entry-action" data-type="action" id="accion-${key}">
@@ -362,7 +402,6 @@ function renderAccion(a){
   </div>`;
 }
 
-// ── Render llamada CallRail ───────────────────────────────────────────────────
 function renderLlamada(c){
   const tags=Array.isArray(c.tags)?c.tags:(c.tag?[c.tag]:[]);
   const esConf=tags.some(t=>/booked/i.test(t));
@@ -395,7 +434,6 @@ function renderLlamada(c){
   </div>`;
 }
 
-// ── Render formulario Formspree ───────────────────────────────────────────────
 function renderFormulario(f){
   return`<div class="entry entry-formspree" data-type="formspree">
     <div class="badge-row"><span class="badge b-formspree">🌐 FORMULARIO WEB</span></div>
@@ -411,7 +449,6 @@ function renderFormulario(f){
   </div>`;
 }
 
-// ── Render Google LSA ─────────────────────────────────────────────────────────
 function renderLSA(l){
   const tipoBadge=l.type==='new_lead'
     ?'<span class="badge" style="background:#E8F5E9;color:#2E7D32">📞 LLAMADA NUEVA</span>'
@@ -438,26 +475,17 @@ function renderLSA(l){
   </div>`;
 }
 
-// ── Render principal (agrupa por fecha real de cada actividad) ────────────────
-function renderTodo(){
-  const ahora=new Date();
-  document.getElementById('updated-time').innerHTML=
-    `Actualizado: ${ahora.toLocaleDateString('es-GT',{day:'2-digit',month:'short',year:'numeric'})}<br>${ahora.toLocaleTimeString('es-GT',{hour:'2-digit',minute:'2-digit'})} hrs`;
-
-  // Aplanar todas las actividades en cubetas por fecha real del evento
+// ── Construir cubetas por fecha ──────────────────────────────────────────────
+function construirCubetas(){
   const cubetas={};
   function getCubeta(f){
-    if(!cubetas[f]) cubetas[f]={date:f,callrail:[],formspree:[],lsa:[],actions:[]};
+    if(!cubetas[f])cubetas[f]={date:f,callrail:[],formspree:[],lsa:[],actions:[]};
     return cubetas[f];
   }
-
   DATA.forEach(dia=>{
-    // CallRail → usar call_date
     (dia.callrail||[]).forEach(c=>{
       getCubeta(extraerFechaISO(c.call_date,dia.date)).callrail.push(c);
     });
-
-    // Formspree → usar campo time (ISO UTC → Nashville CDT)
     (dia.formspree||[]).forEach(f=>{
       let fecha=dia.date;
       if(f.time){
@@ -466,23 +494,17 @@ function renderTodo(){
       }
       getCubeta(fecha).formspree.push(f);
     });
-
-    // Google LSA → usar lead_time
     (dia.lsa||[]).forEach(l=>{
       getCubeta(extraerFechaISO(l.lead_time||l.time,dia.date)).lsa.push(l);
     });
-
-    // Acciones pendientes → intentar extraer fecha del texto
     (dia.actions||[]).forEach(a=>{
       let fecha=dia.date;
-      // Buscar DD/MM/YYYY en el texto de la acción (formato español)
       const mFecha=(a.text||'').match(/(\d{1,2})\/(\d{2})\/(\d{4})/);
       if(mFecha){
         const d=parseInt(mFecha[1]),mo=parseInt(mFecha[2]),y=parseInt(mFecha[3]);
         if(d>=1&&d<=31&&mo>=1&&mo<=12)
           fecha=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      } else if(a.type==='web_lead'){
-        // Para leads web: buscar el teléfono en el texto y cruzarlo con formspree
+      }else if(a.type==='web_lead'){
         const mTel=(a.text||'').match(/(\d{3}[\s\-]?\d{3}[\s\-]?\d{4})/);
         if(mTel){
           const limpio=mTel[1].replace(/\D/g,'');
@@ -496,31 +518,44 @@ function renderTodo(){
       getCubeta(fecha).actions.push(a);
     });
   });
+  return cubetas;
+}
 
-  // Ordenar fechas de más reciente a más antigua
+// ── Poblar selector de fechas ────────────────────────────────────────────────
+function poblarSelectorFechas(){
+  const cubetas=construirCubetas();
+  const fechas=Object.keys(cubetas).sort((a,b)=>b.localeCompare(a));
+  const sel=document.getElementById('date-filter');
+  fechas.forEach(f=>{
+    const opt=document.createElement('option');
+    opt.value=f;
+    opt.textContent=formatearFechaDisplay(f);
+    sel.appendChild(opt);
+  });
+}
+
+// ── Render principal ─────────────────────────────────────────────────────────
+function renderTodo(){
+  const ahora=new Date();
+  document.getElementById('updated-time').innerHTML=
+    `${ahora.toLocaleDateString('es-GT',{day:'2-digit',month:'short',year:'numeric'})}<br>${ahora.toLocaleTimeString('es-GT',{hour:'2-digit',minute:'2-digit'})} hrs`;
+
+  const cubetas=construirCubetas();
   const fechas=Object.keys(cubetas).sort((a,b)=>b.localeCompare(a));
 
   let html='';
   fechas.forEach(fecha=>{
     const dia=cubetas[fecha];
-    const nL=dia.callrail.length,nF=dia.formspree.length,nS=dia.lsa.length,nA=dia.actions.length;
-    let badges='';
-    if(nL) badges+=`<span class="day-badge">📞 ${nL} llamada${nL>1?'s':''}</span>`;
-    if(nF) badges+=`<span class="day-badge">🌐 ${nF} formulario${nF>1?'s':''}</span>`;
-    if(nS) badges+=`<span class="day-badge">📍 ${nS} LSA</span>`;
-    if(nA) badges+=`<span class="day-badge" style="background:rgba(198,40,40,0.3)">🚨 ${nA} pendiente${nA>1?'s':''}</span>`;
-
     let entradas='';
     dia.actions.forEach(a=>entradas+=renderAccion(a));
     dia.callrail.forEach(c=>entradas+=renderLlamada(c));
     dia.formspree.forEach(f=>entradas+=renderFormulario(f));
     dia.lsa.forEach(l=>entradas+=renderLSA(l));
-    if(!entradas) entradas=`<div class="sin-actividad">Sin actividad registrada este día</div>`;
+    if(!entradas)entradas=`<div class="sin-actividad">Sin actividad registrada este día</div>`;
 
-    html+=`<div class="day-section" id="dia-${fecha}">
+    html+=`<div class="day-section" id="dia-${fecha}" data-fecha="${fecha}">
       <div class="day-section-header">
         <span class="day-section-title">📅 ${esc(formatearFechaDisplay(fecha))}</span>
-        <div class="day-section-badges">${badges}</div>
       </div>
       <div class="day-section-body">${entradas}</div>
     </div>`;
@@ -530,32 +565,162 @@ function renderTodo(){
     '<div style="text-align:center;padding:40px;color:#aaa">Sin datos aún</div>';
 }
 
-// ── Filtrar ───────────────────────────────────────────────────────────────────
-function filtrar(btn,tipo){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.entry').forEach(el=>{
-    // Respetar ítems de seguimiento ya completados (quedan ocultos siempre)
-    if(el.classList.contains('entry-action')&&el.id){
-      const key=el.id.replace('accion-','');
-      try{if(localStorage.getItem(key)==='1') return;}catch(e){}
+// ── Render vista Clientes ────────────────────────────────────────────────────
+function construirClientes(){
+  const mapa={};
+
+  function agregar(phone, nombre, datos){
+    const key=(phone||'').replace(/\D/g,'');
+    if(!key&&!nombre)return;
+    const id=key||('n_'+nombre.replace(/\s+/g,'').toLowerCase());
+    if(!mapa[id]){
+      mapa[id]={
+        phone:phone||'',
+        name:nombre||'',
+        addresses:[],
+        services:[],
+        sources:[],
+        fechas:[],
+        locations:[]
+      };
     }
-    const dt=el.dataset.type||'';
-    const mostrar=tipo==='all'
-      ||(tipo==='callrail'&&dt.startsWith('call-'))
-      ||(tipo==='formspree'&&dt==='formspree')
-      ||(tipo==='lsa'&&dt==='lsa')
-      ||(tipo==='action'&&dt==='action');
-    el.style.display=mostrar?'':'none';
+    const cl=mapa[id];
+    if(nombre&&!cl.name)cl.name=nombre;
+    if(datos.address&&!cl.addresses.includes(datos.address))cl.addresses.push(datos.address);
+    if(datos.location&&!cl.locations.includes(datos.location))cl.locations.push(datos.location);
+    if(datos.service&&!cl.services.includes(datos.service))cl.services.push(datos.service);
+    if(datos.source&&!cl.sources.includes(datos.source))cl.sources.push(datos.source);
+    if(datos.fecha)cl.fechas.push(datos.fecha);
+  }
+
+  DATA.forEach(dia=>{
+    (dia.callrail||[]).forEach(c=>{
+      const addr=[c.address,c.city].filter(Boolean).join(', ');
+      agregar(c.caller_phone,c.caller_name,{
+        address:addr,
+        service:traducirServicio(c.service_requested||''),
+        source:'callrail',
+        fecha:extraerFechaISO(c.call_date,dia.date)
+      });
+    });
+    (dia.formspree||[]).forEach(f=>{
+      let fecha=dia.date;
+      if(f.time){try{fecha=new Date(f.time).toLocaleDateString('en-CA',{timeZone:'America/Chicago'});}catch(e){}}
+      agregar(f.phone,f.name,{
+        service:traducirServicio(f.service||''),
+        source:'formspree',
+        fecha:fecha
+      });
+    });
+    (dia.lsa||[]).forEach(l=>{
+      if(l.customer_phone||l.customer_name){
+        agregar(l.customer_phone,l.customer_name||'',{
+          location:l.location||'',
+          service:traducirServicio(l.service_requested||''),
+          source:'lsa',
+          fecha:extraerFechaISO(l.lead_time||l.time,dia.date)
+        });
+      }
+    });
   });
-  document.querySelectorAll('.day-section').forEach(sec=>{
-    const visible=Array.from(sec.querySelectorAll('.entry')).some(e=>e.style.display!=='none');
-    sec.style.display=visible?'':'none';
+
+  return Object.values(mapa).sort((a,b)=>{
+    const fa=a.fechas.length?a.fechas.sort().pop():'';
+    const fb=b.fechas.length?b.fechas.sort().pop():'';
+    return fb.localeCompare(fa);
   });
 }
 
+function renderClientes(){
+  const clientes=construirClientes();
+  const el=document.getElementById('vista-clientes');
+
+  if(!clientes.length){
+    el.innerHTML='<div class="clientes-empty">👥 Sin clientes registrados aún</div>';
+    return;
+  }
+
+  const sourceName={callrail:'📞 CallRail',formspree:'🌐 Formulario',lsa:'📍 Google LSA'};
+  const sourceClass={callrail:'source-cr',formspree:'source-fs',lsa:'source-lsa'};
+
+  let html=`<div class="clientes-top">
+    <span class="clientes-title">👥 Base de Clientes</span>
+    <span class="clientes-count">${clientes.length} contacto${clientes.length!==1?'s':''}</span>
+  </div>`;
+
+  clientes.forEach(cl=>{
+    const ultimaFecha=cl.fechas.length?cl.fechas.sort().pop():'';
+    const allAddresses=[...cl.addresses,...cl.locations].filter((v,i,a)=>v&&a.indexOf(v)===i);
+    html+=`<div class="cliente-card">
+      <div class="cliente-body">
+        <div class="cliente-name">${esc(cl.name||'Contacto sin nombre')}</div>
+        ${cl.phone?`<div class="cliente-row"><span class="cliente-ico">📞</span><a class="tel-link" href="tel:+1${cl.phone.replace(/\D/g,'')}">${esc(cl.phone)}</a></div>`:''}
+        ${allAddresses.length?`<div class="cliente-row"><span class="cliente-ico">📍</span><span>${esc(allAddresses.join(' · '))}</span></div>`:''}
+        ${cl.services.filter(Boolean).length?`<div class="cliente-row"><span class="cliente-ico">🔧</span><span>${esc(cl.services.filter(Boolean).join(', '))}</span></div>`:''}
+        <div class="cliente-pills">
+          ${cl.sources.map(s=>`<span class="cliente-pill ${sourceClass[s]||''}">${sourceName[s]||s}</span>`).join('')}
+        </div>
+        ${ultimaFecha?`<div class="cliente-footer">Último contacto: ${esc(formatearFechaDisplay(ultimaFecha))}</div>`:''}
+      </div>
+    </div>`;
+  });
+
+  el.innerHTML=html;
+}
+
+// ── Filtrar y aplicar ────────────────────────────────────────────────────────
+function filtrar(btn, tipo){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filtroActivo=tipo;
+  aplicarFiltros();
+}
+
+function aplicarFiltros(){
+  fechaActiva=document.getElementById('date-filter').value;
+  const esClientes=filtroActivo==='clientes';
+
+  // Mostrar/ocultar vistas
+  document.getElementById('contenido').style.display=esClientes?'none':'';
+  document.getElementById('vista-clientes').style.display=esClientes?'':'none';
+
+  if(esClientes){
+    renderClientes();
+    return;
+  }
+
+  // Filtrar secciones de día por fecha
+  document.querySelectorAll('.day-section').forEach(sec=>{
+    const secFecha=sec.dataset.fecha||'';
+    if(fechaActiva&&secFecha!==fechaActiva){
+      sec.style.display='none';
+      return;
+    }
+    // Filtrar entradas dentro de la sección
+    let hayVisible=false;
+    sec.querySelectorAll('.entry').forEach(el=>{
+      // Respetar seguimiento completado
+      if(el.classList.contains('entry-action')&&el.id){
+        const key=el.id.replace('accion-','');
+        try{if(localStorage.getItem(key)==='1'){el.style.display='none';return;}}catch(e){}
+      }
+      const dt=el.dataset.type||'';
+      const mostrar=filtroActivo==='all'
+        ||(filtroActivo==='callrail'&&dt.startsWith('call-'))
+        ||(filtroActivo==='formspree'&&dt==='formspree')
+        ||(filtroActivo==='lsa'&&dt==='lsa')
+        ||(filtroActivo==='action'&&dt==='action');
+      el.style.display=mostrar?'':'none';
+      if(mostrar)hayVisible=true;
+    });
+    sec.style.display=hayVisible?'':'none';
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
 renderStats();
 renderTodo();
+poblarSelectorFechas();
 inicializarSeguimiento();
 </script>
 </body>
