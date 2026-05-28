@@ -189,11 +189,56 @@ const DATA = [
         "city": "Nashville, TN",
         "call_date": "27 de mayo 2026 — 6:41 PM CDT",
         "recording_url": "https://app.callrail.com/calls/CAL019e6bd0347c7fbc8dea7a9887b07229/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiNzRmMGQyYjdhYmIyZmVhY2FjZmEiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.YIOwWFm5Ph50ruDdi_AkDnMEQ_lKFFd0EzV58fhJJxs"
+      },
+      {
+        "caller_name": "Ray Stephen",
+        "caller_phone": "615-509-8869",
+        "duration_seconds": 51,
+        "status": "voicemail",
+        "tags": [
+          "Schedule requested"
+        ],
+        "call_summary": "Sarah Wray llamó en nombre de una propiedad en Trimble Road para solicitar un estimado de limpieza y remoción de árboles. Dejó un número de devolución de llamada (615-509-8869) para que Cesar la contacte. La llamada fue dejada como mensaje de voz sin conversación directa ni resolución.",
+        "voicemail_transcript": null,
+        "service_requested": "Limpieza y remoción de árboles",
+        "address": "Trimble Road",
+        "city": "Nashville, TN",
+        "call_date": "28 de mayo 2026 — 11:06 AM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019e6f56b45d712aa8192113451e055d/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiNmY1NDk3N2ViOGI2YTgwYmEzZDIiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.U3N3ky3NbYevlto5cCPugjUZ6D64BnvfC7WL7IXX8bk"
+      },
+      {
+        "caller_name": "Vekovius Gay",
+        "caller_phone": "318-617-2863",
+        "duration_seconds": 56,
+        "status": "voicemail",
+        "tags": [
+          "Schedule requested"
+        ],
+        "call_summary": "Gabe Acovias llamó para programar un estimado de trabajo de árboles en su sección en Hobbs Road, donde el servicio MV2 está operando actualmente. Proporcionó su número de devolución de llamada como 318-617-2863. La llamada fue dejada como mensaje de voz y no se confirmó ninguna cita durante esta interacción.",
+        "voicemail_transcript": null,
+        "service_requested": "Estimado para trabajo de árboles",
+        "address": "Hobbs Road",
+        "city": "Shreveport, LA",
+        "call_date": "28 de mayo 2026 — 10:21 AM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019e6f2d0f287b6a975f0fc2bb8af7b7/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiOTExZDZhMzI5MmIyY2VkZTU2MTYiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.pbjuZwlvNtsxaG_ggM7ijT05lBGlFn1PzA9JdqlxNMc"
       }
     ],
     "formspree": [],
     "lsa": [],
-    "actions": []
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Buzón de voz: Ray Stephen (615-509-8869) · Limpieza y remoción de árboles · Trimble Road · 28/05/2026 11:06 AM CDT",
+        "type": "missed_call",
+        "id": "cr_6155098869_20260528"
+      },
+      {
+        "priority": "urgent",
+        "text": "Buzón de voz: Vekovius Gay (318-617-2863) · Estimado para trabajo de árboles · Hobbs Road · 28/05/2026 10:21 AM CDT",
+        "type": "missed_call",
+        "id": "cr_3186172863_20260528"
+      }
+    ]
   },
   {
     "date": "2026-05-27",
@@ -293,7 +338,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 3, "total_web_30d": 1, "total_lsa_30d": 2, "total_booked_30d": 1, "total_missed_30d": 1, "pending_actions": 0};
+const STATS = {"total_calls_30d": 5, "total_web_30d": 1, "total_lsa_30d": 2, "total_booked_30d": 1, "total_missed_30d": 3, "pending_actions": 2};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
