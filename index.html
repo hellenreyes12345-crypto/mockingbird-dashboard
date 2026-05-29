@@ -190,16 +190,16 @@ const DATA = [
         "address": "4027 Snead Road",
         "city": "Green Hills, Nashville, TN",
         "call_date": "29 de mayo 2026 — 10:18 AM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019e745134f47d5a94d51aa5ed79ffed/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiMDhkNmI5Y2E5ZmM3ODRkNzdiMDAiLCJlbWFpbCI6InRoZW1vY2tpbmgiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0._sQIcmA7O8W-gObgkbRj2V3r9kRs-4FK5DgPbN7LOfA"
+        "recording_url": "https://app.callrail.com/calls/CAL019e745134f47d5a94d51aa5ed79ffed/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiMDhkNmI5Y2E5ZmM3ODRkNzdiMDAiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0._sQIcmA7O8W-gObgkbRj2V3r9kRs-4FK5DgPbN7LOfA"
       },
       {
         "caller_name": "Boehm Julie",
         "caller_phone": "615-260-6523",
         "duration_seconds": 29,
-        "status": "answered",
+        "status": "voicemail",
         "tags": [],
-        "call_summary": "La llamada fue respondida por el contestador automatico del servicio. Mensaje reproducido: 'Llamas al servicio Mock MB2 en este momento, puedo contestar el telefono. Por favor dejame un mensaje y te llamare pronto. Gracias.' No hubo conversacion directa con el cliente.",
-        "voicemail_transcript": null,
+        "call_summary": "Julie Boehm llamó pero la llamada fue al buzón de voz. Se reprodujo el saludo automático: 'Llamas al servicio Mock MB2 en este momento, puedo contestar el teléfono. Por favor déjame un mensaje y te llamaré pronto. Gracias.' No hubo conversación directa con el cliente.",
+        "voicemail_transcript": "You call the mock MB2 service at the moment, I can answer the phone. Please leave me a message and I'll call you back soon. Thank you.",
         "service_requested": null,
         "address": null,
         "city": "Nashville, TN",
@@ -209,7 +209,14 @@ const DATA = [
     ],
     "formspree": [],
     "lsa": [],
-    "actions": []
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Buzón de voz: Boehm Julie (615-260-6523) · servicio no especificado · 29/05/2026 1:34 PM",
+        "type": "missed_call",
+        "id": "cr_6152606523_20260529"
+      }
+    ]
   },
   {
     "date": "2026-05-28",
@@ -221,7 +228,7 @@ const DATA = [
         "duration_seconds": 39,
         "status": "answered",
         "tags": [],
-        "call_summary": "El cliente llamó para preguntar sobre realizar un pago de impuestos de propiedad metropolitana, creyendo haber llegado al servicio apropiado. El agente pareció confundido e indicó que era un servicio gratuito, sugiriendo que el cliente había marcado el número equivocado. El cliente se disculpó y terminó la llamada sin completar su transacción prevista. El resultado de la llamada fue fallido, ya que las necesidades del cliente no fueron satisfechas y se desconectaron.",
+        "call_summary": "El cliente llamó para preguntar sobre realizar un pago de impuestos de propiedad metropolitana, creyendo haber llegado al servicio apropiado. El agente pareció confundido e indicó que era un servicio gratuito, sugiriendo que el cliente había marcado el número equivocado. El cliente se disculpó y terminó la llamada sin completar su transacción prevista.",
         "voicemail_transcript": null,
         "service_requested": "Pago de impuestos de propiedad (número equivocado)",
         "address": null,
@@ -291,9 +298,9 @@ const DATA = [
         "tags": [
           "Schedule booked"
         ],
-        "call_summary": "Rick Whitley llamó para confirmar un trabajo de remoccón de árbol en 314 Hayeswood Drive por $2,800 que había sido estimado previamente. Tenía preguntas sobre si la empresa usa un camión con cangilón (confirmaron que sí) y si los cables eléctricos cerca del árbol frontal serían un problema (el agente confirmó que pueden manejarlo de forma segura). El agente acordó programar el trabajo para el lunes, sujeto al clima, y se comprometió a llamar antes de llegar.",
+        "call_summary": "Rick Whitley llamó para confirmar un trabajo de remoción de árbol en 314 Hayeswood Drive por $2,800 que había sido estimado previamente. Tenía preguntas sobre si la empresa usa un camión con cangilón (confirmaron que sí) y si los cables eléctricos cerca del árbol frontal serían un problema (el agente confirmó que pueden manejarlo de forma segura). El agente acordó programar el trabajo para el lunes, sujeto al clima, y se comprometió a llamar antes de llegar.",
         "voicemail_transcript": null,
-        "service_requested": "Remoccón de árbol",
+        "service_requested": "Remoción de árbol",
         "address": "314 Hayeswood Drive",
         "city": "Nashville, TN",
         "call_date": "26 de mayo 2026 — 1:37 PM CDT",
@@ -305,13 +312,13 @@ const DATA = [
         "duration_seconds": 85,
         "status": "voicemail",
         "tags": [],
-        "call_summary": "Mary Townsell llamó para hacer seguimiento con Cesar Reyes sobre un presupuesto para la propiedad en 809 Quail Valley Drive en Brentwood que debía haber sido enviado hace aproximadamente un mes. No ha recibido el presupuesto y no sabe si fue enviado por correo electrónico. Solicitó que le devuelvan la llamada al 615-406-5323 para tomar su decisión. La llamada llegó al contestador automático, por lo que no se logró ninguna resolución directa.",
+        "call_summary": "Mary Townsell llamó para hacer seguimiento con Cesar Reyes sobre un presupuesto para la propiedad en 809 Quail Valley Drive en Brentwood que debía haber sido enviado hace aproximadamente un mes. No ha recibido el presupuesto y no sabe si fue enviado por correo electrónico. Solicitó que le devuelvan la llamada al 615-406-5323 para tomar su decisión. La llamada llegó al contestador automático, por lo que no se logró ninguna resolución.",
         "voicemail_transcript": "Hello. This message is for Cesar Reyes. My name is Mary Townsell. About a month or more ago, you came and you gave. You know, you looked at my property. It's 809 Quail Valley Drive in Brentwood. And you were supposed to send me an estimate. And I'm wondering, did you send it? I don't have it. If it was. If it came through the email. And so, you know, I'm ready to make that decision. So could you please return my call at 615-406-5323? Thank you very much. Bye.",
         "service_requested": "Estimado para trabajo de árbol",
         "address": "809 Quail Valley Drive",
         "city": "Brentwood, TN",
-        "call_date": "27 de mayo 2026 — 1:43 PM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019e6abf8df77f0b9c6ed17758b78ae1/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiZjkyZTZjMDdkMWIyZjkzMDM0OGIiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.MZxLnZSQMIKtGPasBeLMP3dRQQBG94QZcVDRjLwwWHc"
+        "call_date": "27 de mayo 2026 — 2:43 PM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019e6abf8df77f0b9c6ed17758b78ae1/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiZjkyZTZjMDdkMWIyZjkzNDM0OHIiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.MZxLnZSQMIKtGPasBeLMP3dRQQBG94QZcVDRjLwwWHc"
       }
     ],
     "formspree": [
@@ -319,7 +326,7 @@ const DATA = [
         "name": "Tim Preston",
         "email": null,
         "phone": "6158120123",
-        "service": "Remoción de árbol",
+        "service": "Remoción (de árbol",
         "message": "Hello, I am looking to get a large (30ft or so) evergreen tree removed, and a stump ground. Thanks",
         "address": null,
         "time": "2026-05-26T21:01:21Z"
@@ -351,25 +358,25 @@ const DATA = [
     "actions": [
       {
         "priority": "urgent",
-        "text": "Buzón de voz: Townsel Mary (615-406-5323) · Estimado para trabajo de árbol · 809 Quail Valley Drive, Brentwood, TN · 27/05/2026 1:43 PM CDT",
+        "text": "Buzón de voz: Townsel Mary (615-406-5323) · Estimado para trabajo de árbol · 809 Quail Valley Drive · 27/05/2026 1:43 PM CDT",
         "type": "missed_call",
         "id": "cr_6154065323_20260527"
       },
       {
         "priority": "urgent",
-        "text": "Lead web: Tim Preston quiere Remoción de árbol — llamar al 6158120123",
+        "text": "Lead web: Tim Preston quiere Remoccon de árbol — llamar al 6158120123",
         "type": "web_lead",
         "id": "fs_6158120123_20260526"
       },
       {
         "priority": "urgent",
-        "text": "Llamada perdida Google LSA — sin teléfono · sin ubicación · 26/05/2026 4:39 PM · ID desconocido",
+        "text": "Llamada perdida Google LSA — sin teléfono · sin ubicación · 4:39 PM — 26 de mayo 2026 · ID null",
         "type": "lsa_lead",
-        "id": "lsa_null_20260526"
+        "id": "lsa_null"
       },
       {
         "priority": "urgent",
-        "text": "Mensaje Google LSA — 6292419220 · Servicio de árboles · sin ubicación · 27/05/2026 3:59 PM · Responder en panel LSA · ID 5675808868",
+        "text": "Mensaje Google LSA — 6292419220 · Servicio de árboles · 3:59 PM — 27 de mayo 2026 · Responder en panel LSA ³ ID 5675808868",
         "type": "lsa_message",
         "id": "lsa_5675808868"
       }
@@ -377,7 +384,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 7, "total_web_30d": 1, "total_lsa_30d": 2, "total_booked_30d": 2, "total_missed_30d": 3, "pending_actions": 0};
+const STATS = {"total_calls_30d": 7, "total_web_30d": 1, "total_lsa_30d": 2, "total_booked_30d": 2, "total_missed_30d": 4, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
