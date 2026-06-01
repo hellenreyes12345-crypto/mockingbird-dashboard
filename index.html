@@ -184,7 +184,7 @@ const DATA = [
         "tags": [
           "Schedule booked"
         ],
-        "call_summary": "Hollis Tackett llamó para solicitar un presupuesto para la remoción de un árbol en 9941 Maxwell Lane en Brentwood, cerca de Maxwell Lane y Nolensville. El agente acordó reunirse con el cliente aproximadamente a las 10:00 o 10:30 AM para proporcionar un estimado de costo, y el cliente confirmó que ese horario funciona ya que estará disponible todo el día. La llamada concluyó con el agente confirmando que notificaría al cliente a su llegada.",
+        "call_summary": "Hollis Tackett llamó para solicitar un presupuesto para la remoción de un árbol en 9941 Maxwell Lane en Brentwood, cerca de Maxwell Lane y Nolensville. El agente acordó reunirse con el cliente aproximadamente a las 10:00 o 10:30 AM para proporcionar un estimado de costo, y el cliente confirmó que ese horario funciona ya que estará disponible todo el día. La llamada concluyó con el agente confirmando que notificará al cliente a su llegada.",
         "voicemail_transcript": null,
         "service_requested": "Estimado para remoción de árbol",
         "address": "9941 Maxwell Lane, Brentwood",
@@ -235,11 +235,45 @@ const DATA = [
         "city": "Murfreesboro, TN",
         "call_date": "01 de junio 2026 — 11:52 AM CDT",
         "recording_url": null
+      },
+      {
+        "caller_name": "Wireless Caller",
+        "caller_phone": "270-202-7437",
+        "duration_seconds": 22,
+        "status": "answered",
+        "tags": [],
+        "call_summary": "Llamada de 22 segundos de Wireless Caller desde Bowling Green, KY. Séptima llamada. Sin información adicional.",
+        "voicemail_transcript": null,
+        "service_requested": "No especificado",
+        "address": null,
+        "city": "Bowling Green, KY",
+        "call_date": "01 de junio 2026 — 12:16 PM CDT",
+        "recording_url": null
       }
     ],
     "formspree": [],
-    "lsa": [],
-    "actions": []
+    "lsa": [
+      {
+        "type": "message_lead",
+        "customer_name": "Abbie Parker",
+        "customer_phone": null,
+        "service_requested": "Remoción de árboles",
+        "notes": "I have 2 dead ash trees in my fenced-in back yard that I'd like to be removed, and stumps ground. Can I get an estimate?",
+        "lead_time": "12:27 PM — 01 de junio 2026",
+        "lead_id": "9657932396",
+        "charge_status": "in_review",
+        "email_subject": "Abbie Parker's new request",
+        "location": "Nashville"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin teléfono · Remoción de árboles · Nashville · 01/06/2026 12:27 PM · Responder en panel LSA · ID 9657932396",
+        "type": "lsa_message",
+        "id": "lsa_9657932396"
+      }
+    ]
   },
   {
     "date": "2026-05-31",
@@ -251,7 +285,7 @@ const DATA = [
         "type": "message_lead",
         "customer_name": "Doug Mefford",
         "customer_phone": null,
-        "service_requested": "Remoción de tocón",
+        "service_requested": "Remoción de tocãn",
         "notes": "I need a tree stump removed from in front of my house. I would like it pulled out but might have to settle to have it ground down. But I need it done pretty quickly as we are having landscaping done this week. I can send pics. Doug Mefford",
         "lead_time": "11:01 AM — 31 de mayo 2026",
         "lead_id": "5457065504",
@@ -540,7 +574,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 12, "total_web_30d": 1, "total_lsa_30d": 5, "total_booked_30d": 4, "total_missed_30d": 4, "pending_actions": 0};
+const STATS = {"total_calls_30d": 13, "total_web_30d": 1, "total_lsa_30d": 6, "total_booked_30d": 4, "total_missed_30d": 4, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
