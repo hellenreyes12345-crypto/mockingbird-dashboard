@@ -205,6 +205,22 @@ const DATA = [
         "city": "Murfreesboro, TN",
         "call_date": "02 de junio 2026 — 9:33 AM CDT",
         "recording_url": "https://app.callrail.com/calls/CAL019e88c0ff2a75169cca15c4b6720f6f/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiMzIyOGY4ODM5MjcwY2Q2NjY2MGEiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.hZC0pvoXmF2a84wFHDNOWDDbsHe1LjpmrYRLLzc10DQ"
+      },
+      {
+        "caller_name": "Turney Bradley",
+        "caller_phone": "615-457-7477",
+        "duration_seconds": 74,
+        "status": "voicemail",
+        "tags": [
+          "Schedule requested"
+        ],
+        "call_summary": "Brad Turney llamo al Servicio de Arboles Mockingbird despues de recibir un volante, solicitando un presupuesto para poda y formacion de arboles. Explico que uno de sus arboles perdio una rama importante durante una tormenta de hielo y necesita atencion. Dejo su numero de devolucion de llamada como 615-457-7477 y pidio al servicio que lo llamara de vuelta con un presupuesto. La llamada llego al sistema de buzon de voz del negocio, por lo que no hubo conversacion directa con un agente.",
+        "voicemail_transcript": null,
+        "service_requested": "Poda y formacion de arboles",
+        "address": null,
+        "city": "Nashville, TN",
+        "call_date": "03 de junio 2026 — 11:54 AM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019e8e682ed87b34b9e4374faf1342aa/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiMTM5MGMxZjQ0NDc1NjdkOWIxOGYiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.8TD8qa5oZCKdrv8NyrSOrAIV4jOmMz2PI975mOqBpho"
       }
     ],
     "formspree": [],
@@ -218,6 +234,26 @@ const DATA = [
         "lead_id": null,
         "notes": "A potential customer called you on 06/02/2026 at 2:03 PM.",
         "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "12:45 PM — 03 de junio 2026",
+        "lead_id": null,
+        "notes": "A potential customer called you on 06/03/2026 at 12:45 PM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "1:13 PM — 03 de junio 2026",
+        "lead_id": null,
+        "notes": "A potential customer called you on 06/03/2026 at 1:13 PM.",
+        "email_subject": "New call from a potential customer"
       }
     ],
     "actions": [
@@ -229,9 +265,27 @@ const DATA = [
       },
       {
         "priority": "urgent",
-        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 02/06/2026 2:03 PM · ID null",
+        "text": "Buzon de voz: Turney Bradley (615-457-7477) · Poda y formacion de arboles · Nashville, TN · 03/06/2026 11:54 AM CDT",
+        "type": "missed_call",
+        "id": "cr_6154577477_20260603"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 02/06/2026 2:03 PM · ID 20260602_1403",
         "type": "lsa_lead",
-        "id": "lsa_null_20260602"
+        "id": "lsa_20260602_1403"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 03/06/2026 12:45 PM · ID 20260603_1245",
+        "type": "lsa_lead",
+        "id": "lsa_20260603_1245"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 03/06/2026 1:13 PM · ID 20260603_0113",
+        "type": "lsa_lead",
+        "id": "lsa_20260603_0113"
       }
     ]
   },
@@ -362,7 +416,7 @@ const DATA = [
         "duration_seconds": 22,
         "status": "answered",
         "tags": [],
-        "call_summary": "Llamada de 22 segundos de Wireless Caller desde Bowling Green, KY. Septima llamada. Sin informacion adicional.",
+        "call_summary": "Llamada de 22 segundos de Wireless Caller desde Bowling Green, KY. Sin informacion adicional.",
         "voicemail_transcript": null,
         "service_requested": "No especificado",
         "address": null,
@@ -512,7 +566,7 @@ const DATA = [
         "tags": [
           "Schedule booked"
         ],
-        "call_summary": "Ann Lambert llamo desde 4027 Snead Road en Green Hills para solicitar servicio de arbol por dos problemas: un gran roble con al menos una rama muerta colgando hacia la calle, y un cornejo que necesita poda despues de danos por tormenta y hielo. El agente acorde dar un presupuesto y programo una visita para el dia siguiente alrededor de las 3 PM.",
+        "call_summary": "Ann Lambert llamo desde 4027 Snead Road en Green Hills para solicitar servicio de arbol por dos problemas: un gran roble con al menos una rama muerta colgando hacia la calle, y un cornejo que necesita poda despues de danos por tormenta y hielo. El agente acordo dar un presupuesto y programo una visita para el dia siguiente alrededor de las 3 PM.",
         "voicemail_transcript": null,
         "service_requested": "Inspeccion y poda de arbol (roble con ramas muertas y cornejo danado)",
         "address": "4027 Snead Road",
@@ -574,7 +628,7 @@ const DATA = [
         ],
         "call_summary": "Sarah Wray llamo en nombre de una propiedad en Trimble Road para solicitar un estimado de limpieza y remocion de arboles. Dejo un numero de devolucion de llamada (615-509-8869) para que Cesar la contacte.",
         "voicemail_transcript": null,
-        "service_requested": "limpieza y remocion de arboles",
+        "service_requested": "Limpieza y remocion de arboles",
         "address": "Trimble Road",
         "city": "Nashville, TN",
         "call_date": "28 de mayo 2026 — 11:06 AM CDT",
@@ -712,7 +766,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 17, "total_web_30d": 1, "total_lsa_30d": 9, "total_booked_30d": 4, "total_missed_30d": 5, "pending_actions": 2};
+const STATS = {"total_calls_30d": 18, "total_web_30d": 1, "total_lsa_30d": 11, "total_booked_30d": 4, "total_missed_30d": 6, "pending_actions": 5};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
