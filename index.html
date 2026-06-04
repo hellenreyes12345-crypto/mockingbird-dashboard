@@ -173,6 +173,87 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:
 <script>
 const DATA = [
   {
+    "date": "2026-06-04",
+    "display": "Jueves 04 de Junio 2026",
+    "callrail": [
+      {
+        "caller_name": "Turney Bradley",
+        "caller_phone": "615-457-7477",
+        "duration_seconds": 74,
+        "status": "voicemail",
+        "tags": [
+          "Schedule requested"
+        ],
+        "call_summary": "Brad Turney llamo al Servicio de Arboles Mockingbird despues de recibir un volante, solicitando un presupuesto para poda y formacion de arboles. Explico que uno de sus arboles perdio una rama importante durante una tormenta de hielo y necesita atencion. Dejo su numero de devolucion de llamada como 615-457-7477 y pidio al servicio que lo llamara de vuelta con un presupuesto. La llamada llego al sistema de buzon de voz del negocio, por lo que no hubo conversacion directa con un agente.",
+        "voicemail_transcript": null,
+        "service_requested": "Poda y formacion de arboles",
+        "address": null,
+        "city": "Nashville, TN",
+        "call_date": "03 de junio 2026 — 11:54 AM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019e8e682ed87b34b9e4374faf1342aa/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiMTM5MGMxZjQ0NDc1NjdkOWIxOGYiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.8TD8qa5oZCKdrv8NyrSOrAIV4jOmMz2PI975mOqBpho"
+      }
+    ],
+    "formspree": [],
+    "lsa": [
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "12:45 PM — 03 de junio 2026",
+        "lead_id": null,
+        "notes": "A potential customer called you on 06/03/2026 at 12:45 PM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "1:13 PM — 03 de junio 2026",
+        "lead_id": null,
+        "notes": "A potential customer called you on 06/03/2026 at 1:13 PM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "2:29 PM — 03 de junio 2026",
+        "lead_id": null,
+        "notes": "A potential customer called you on 06/03/2026 at 2:29 PM.",
+        "email_subject": "New call from a potential customer"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Buzon de voz: Turney Bradley (615-457-7477) · Poda y formacion de arboles · Nashville, TN · 03/06/2026 11:54 AM CDT",
+        "type": "missed_call",
+        "id": "cr_6154577477_20260604"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 03/06/2026 12:45 PM · ID 20260603_1245",
+        "type": "lsa_lead",
+        "id": "lsa_20260604_1245"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 03/06/2026 1:13 PM · ID 20260603_0113",
+        "type": "lsa_lead",
+        "id": "lsa_20260604_0113"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 03/06/2026 2:29 PM · ID 20260603_1429",
+        "type": "lsa_lead",
+        "id": "lsa_20260604_1429"
+      }
+    ]
+  },
+  {
     "date": "2026-06-03",
     "display": "Miercoles 03 de Junio 2026",
     "callrail": [
@@ -380,7 +461,7 @@ const DATA = [
         "address": "204 Milner Ct., Nolensville",
         "city": "Murfreesboro, TN",
         "call_date": "01 de junio 2026 — 11:33 AM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019e8408bed571638393bdab316051ce/recording"
+        "recording_url": "https://app.callrail.com/calls/CA019e8408bed571638393bdab316051ce/recording"
       },
       {
         "caller_name": "Jimenez Kelly",
@@ -766,7 +847,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 18, "total_web_30d": 1, "total_lsa_30d": 11, "total_booked_30d": 4, "total_missed_30d": 6, "pending_actions": 5};
+const STATS = {"total_calls_30d": 19, "total_web_30d": 1, "total_lsa_30d": 14, "total_booked_30d": 4, "total_missed_30d": 7, "pending_actions": 4};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
