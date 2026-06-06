@@ -173,6 +173,49 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:
 <script>
 const DATA = [
   {
+    "date": "2026-06-06",
+    "display": "Sabado 06 de Junio 2026",
+    "callrail": [
+      {
+        "caller_name": "Reed Lisa",
+        "caller_phone": "615-948-8016",
+        "duration_seconds": 234,
+        "status": "answered",
+        "tags": [
+          "Schedule booked"
+        ],
+        "call_summary": "La cliente llamo para solicitar un estimado de poda de tres arboles Bradford pear en su propiedad ubicada en 198 TGT Road en Portland, Tennessee. El agente Caesar programo una cita para el domingo a las 11:00 AM para reunirse con la cliente en la propiedad y dar el estimado.",
+        "voicemail_transcript": null,
+        "service_requested": "Poda de arboles Bradford pear",
+        "address": "198 TGT Road",
+        "city": "Nashville, TN",
+        "call_date": "05 de junio 2026 — 9:50 AM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019e9843abae7729be0dc6411974d10b/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiYmE5OTQxNDkwNzEzNjIyNWRjMGMiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.ld0x7wrMoxPxYiXJYhEgBeEFDipENp-U921YIuuT9Kk"
+      }
+    ],
+    "formspree": [],
+    "lsa": [
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "8:44 AM — 05 de junio 2026",
+        "lead_id": null,
+        "notes": "A potential customer called you on 06/05/2026 at 8:44 AM.",
+        "email_subject": "New call from a potential customer"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 05/06/2026 8:44 AM · ID 20260605_0844",
+        "type": "lsa_lead",
+        "id": "lsa_20260605_0844"
+      }
+    ]
+  },
+  {
     "date": "2026-06-05",
     "display": "Viernes 05 de Junio 2026",
     "callrail": [
@@ -1015,7 +1058,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"period_days": 30, "total_calls": 22, "answered": 15, "voicemail": 7, "booked": 9, "lsa_leads": 11, "lsa_messages": 8, "web_leads": 1, "total_actions_pending": 26, "answer_rate_pct": 68.2, "book_rate_pct": 40.9};
+const STATS = {"total_calls_30d": 25, "total_web_30d": 1, "total_lsa_30d": 20, "total_booked_30d": 10, "total_missed_30d": 7, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
