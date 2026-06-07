@@ -342,6 +342,18 @@ const DATA = [
         "lead_id": null,
         "notes": "A potential customer called you on 06/05/2026 at 8:44 AM.",
         "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": "Poda y recorte de arboles",
+        "notes": "I have 5 or 6 trees that need to be trimmed and pruned around the house and I think 7 bushes that needs to be trimmed up. [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "2:11 PM — 04 de junio 2026",
+        "lead_id": "4789573065",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "La Vergne"
       }
     ],
     "actions": [
@@ -870,7 +882,7 @@ const DATA = [
         "service_requested": null,
         "address": "Park Place",
         "city": "Shreveport, LA",
-        "call_date": "30 de mayo 2026 —  8:52 AM CDT",
+        "call_date": "30 de mayo 2026 — 8:52 AM CDT",
         "recording_url": null
       }
     ],
@@ -909,7 +921,7 @@ const DATA = [
         "service_requested": null,
         "address": null,
         "city": "Nashville, TN",
-        "call_date": "29 de mayo 2026 — ",
+        "call_date": "29 de mayo 2026 — 1:34 PM CDT",
         "recording_url": null
       }
     ],
@@ -986,7 +998,7 @@ const DATA = [
       },
       {
         "priority": "urgent",
-        "text": "Buzon de voz: Vekousius Gay) (318-617-2863) · Hobbs Road · 28/05/2026",
+        "text": "Buzon de voz: Vekousius Gay (318-617-2863) · Hobbs Road · 28/05/2026",
         "type": "missed_call",
         "id": "cr_3186172863_20260528"
       }
@@ -1064,7 +1076,7 @@ const DATA = [
     "actions": [
       {
         "priority": "urgent",
-        "text": "Buzon de voz: Townsel Mary (615-406-5323) - 809 Quail Valley Drive - 27/05/2026",
+        "text": "Buzon de voz: Townsel Mary (615-406-5323) · 809 Quail Valley Drive · 27/05/2026",
         "type": "missed_call",
         "id": "cr_6154065323_20260527"
       },
@@ -1072,17 +1084,17 @@ const DATA = [
         "priority": "urgent",
         "text": "Lead web: Tim Preston quiere Remocion de arbol — llamar al 6158120123",
         "type": "web_lead",
-        "id": "fs_5158120123_20260526"
+        "id": "fs_6158120123_20260526"
       },
       {
         "priority": "urgent",
-        "text": "Llamada perdida Google LSA - sin telefono - 26/05/2026 4:39 PM",
+        "text": "Llamada perdida Google LSA — sin telefono · 26/05/2026 4:39 PM · ID lsa_null",
         "type": "lsa_lead",
-        "id": "lsa_null"
+        "id": "lsa_null_20260526"
       },
       {
         "priority": "urgent",
-        "text": "Mensaje Google LSA - 6292419220 - Servicio de arboles - 27/05/2026 - ID 5675808868",
+        "text": "Mensaje Google LSA — 6292419220 · Servicio de arboles · 27/05/2026 3:59 PM · Responder en panel LSA · ID 5675808868",
         "type": "lsa_message",
         "id": "lsa_5675808868"
       }
@@ -1090,7 +1102,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 25, "total_web_30d": 1, "total_lsa_30d": 20, "total_booked_30d": 11, "total_missed_30d": 7, "pending_actions": 10};
+const STATS = {"total_calls_30d": 25, "total_web_30d": 1, "total_lsa_30d": 21, "total_booked_30d": 11, "total_missed_30d": 7, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
