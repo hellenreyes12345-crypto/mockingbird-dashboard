@@ -186,6 +186,34 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:
 <script>
 const DATA = [
   {
+    "date": "2026-06-07",
+    "display": "Domingo 07 de Junio 2026",
+    "callrail": [],
+    "formspree": [],
+    "lsa": [
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Eliminacion de arboles",
+        "notes": "Q: How many trees do you need removed? A: 3-5 trees Q: Why do you need the tree(s) removed? A: Dead or dying Additional details (required): 3 trees are approx 10-12 feet tall Leyland Cypress. Slowing dying due to Seiridium Canker [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "1:28 PM — 06 de junio 2026",
+        "lead_id": "4996445050",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "37075"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin telefono · Eliminacion de arboles · 37075 · 06/06/2026 1:28 PM · Responder en panel LSA · ID 4996445050",
+        "type": "lsa_message",
+        "id": "lsa_4996445050"
+      }
+    ]
+  },
+  {
     "date": "2026-06-06",
     "display": "Sabado 06 de Junio 2026",
     "callrail": [
@@ -546,7 +574,7 @@ const DATA = [
         "customer_name": null,
         "customer_phone": null,
         "service_requested": null,
-        "lead_time": "1:13 PM — 03 de junio 2026",
+        "lead_time": "1:13 PM ¢ 03 de junio 2026",
         "lead_id": null,
         "notes": "A potential customer called you on 06/03/2026 at 1:13 PM.",
         "email_subject": "New call from a potential customer"
@@ -595,7 +623,7 @@ const DATA = [
         "duration_seconds": 56,
         "status": "answered",
         "tags": [
-          "Schedule requested"
+          "Schedule booked"
         ],
         "call_summary": "Cuarta llamada respondida de Jimenez Kelly. Duracion: 56 segundos.",
         "voicemail_transcript": null,
@@ -627,7 +655,7 @@ const DATA = [
         "customer_name": null,
         "customer_phone": null,
         "service_requested": null,
-        "lead_time": "2:03 PM — 02 de junio 2026",
+        "lead_time": "2:03 PM ⠔ 02 de junio 2026",
         "lead_id": null,
         "notes": "A potential customer called you on 06/02/2026 at 2:03 PM.",
         "email_subject": "New call from a potential customer"
@@ -729,7 +757,7 @@ const DATA = [
         "customer_phone": null,
         "service_requested": "Remocion de arboles",
         "notes": "I have 2 dead ash trees in my fenced-in back yard that I'd like to be removed, and stumps ground. Can I get an estimate?",
-        "lead_time": "12:27 PM — 01 de junio 2026",
+        "lead_time": "12:27 PM ⠔ 01 de junio 2026",
         "lead_id": "9657932396",
         "charge_status": "in_review",
         "email_subject": "Abbie Parker's new request",
@@ -775,7 +803,7 @@ const DATA = [
         "customer_phone": null,
         "service_requested": "Remocion de tocon",
         "notes": "I need a tree stump removed from in front of my house.",
-        "lead_time": "11:01 AM — 31 de mayo 2026",
+        "lead_time": "11:01 AM ⠔ 31 de mayo 2026",
         "lead_id": "5457065504",
         "charge_status": "in_review",
         "email_subject": "Potential Customer's new request",
@@ -787,7 +815,7 @@ const DATA = [
         "customer_phone": "714-904-6010",
         "service_requested": "Poda y recorte de arboles",
         "notes": "1 tree, River Birch, ~45 feet",
-        "lead_time": "8:54 AM — 31 de mayo 2026",
+        "lead_time": "8:54 AM —(31 de mayo 2026",
         "lead_id": "9136805079",
         "charge_status": "in_review",
         "email_subject": "Potential Customer's new request",
@@ -799,7 +827,7 @@ const DATA = [
         "customer_phone": null,
         "service_requested": "Remocion de arbustos/chipeado",
         "notes": "I removed 3 large Hollys.",
-        "lead_time": "1:06 PM — 31 de mayo 2026",
+        "lead_time": "1:06 PM ⠔ 31 de mayo 2026",
         "lead_id": "2015067470",
         "charge_status": "in_review",
         "email_subject": "Potential Customer's new request",
@@ -1044,7 +1072,7 @@ const DATA = [
         "priority": "urgent",
         "text": "Lead web: Tim Preston quiere Remocion de arbol — llamar al 6158120123",
         "type": "web_lead",
-        "id": "fs_6158120123_20260526"
+        "id": "fs_5158120123_20260526"
       },
       {
         "priority": "urgent",
@@ -1062,7 +1090,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 25, "total_web_30d": 1, "total_lsa_30d": 19, "total_booked_30d": 10, "total_missed_30d": 7, "pending_actions": 1};
+const STATS = {"total_calls_30d": 25, "total_web_30d": 1, "total_lsa_30d": 20, "total_booked_30d": 11, "total_missed_30d": 7, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
