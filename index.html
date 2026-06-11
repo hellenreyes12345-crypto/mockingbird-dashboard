@@ -256,7 +256,7 @@ const DATA = [
         "customer_name": "Benjamin Johnson",
         "customer_phone": null,
         "service_requested": "Poda y corte de arboles",
-        "notes": "I have a  45ish ft tall, multi-trunk/stem hackeberry in my front yard that has a sprawling canopy, much of which is hanging precariously over and into my sericve lines. I would like to get  quotes on having the tree trimmed. thanks [Notes from LSA: This customer has requested a quote]",
+        "notes": "I have a  45ish ft tall, multi-trunk/stem hackberry in my front yard that has a sprawling canopy, much of which is hanging precariously over and into my serivce lines. I would like to get  quotes on having the tree trimmed. thanks [Notes from LSA: This customer has requested a quote]",
         "lead_time": "7:05 AM — 11 de junio 2026",
         "lead_id": "5018379627",
         "charge_status": "in_review",
@@ -274,6 +274,16 @@ const DATA = [
         "charge_status": "in_review",
         "email_subject": "Potential Customer's new request",
         "location": "Nashville"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "1:08 PM — 11 de junio 2026",
+        "lead_id": "20260611_1308",
+        "notes": "A potential customer called you on 06/11/2026 at 1:08 PM.",
+        "email_subject": "New call from a potential customer"
       }
     ],
     "actions": [
@@ -324,6 +334,12 @@ const DATA = [
         "text": "Mensaje Google LSA — sin telefono · Extraccion de tocones · Nashville · 11/06/2026 7:58 AM · Responder en panel LSA · ID 5327247303",
         "type": "lsa_message",
         "id": "lsa_5327247303"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 11/06/2026 1:08 PM · ID 20260611_1308",
+        "type": "lsa_lead",
+        "id": "lsa_20260611_1308"
       }
     ]
   },
@@ -361,7 +377,7 @@ const DATA = [
         "address": "903 Estes Road",
         "city": "Henderson, TN",
         "call_date": "08 de junio 2026 — 2:48 PM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019ea8c71ecb7ac6953099762aadb620/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019ea8c71ecb7ac695309976 2aadb620/recording"
       },
       {
         "caller_name": "Hawkins Patrick",
@@ -377,7 +393,7 @@ const DATA = [
         "address": "3077 Hillsborough Road (Highway 431), Forest Hills, 37027",
         "city": "Nashville, TN",
         "call_date": "08 de junio 2026 — 11:59 AM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019ea82cf25a74d982d2355149f0fb84/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019ea82cf25a74d982d235514 9f0fb84/recording"
       },
       {
         "caller_name": "Sellers Rachel",
@@ -573,7 +589,7 @@ const DATA = [
         "address": "198 TGT Road",
         "city": "Nashville, TN",
         "call_date": "05 de junio 2026 — 9:50 AM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019e9843abae7729be0dc64119744d10b/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019e9843abae7729be0dc641197 44d10b/recording"
       }
     ],
     "formspree": [],
@@ -648,7 +664,7 @@ const DATA = [
         "address": "198 TGT Road",
         "city": "Nashville, TN",
         "call_date": "05 de junio 2026 — 9:50 AM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019e9843abae7729be0dc641197474d10b/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019e9843abae7729be0dc64119747 4d10b/recording"
       }
     ],
     "formspree": [],
@@ -1418,7 +1434,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 31, "total_web_30d": 2, "total_lsa_30d": 31, "total_booked_30d": 14, "total_missed_30d": 7, "pending_actions": 8};
+const STATS = {"period": "30 dias", "date_generated": "2026-06-11", "total_leads": 65, "days_active": 15, "days_in_window": 15, "callrail_total": 31, "callrail_answered": 23, "callrail_voicemail": 7, "web_leads": 2, "lsa_calls": 20, "lsa_messages": 12, "lsa_total": 32, "today_total": 9, "today_lsa_calls": 7, "today_lsa_messages": 2, "today_callrail": 0, "today_web": 0, "pending_actions": 9};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
