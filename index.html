@@ -210,6 +210,70 @@ const DATA = [
         "lead_id": null,
         "notes": "A potential customer called you on 06/10/2026 at 8:35 AM.",
         "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "7:24 AM — 11 de junio 2026",
+        "lead_id": "20260611_0724",
+        "notes": "A potential customer called you on 06/11/2026 at 7:24 AM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "9:33 AM — 11 de junio 2026",
+        "lead_id": "20260611_0933",
+        "notes": "A potential customer called you on 06/11/2026 at 9:33 AM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "10:09 AM — 11 de junio 2026",
+        "lead_id": "20260611_1009",
+        "notes": "A potential customer called you on 06/11/2026 at 10:09 AM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "10:40 AM — 11 de junio 2026",
+        "lead_id": "20260611_1040",
+        "notes": "A potential customer called you on 06/11/2026 at 10:40 AM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Benjamin Johnson",
+        "customer_phone": null,
+        "service_requested": "Poda y corte de arboles",
+        "notes": "I have a  45ish ft tall, multi-trunk/stem hackeberry in my front yard that has a sprawling canopy, much of which is hanging precariously over and into my sericve lines. I would like to get  quotes on having the tree trimmed. thanks [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "7:05 AM — 11 de junio 2026",
+        "lead_id": "5018379627",
+        "charge_status": "in_review",
+        "email_subject": "Benjamin Johnson's new request",
+        "location": "Nashville"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Extraccion de tocones",
+        "notes": "We have a stump that needs to be removed in our front yard and bushes that have grown over it [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "7:58 AM — 11 de junio 2026",
+        "lead_id": "5327247303",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Nashville"
       }
     ],
     "actions": [
@@ -221,9 +285,45 @@ const DATA = [
       },
       {
         "priority": "urgent",
-        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 10/06/2026 8:35 AM · ID 20260610_0835",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 10/06/2026 8:35 AM · ID 20260610_835",
         "type": "lsa_lead",
-        "id": "lsa_20260610_0835"
+        "id": "lsa_20260610_835"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 11/06/2026 7:24 AM · ID 20260611_0724",
+        "type": "lsa_lead",
+        "id": "lsa_20260611_0724"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 11/06/2026 9:33 AM · ID 20260611_0933",
+        "type": "lsa_lead",
+        "id": "lsa_20260611_0933"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 11/06/2026 10:09 AM · ID 20260611_1009",
+        "type": "lsa_lead",
+        "id": "lsa_20260611_1009"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 11/06/2026 10:40 AM · ID 20260611_1040",
+        "type": "lsa_lead",
+        "id": "lsa_20260611_1040"
+      },
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin telefono · Poda y corte de arboles · Nashville · 11/06/2026 7:05 AM · Responder en panel LSA · ID 5018379627",
+        "type": "lsa_message",
+        "id": "lsa_5018379627"
+      },
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin telefono · Extraccion de tocones · Nashville · 11/06/2026 7:58 AM · Responder en panel LSA · ID 5327247303",
+        "type": "lsa_message",
+        "id": "lsa_5327247303"
       }
     ]
   },
@@ -1318,7 +1418,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 31, "total_web_30d": 2, "total_lsa_30d": 25, "total_booked_30d": 14, "total_missed_30d": 7, "pending_actions": 2};
+const STATS = {"total_calls_30d": 31, "total_web_30d": 2, "total_lsa_30d": 31, "total_booked_30d": 14, "total_missed_30d": 7, "pending_actions": 8};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
