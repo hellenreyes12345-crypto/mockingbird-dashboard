@@ -190,8 +190,28 @@ const DATA = [
     "display": "Viernes 12 de junio 2026",
     "callrail": [],
     "formspree": [],
-    "lsa": [],
-    "actions": []
+    "lsa": [
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Remocion de arboles",
+        "notes": "Need an estimate on a damaged(ice storm) pine tree taken down and removed. [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "1:35 PM — 12 de junio 2026",
+        "lead_id": "8147631667",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Portland"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin telefono · Remocion de arboles · Portland · 12/06/2026 1:35 PM · Responder en panel LSA · ID 8147631667",
+        "type": "lsa_message",
+        "id": "lsa_8147631667"
+      }
+    ]
   },
   {
     "date": "2026-06-11",
@@ -264,7 +284,7 @@ const DATA = [
         "customer_name": "Benjamin Johnson",
         "customer_phone": null,
         "service_requested": "Poda y corte de arboles",
-        "notes": "I have a  45ish ft tall, multi-trunk/stem hackberry in my front yard that has a sprawling canopy, much of which is hanging precariously over and into my serivce lines. I would like to get  quotes on having the tree trimmed. thanks [Notes from LSA: This customer has requested a quote]",
+        "notes": "I have a 45ish ft tall, multi-trunk/stem hackberry in my front yard that has a sprawling canopy, much of which is hanging precariously over and into my serivce lines. I would like to get quotes on having the tree trimmed. thanks [Notes from LSA: This customer has requested a quote]",
         "lead_time": "7:05 AM — 11 de junio 2026",
         "lead_id": "5018379627",
         "charge_status": "in_review",
@@ -385,7 +405,7 @@ const DATA = [
         "address": "903 Estes Road",
         "city": "Henderson, TN",
         "call_date": "08 de junio 2026 — 2:48 PM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019ea8c71ecb7ac695309976 2aadb620/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019ea8c71ecb7ac6953099762aadb620/recording"
       },
       {
         "caller_name": "Hawkins Patrick",
@@ -401,7 +421,7 @@ const DATA = [
         "address": "3077 Hillsborough Road (Highway 431), Forest Hills, 37027",
         "city": "Nashville, TN",
         "call_date": "08 de junio 2026 — 11:59 AM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019ea82cf25a74d982d235514 9f0fb84/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019ea82cf25a74d982d2355149f0fb84/recording"
       },
       {
         "caller_name": "Sellers Rachel",
@@ -640,7 +660,7 @@ const DATA = [
         "address": "2300 Valley Brook Road",
         "city": "Nashville, TN",
         "call_date": "04 de junio 2026 — 2:56 PM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019e9435cdeb70a4acb3f4a477121686/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019e9435cdeb70a4acb3f4a47712 1686/recording"
       },
       {
         "caller_name": "Wallace Stephen",
@@ -672,7 +692,7 @@ const DATA = [
         "address": "198 TGT Road",
         "city": "Nashville, TN",
         "call_date": "05 de junio 2026 — 9:50 AM CDT",
-        "recording_url": "https://app.callrail.com/calls/CAL019e9843abae7729be0dc64119747 4d10b/recording"
+        "recording_url": "https://app.callrail.com/calls/CAL019e9843abae7729be0dc6411974 4d10b/recording"
       }
     ],
     "formspree": [],
@@ -1442,7 +1462,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 31, "total_web_30d": 2, "total_lsa_30d": 32, "total_booked_30d": 14, "total_missed_30d": 7, "pending_actions": 0};
+const STATS = {"total_calls_30d": 31, "total_web_30d": 2, "total_lsa_30d": 33, "total_booked_30d": 14, "total_missed_30d": 7, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
