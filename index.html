@@ -186,6 +186,46 @@ button{font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:
 <script>
 const DATA = [
   {
+    "date": "2026-06-14",
+    "display": "Domingo 14 de junio 2026",
+    "callrail": [],
+    "formspree": [],
+    "lsa": [
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Remoción de árboles",
+        "notes": "I need a tree removed. I have some smaller trees I need cut back. [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "5:29 PM — 13 de junio 2026",
+        "lead_id": "5620928920",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "La Vergne"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Remoción de árboles",
+        "notes": "Can I send some pictures of what I need done.",
+        "lead_time": "6:37 PM — 13 de junio 2026",
+        "lead_id": "5620928920",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "La Vergne"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin teléfono · Remoción de árboles · La Vergne · 13/06/2026 5:29 PM · Responder en panel LSA · ID 5620928920",
+        "type": "lsa_message",
+        "id": "lsa_5620928920"
+      }
+    ]
+  },
+  {
     "date": "2026-06-13",
     "display": "Sábado 13 de junio 2026",
     "callrail": [],
@@ -207,7 +247,7 @@ const DATA = [
         "type": "message_lead",
         "customer_name": "Potential Customer",
         "customer_phone": null,
-        "service_requested": "Remoción de árbol",
+        "service_requested": "Remoccón de árbol",
         "notes": "Hi Daniel, sorry for the delay. My wife will be home Tuesday after 10a of you could make it work then. Otherwise I could do Wednesday morning",
         "lead_time": "8:02 AM — 13 de junio 2026",
         "lead_id": "7581956182",
@@ -219,7 +259,7 @@ const DATA = [
         "type": "message_lead",
         "customer_name": "Potential Customer",
         "customer_phone": null,
-        "service_requested": "Remoción de árbol",
+        "service_requested": "Remoccón de árbol",
         "notes": "And address is 1015 High Ridge Dr N Goodlettsville",
         "lead_time": "12:21 PM — 13 de junio 2026",
         "lead_id": "7581956182",
@@ -291,7 +331,7 @@ const DATA = [
     "actions": [
       {
         "priority": "urgent",
-        "text": "Mensaje Google LSA — sin teléfono · Remoción de árbol · Goodlettsville · 12/06/2026 5:12 PM · Responder en panel LSA · ID 7581956182",
+        "text": "Mensaje Google LSA — sin teléfono · Remoccón de árbol · Goodlettsville · 12/06/2026 5:12 PM · Responder en panel LSA · ID 7581956182",
         "type": "lsa_message",
         "id": "lsa_7581956182"
       },
@@ -370,7 +410,7 @@ const DATA = [
       {
         "type": "new_lead",
         "customer_name": null,
-        "customer_phome": null,
+        "customer_phone": null,
         "service_requested": null,
         "lead_time": "9:33 AM — 11 de junio 2026",
         "lead_id": "20260611_0933",
@@ -435,13 +475,13 @@ const DATA = [
     "actions": [
       {
         "priority": "urgent",
-        "text": "Llamada perdida Google LS@ — sin telefono · sin ubicacion · 10/06/2026 10:06 AM · ID 20260610_1006",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 10/06/2026 10:06 AM · ID 20260610_1006",
         "type": "lsa_lead",
         "id": "lsa_20260610_1006"
       },
       {
         "priority": "urgent",
-        "text": "Llamada perdida Google LS@ — sin telefono · sin ubicacion · 10/06/2026 8:35 AM · ID 20260610_835",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 10/06/2026 8:35 AM · ID 20260610_835",
         "type": "lsa_lead",
         "id": "lsa_20260610_835"
       },
@@ -491,7 +531,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 0, "total_web_30d": 0, "total_lsa_30d": 18, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 2};
+const STATS = {"total_calls_30d": 0, "total_web_30d": 0, "total_lsa_30d": 20, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
