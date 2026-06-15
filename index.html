@@ -188,10 +188,67 @@ const DATA = [
   {
     "date": "2026-06-15",
     "display": "Lunes 15 de junio 2026",
-    "callrail": [],
+    "callrail": [
+      {
+        "caller_name": "Walker Don",
+        "caller_phone": "615-417-9868",
+        "duration_seconds": null,
+        "status": "text",
+        "tags": [],
+        "call_summary": "El cliente Walker Don envió un mensaje de texto: No ha llovido mucho últimamente. ¿Pueden venir esta semana? Dirección: 2300 Valley Brook Rd.",
+        "voicemail_transcript": null,
+        "service_requested": "Visita de servicio / poda de árbol",
+        "address": "2300 Valley Brook Rd",
+        "city": "Nashville, TN",
+        "call_date": "15 de junio 2026 — 9:44 AM CDT",
+        "recording_url": null
+      }
+    ],
     "formspree": [],
-    "lsa": [],
-    "actions": []
+    "lsa": [
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "8:55 AM — 15 de junio 2026",
+        "lead_id": "20260615_0855",
+        "notes": "A potential customer called you on 06/15/2026 at 8:55 AM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Remocion de arbol",
+        "notes": "Hi Daniel, I'm available today or tomorrow in the afternoon! Sorry for the delay!",
+        "lead_time": "11:29 AM — 15 de junio 2026",
+        "lead_id": "4535316755",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": null
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin telefono · sin ubicacion · 15/06/2026 8:55 AM · ID 20260615_0855",
+        "type": "lsa_lead",
+        "id": "lsa_20260615_0855"
+      },
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin teléfono · Remocion de arbol · sin ubicacion · 15/06/2026 11:29 AM · Responder en panel LSA · ID 4535316755",
+        "type": "lsa_message",
+        "id": "lsa_4535316755"
+      },
+      {
+        "priority": "urgent",
+        "text": "Buzón de voz: Walker Don (615-417-9868) · Visita de servicio / poda de árbol · 2300 Valley Brook Rd · 15/06/2026 9:44 AM CDT",
+        "type": "missed_call",
+        "id": "cr_6154179868_20260615"
+      }
+    ]
   },
   {
     "date": "2026-06-14",
@@ -623,7 +680,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 0, "total_web_30d": 0, "total_lsa_30d": 25, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 17};
+const STATS = {"total_calls_30d": 1, "total_web_30d": 0, "total_lsa_30d": 27, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 20};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
