@@ -190,8 +190,28 @@ const DATA = [
     "display": "Miércoles 17 de junio 2026",
     "callrail": [],
     "formspree": [],
-    "lsa": [],
-    "actions": []
+    "lsa": [
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Poda y limpieza de arboles",
+        "notes": "I have quite a few trees that are dead that need to be taken down and I have lots of trees that need to be limbed and cleaned up. Follow-up: Address is 2235 Webster Street Greenbrier Tennessee and I can be available any day that you have as soon as possible. Availability: tomorrow (2026-06-18) around 4:30 PM.",
+        "lead_time": "9:31 AM — 17 de junio 2026",
+        "lead_id": "6099525248",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Greenbrier, Tennessee"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin telefono · Poda y limpieza de arboles · Greenbrier, TN · 17/06/2026 9:31 AM · Responder en panel LSA · ID 6099525248",
+        "type": "lsa_message",
+        "id": "lsa_6099525248"
+      }
+    ]
   },
   {
     "date": "2026-06-16",
@@ -854,7 +874,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 1, "total_web_30d": 0, "total_lsa_30d": 39, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 0};
+const STATS = {"total_calls_30d": 1, "total_web_30d": 0, "total_lsa_30d": 40, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 1};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
