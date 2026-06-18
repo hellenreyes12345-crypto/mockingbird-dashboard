@@ -210,6 +210,28 @@ const DATA = [
         "lead_id": "20260618_1144",
         "notes": "A potential customer called you on 06/18/2026 at 11:44 AM.",
         "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "12:49 PM — 18 de junio 2026",
+        "lead_id": "20260618_1249",
+        "notes": "A potential customer called you on 06/18/2026 at 12:49 PM.",
+        "email_subject": "New call from a potential customer"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "notes": "Okay!",
+        "lead_time": "1:41 PM — 18 de junio 2026",
+        "lead_id": "6099525248",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": null
       }
     ],
     "actions": [
@@ -224,6 +246,18 @@ const DATA = [
         "text": "Llamada perdida Google LSA — sin teléfono · sin ubicación · 18/06/2026 11:44 AM · ID 20260618_1144",
         "type": "lsa_lead",
         "id": "lsa_20260618_1144"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada perdida Google LSA — sin teléfono · sin ubicación · 18/06/2026 12:49 PM · ID 20260618_1249",
+        "type": "lsa_lead",
+        "id": "lsa_20260618_1249"
+      },
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin teléfono · sin especificar · sin ubicación · 18/06/2026 1:41 PM · Responder en panel LSA · ID 6099525248",
+        "type": "lsa_message",
+        "id": "lsa_6099525248"
       }
     ]
   },
@@ -739,7 +773,7 @@ const DATA = [
       },
       {
         "priority": "urgent",
-        "text": "Mensaje Google LS@ — sin teléfono · Poda y recorte de árboles · Nashville · 13/06/2026 3:24 PM · Responder en panel LSA · ID 3327992935",
+        "text": "Mensaje Google LSA — sin teléfono · Poda y recorte de árboles · Nashville · 13/06/2026 3:24 PM · Responder en panel LSA · ID 3327992935",
         "type": "lsa_message",
         "id": "lsa_3327992935"
       }
@@ -933,7 +967,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 2, "total_web_30d": 0, "total_lsa_30d": 22, "total_booked_30d": 1, "total_missed_30d": 0, "pending_actions": 25};
+const STATS = {"total_calls_30d": 2, "total_web_30d": 0, "total_lsa_30d": 44, "total_booked_30d": 1, "total_missed_30d": 0, "pending_actions": 4};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
