@@ -190,8 +190,68 @@ const DATA = [
     "display": "Martes 23 de junio 2026",
     "callrail": [],
     "formspree": [],
-    "lsa": [],
-    "actions": []
+    "lsa": [
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Poda y corte de árboles",
+        "notes": "Q: Approximately how many trees need trimming or pruning? A: 1-3 trees Q: Are the trees located near power lines or structures? A: No Additional details (required): Just need 2 trees trimmed and shaped [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "7:30 AM — 23 de junio 2026",
+        "lead_id": "6735140013",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Hendersonville"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Poda y corte de árboles",
+        "notes": "Good Morning Daniel! I'm available all day today, Thursday, and Friday for a quote. I'm at 1044 Merrick Rd Hendersonville TN",
+        "lead_time": "7:41 AM — 23 de junio 2026",
+        "lead_id": "6735140013",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Hendersonville"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Poda y corte de árboles",
+        "notes": "Perfect! How does 10am sound?",
+        "lead_time": "8:51 AM — 23 de junio 2026",
+        "lead_id": "6735140013",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Hendersonville"
+      },
+      {
+        "type": "new_lead",
+        "customer_name": null,
+        "customer_phone": null,
+        "service_requested": null,
+        "lead_time": "8:53 AM — 23 de junio 2026",
+        "lead_id": null,
+        "notes": "A potential customer called you on 06/23/2026 at 8:53 AM.",
+        "email_subject": "New call from a potential customer"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin teléfono · Poda y corte de árboles · Hendersonville · 23/06/2026 7:30 AM · Responder en panel LSA · ID 6735140013",
+        "type": "lsa_message",
+        "id": "lsa_6735140013"
+      },
+      {
+        "priority": "urgent",
+        "text": "Llamada Google LSA — sin teléfono · sin ubicación · 23/06/2026 8:53 AM · ID desconocido",
+        "type": "lsa_lead",
+        "id": "lsa_20260623_0853"
+      }
+    ]
   },
   {
     "date": "2026-06-22",
@@ -287,7 +347,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 0, "total_web_30d": 0, "total_lsa_30d": 5, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 0};
+const STATS = {"total_calls_30d": 0, "total_web_30d": 0, "total_lsa_30d": 9, "total_booked_30d": 0, "total_missed_30d": 0, "pending_actions": 2};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
