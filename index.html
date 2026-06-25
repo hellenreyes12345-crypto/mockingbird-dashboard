@@ -188,10 +188,93 @@ const DATA = [
   {
     "date": "2026-06-25",
     "display": "Jueves 25 de junio 2026",
-    "callrail": [],
+    "callrail": [
+      {
+        "caller_name": "Graham Keri",
+        "caller_phone": "479-257-4991",
+        "duration_seconds": 211,
+        "status": "answered",
+        "tags": [
+          "Schedule booked"
+        ],
+        "call_summary": "El cliente llamó después de recibir un volante del servicio de árboles sobre el servicio en Poplar Creek Estates, Bellevue. El cliente tiene un árbol en su jardín delantero con savia negra que bajaba por el tronco y atraía abejas y avispas, y quería saber si la empresa podía evaluar si se necesita tratamiento. El agente Daniel programó una evaluación gratuita del árbol para el lunes a las 10am en la dirección del cliente: 6928 Collinswood Drive, Bellevue, y confirmó la cita antes de terminar la llamada.",
+        "voicemail_transcript": null,
+        "service_requested": "Evaluación de árbol",
+        "address": "6928 Collinswood Drive, Bellevue",
+        "city": "Rogers, AR",
+        "call_date": "25 de junio 2026 — 1:31 PM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019f000d7ee976d69220caa9224ec43b/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiZGViZjU2OWQ5YmY0NGRmNzE1OGIiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.XhXmrexGU0ipwFeK9uVt7jkbmKN2nSss1LkACxbZXy4"
+      },
+      {
+        "caller_name": "Thombs David",
+        "caller_phone": "615-948-8873",
+        "duration_seconds": 116,
+        "status": "answered",
+        "tags": [
+          "Schedule requested"
+        ],
+        "call_summary": "El cliente Dawson llamó al servicio de árbol en Nashville para preguntar sobre desechar astillas de madera en Harpeth Valley Golf Center ubicado en 7629 Old Harding Pike en Bellevue para un proyecto de campo de golf. El agente Daniel confirmó que la empresa brinda servicio en el área de Bellevue y aceptó depositar una carga de astillas de madera si tienen una disponible en el área. El agente tomó la información de contacto del cliente (615-948-8873) e indicó que haría un seguimiento si hay una carga disponible.",
+        "voicemail_transcript": null,
+        "service_requested": "Disposición de astillas de madera",
+        "address": "7629 Old Harding Pike, Bellevue",
+        "city": "Nashville, TN",
+        "call_date": "25 de junio 2026 — 2:52 PM CDT",
+        "recording_url": "https://app.callrail.com/calls/CAL019f0057344277bfa8625695be9e7b0f/recording?user_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3Nfa2V5IjoiZDZiNzRjYmE2MDdhY2FlYjE5YzMiLCJlbWFpbCI6InRoZW1vY2tpbmdiaXJkdHJlZXNlcnZpY2VAZ21haWwuY29tIn0.hZjkTrE8k2goEPsEyYA11eYL4pKm7bmAsl7BN9Sg-DQ"
+      }
+    ],
     "formspree": [],
-    "lsa": [],
-    "actions": []
+    "lsa": [
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Poda y corte de árboles",
+        "notes": "Good Morning! We will see you then!",
+        "lead_time": "8:32 AM — 25 de junio 2026",
+        "lead_id": "6735140013",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Hendersonville"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Remoción de tocón",
+        "notes": "Stump removal front yardc [Notes from LSA: This customer has requested a quote]",
+        "lead_time": "1:34 PM — 25 de junio 2026",
+        "lead_id": "8274138022",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Nashville"
+      },
+      {
+        "type": "message_lead",
+        "customer_name": "Potential Customer",
+        "customer_phone": null,
+        "service_requested": "Remoción de tocón",
+        "notes": "I attempted to pull it out and it's not moving. I think I need professional assistance",
+        "lead_time": "2:46 PM — 25 de junio 2026",
+        "lead_id": "8274138022",
+        "charge_status": "in_review",
+        "email_subject": "Potential Customer's new request",
+        "location": "Nashville"
+      }
+    ],
+    "actions": [
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin teléfono · Poda y corte de árboles · Hendersonville · 25/06/2026 8:32 AM · Responder en panel LSA · ID 6735140013",
+        "type": "lsa_message",
+        "id": "lsa_6735140013"
+      },
+      {
+        "priority": "urgent",
+        "text": "Mensaje Google LSA — sin teléfono · Remoción de tocón · Nashville · 25/06/2026 1:34 PM · Responder en panel LSA · ID 8274138022",
+        "type": "lsa_message",
+        "id": "lsa_8274138022"
+      }
+    ]
   },
   {
     "date": "2026-06-24",
@@ -403,7 +486,7 @@ const DATA = [
   }
 ];
 
-const STATS = {"total_calls_30d": 2, "total_web_30d": 0, "total_lsa_30d": 9, "total_booked_30d": 0, "total_missed_30d": 1, "pending_actions": 0};
+const STATS = {"total_calls_30d": 4, "total_web_30d": 0, "total_lsa_30d": 12, "total_booked_30d": 1, "total_missed_30d": 1, "pending_actions": 2};
 
 // ── Traducciones ─────────────────────────────────────────────────────────────
 const TRADUCCIONES_TAG = {
